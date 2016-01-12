@@ -11,7 +11,6 @@ namespace InfiniPad
         private Hotkeys hk;
         public Main()
         {
-
             string headerText = Assembly.GetEntryAssembly().GetName().Name + " v" + Assembly.GetEntryAssembly().GetName().Version.ToString().Replace(".0", "");
             InitializeComponent();
             this.Icon = Properties.Resources.icon;
@@ -138,6 +137,13 @@ namespace InfiniPad
         private void uploadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UploadImage();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var Abt = new About();
+            Abt.Icon = this.Icon;
+            Abt.Show();
         }
     }
 }
