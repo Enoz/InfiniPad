@@ -1,5 +1,4 @@
 # InfiniPad
 Imgur Screenshot Utility
 
-Features Left To Add:
-  *Run On Startup
+Screenshot Sharing Software. To use, make sure to request your own API key from imgur for your use, as one is not included in this source.
