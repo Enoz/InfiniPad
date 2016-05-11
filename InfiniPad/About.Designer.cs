@@ -32,6 +32,7 @@
             this.pictureIcon = new System.Windows.Forms.PictureBox();
             this.labelVersion = new System.Windows.Forms.Label();
             this.btnGitHub = new System.Windows.Forms.Button();
+            this.btnImgur = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             this.labelVersion.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVersion.Location = new System.Drawing.Point(18, 76);
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(207, 29);
+            this.labelVersion.Size = new System.Drawing.Size(208, 29);
             this.labelVersion.TabIndex = 2;
             this.labelVersion.Text = "Version: 9.9.9.9";
             // 
@@ -68,19 +69,32 @@
             // 
             this.btnGitHub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGitHub.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGitHub.Location = new System.Drawing.Point(12, 108);
+            this.btnGitHub.Location = new System.Drawing.Point(180, 108);
             this.btnGitHub.Name = "btnGitHub";
-            this.btnGitHub.Size = new System.Drawing.Size(317, 32);
+            this.btnGitHub.Size = new System.Drawing.Size(149, 32);
             this.btnGitHub.TabIndex = 3;
             this.btnGitHub.Text = "GitHub";
             this.btnGitHub.UseVisualStyleBackColor = true;
             this.btnGitHub.Click += new System.EventHandler(this.btnGitHub_Click);
             // 
+            // btnImgur
+            // 
+            this.btnImgur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImgur.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImgur.Location = new System.Drawing.Point(12, 108);
+            this.btnImgur.Name = "btnImgur";
+            this.btnImgur.Size = new System.Drawing.Size(149, 32);
+            this.btnImgur.TabIndex = 3;
+            this.btnImgur.Text = "Imgur API";
+            this.btnImgur.UseVisualStyleBackColor = true;
+            this.btnImgur.Click += new System.EventHandler(this.btnImgur_Click);
+            // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(341, 151);
+            this.ClientSize = new System.Drawing.Size(341, 155);
+            this.Controls.Add(this.btnImgur);
             this.Controls.Add(this.btnGitHub);
             this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.pictureIcon);
@@ -103,5 +117,6 @@
         private System.Windows.Forms.PictureBox pictureIcon;
         private System.Windows.Forms.Label labelVersion;
         private System.Windows.Forms.Button btnGitHub;
+        private System.Windows.Forms.Button btnImgur;
     }
 }

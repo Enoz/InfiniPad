@@ -154,5 +154,17 @@ namespace InfiniPad.Properties {
                 this["WatermarkOpacity"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Text")]
+        public string TextDefault {
+            get {
+                return ((string)(this["TextDefault"]));
+            }
+            set {
+                this["TextDefault"] = value;
+            }
+        }
     }
 }

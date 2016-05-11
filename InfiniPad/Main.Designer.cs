@@ -34,10 +34,13 @@
             this.uploadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonMonitor = new System.Windows.Forms.Button();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonMonitor = new System.Windows.Forms.Button();
+            this.listViewLinks = new System.Windows.Forms.ListView();
+            this.ImageLink = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Delete = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +63,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(215, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(205, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -90,9 +93,24 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -115,26 +133,35 @@
             this.buttonMonitor.UseVisualStyleBackColor = true;
             this.buttonMonitor.Click += new System.EventHandler(this.buttonMonitor_Click);
             // 
-            // helpToolStripMenuItem
+            // listViewLinks
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.listViewLinks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ImageLink,
+            this.Delete});
+            this.listViewLinks.Location = new System.Drawing.Point(12, 121);
+            this.listViewLinks.Name = "listViewLinks";
+            this.listViewLinks.Size = new System.Drawing.Size(180, 123);
+            this.listViewLinks.TabIndex = 3;
+            this.listViewLinks.UseCompatibleStateImageBehavior = false;
+            this.listViewLinks.View = System.Windows.Forms.View.Details;
+            this.listViewLinks.ItemActivate += new System.EventHandler(this.listViewLinks_ItemActivate);
             // 
-            // aboutToolStripMenuItem
+            // ImageLink
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.ImageLink.Text = "Link";
+            this.ImageLink.Width = 111;
+            // 
+            // Delete
+            // 
+            this.Delete.Text = "Delete";
+            this.Delete.Width = 65;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(215, 139);
+            this.ClientSize = new System.Drawing.Size(205, 256);
+            this.Controls.Add(this.listViewLinks);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -165,6 +192,9 @@
         private System.Windows.Forms.ToolStripMenuItem uploadImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ListView listViewLinks;
+        private System.Windows.Forms.ColumnHeader ImageLink;
+        private System.Windows.Forms.ColumnHeader Delete;
     }
 }
 

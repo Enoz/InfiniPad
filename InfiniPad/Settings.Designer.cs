@@ -51,6 +51,8 @@
             this.pictureWatermark = new System.Windows.Forms.PictureBox();
             this.buttonChangeWatermark = new System.Windows.Forms.Button();
             this.checkEnabledWatermark = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textEdit = new System.Windows.Forms.TextBox();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -167,7 +169,9 @@
             // 
             // groupEditor
             // 
+            this.groupEditor.Controls.Add(this.textEdit);
             this.groupEditor.Controls.Add(this.btnPenColor);
+            this.groupEditor.Controls.Add(this.label4);
             this.groupEditor.Controls.Add(this.label3);
             this.groupEditor.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupEditor.Location = new System.Drawing.Point(3, 29);
@@ -312,6 +316,23 @@
             this.checkEnabledWatermark.UseVisualStyleBackColor = true;
             this.checkEnabledWatermark.CheckedChanged += new System.EventHandler(this.checkEnabledWatermark_CheckedChanged);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Default Edit Text";
+            // 
+            // textEdit
+            // 
+            this.textEdit.Location = new System.Drawing.Point(100, 53);
+            this.textEdit.Name = "textEdit";
+            this.textEdit.Size = new System.Drawing.Size(100, 20);
+            this.textEdit.TabIndex = 2;
+            this.textEdit.TextChanged += new System.EventHandler(this.textEdit_TextChanged);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,5 +388,7 @@
         private System.Windows.Forms.PictureBox pictureWatermark;
         private System.Windows.Forms.Button buttonChangeWatermark;
         private System.Windows.Forms.TrackBar trackOpacity;
+        private System.Windows.Forms.TextBox textEdit;
+        private System.Windows.Forms.Label label4;
     }
 }

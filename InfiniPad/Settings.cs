@@ -24,6 +24,7 @@ namespace InfiniPad
             checkMonitorShift.Checked       = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
 
             btnPenColor.BackColor           = Properties.Settings.Default.PenColor;
+            textEdit.Text                   = Properties.Settings.Default.TextDefault;
 
             trackOpacity.Value              = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
 
@@ -156,6 +157,12 @@ namespace InfiniPad
             Properties.Settings.Default.WatermarkOpacity = (float)trackOpacity.Value / 100f;
             Properties.Settings.Default.Save();
             RefreshImages();
+        }
+
+        private void textEdit_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.TextDefault = (!String.IsNullOrWhiteSpace(textEdit.Text) ? textEdit.Text : "Text");
+            Properties.Settings.Default.Save();
         }
     }
 }
