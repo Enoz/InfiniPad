@@ -43,7 +43,11 @@ namespace InfiniPad
         }
         public static void deleteImage(ImgurInfo info)
         {
-
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("Authorization", "Client-ID " + APIKeys.ImgurClientID);
+                byte[] response = wc.UploadValues(String.Format("https://api.imgur.com/3/image/{0}", info.deletehash), "DELETE", new NameValueCollection());
+            }
         }
     }
 }

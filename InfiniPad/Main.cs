@@ -29,6 +29,7 @@ namespace InfiniPad
 
             nfi.ContextMenu = ctm;
 
+
             hk.ReapplyHotkeys();
         }
 
@@ -67,6 +68,16 @@ namespace InfiniPad
                     return;
             }
             new PartialScreenie();
+        }
+
+        public static Main getMainForm()
+        {
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is Main)
+                    return (Main)f;
+            }
+            return null;
         }
 
         public static void TakeFullScreen()
@@ -144,6 +155,22 @@ namespace InfiniPad
             var Abt = new About();
             Abt.Icon = this.Icon;
             Abt.Show();
+        }
+
+        public void addImgurItem(Uri link, string deletehash)
+        {
+            listViewLinks.Items.Add(new ListViewItem(new String[] {link.ToString(), deletehash}));
+        }
+
+        private void listViewLinks_ItemActivate(object sender, EventArgs e)
+        {
+            var toDelete = new Upload.ImgurInfo();
+            toDelete.link = new Uri(listViewLinks.SelectedItems[0].SubItems[0].Text);
+            toDelete.deletehash = listViewLinks.SelectedItems[0].SubItems[1].Text;
+            Upload.deleteImage(toDelete);
+            listViewLinks.SelectedItems[0].Remove();
+            Main.DisplayBubbleMessage(3, "Image Deletion", "You have deleted the image located at " + toDelete.link);
+            GC.Collect();
         }
     }
 }

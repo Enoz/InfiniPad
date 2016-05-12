@@ -19,17 +19,19 @@ namespace InfiniPad
             }
         }
 
-        Dictionary<string, int> sizelis = new Dictionary<string, int>();
+        //Dictionary<string, int> sizelis = new Dictionary<string, int>();
         private enum Tool
         {
             None = 1,
+            Text,
             Pen,
         }
         private Tool Using;
+        private string textToDraw;
         private bool bMouseDown = false;
         private Bitmap curImg;
         private List<Bitmap> picHistory = new List<Bitmap>();
-        Color penCol;
+        public Color penCol;
         Pen penObj;
         int penWidth;
         Point[] cursorPos = {
@@ -47,45 +49,50 @@ namespace InfiniPad
 
 
 
-
         public editor(Bitmap Image)
         {
             InitializeComponent();
-            picEdit.Image = Image;
-            curImg = Image;
-            Using = Tool.Pen;
-            penCol = Properties.Settings.Default.PenColor;
-            penObj = new Pen(penCol, 4);
-            penWidth = sizelist[2].Size;
-            cmbPenSize.Text = sizelist[2].Name;
+            picEdit.Image       = Image;
+            curImg              = Image;
+            Using               = Tool.Pen;
+            textToDraw          = Properties.Settings.Default.TextDefault;
+            textDrawBox.Text    = textToDraw;
+            penCol              = Properties.Settings.Default.PenColor;
+            refreshBtnColor();
+            penObj              = new Pen(penCol, 4);
+            penWidth            = sizelist[2].Size;
+            cmbPenSize.Text     = sizelist[2].Name;
+
             foreach(PenSize ps in sizelist)
                 cmbPenSize.Items.Add(ps.Name);
-            this.Icon = Properties.Resources.icon;
+
+            this.Icon           = Properties.Resources.icon;
+
             if (Properties.Settings.Default.WatermarkEnabled)
             {
                 PaintHelp.applyWatermark(ref curImg);
                 picEdit.Image = curImg;
             }
-            bool enbld = Properties.Settings.Default.EditorEnabled;
-            this.Visible = enbld;
+
+            bool enbld          = Properties.Settings.Default.EditorEnabled;
+            this.Visible        = enbld;
             if (!enbld)
             {
                 UploadImage();
             }
 
+            
+
+        }
+
+        private void refreshBtnColor()
+        {
+            btnColor.BackColor = penCol;
         }
 
         private void btnPen_Click(object sender, EventArgs e)
         {
-            ColorDialog cd = new ColorDialog();
-            cd.AllowFullOpen = true;
-            cd.Color = penCol;
-            if (cd.ShowDialog() == DialogResult.OK)
-            {
-                Using = Tool.Pen;
-                penCol = cd.Color;
-                refreshPen();
-            }
+            Using = Tool.Pen;
         }
 
         private void picEdit_MouseDown(object sender, MouseEventArgs e)
@@ -93,6 +100,18 @@ namespace InfiniPad
             cursorPos[0] = e.Location;
             cursorPos[1] = e.Location;
             picHistory.Add(new Bitmap(curImg));
+            if (Using == Tool.Text)
+            {
+                picEdit.Invalidate();
+                Graphics g = Graphics.FromImage(curImg);
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                g.DrawString(textToDraw, new Font("Arial", penWidth + 8), new SolidBrush(penCol), new PointF(cursorPos[1].X, cursorPos[1].Y));
+                g.Save();
+                g.Dispose();
+                cursorPos[0] = e.Location;
+
+                picEdit.Image = curImg;
+            }
             bMouseDown = true;
         }
 
@@ -106,7 +125,7 @@ namespace InfiniPad
         {
             cursorPos[1] = e.Location;
             picEdit.Invalidate();
-            if(Using == Tool.Pen)
+            if (Using == Tool.Pen)
             {
                 if (bMouseDown)
                 {
@@ -115,8 +134,8 @@ namespace InfiniPad
                     //still unsure whether i should use DrawEllipse or FillEllipse
                     g.FillEllipse(new SolidBrush(penObj.Color), new Rectangle(e.X, e.Y, penWidth, penWidth));
                     //smoothing, looks choppy otherwise
-                    g.DrawLine(penObj, new Point(cursorPos[0].X + (penWidth / 2), cursorPos[0].Y + (penWidth/2)), new Point(cursorPos[1].X + (penWidth / 2), cursorPos[1].Y + (penWidth / 2)));
-                   
+                    g.DrawLine(penObj, new Point(cursorPos[0].X + (penWidth / 2), cursorPos[0].Y + (penWidth / 2)), new Point(cursorPos[1].X + (penWidth / 2), cursorPos[1].Y + (penWidth / 2)));
+
                     g.Save();
                     g.Dispose();
                     cursorPos[0] = e.Location;
@@ -131,6 +150,10 @@ namespace InfiniPad
             if (Using == Tool.Pen)
             {
                 e.Graphics.FillEllipse(new SolidBrush(penObj.Color), new Rectangle(cursorPos[1].X, cursorPos[1].Y, (int)penObj.Width, (int)penObj.Width));
+            }
+            if (Using == Tool.Text)
+            {
+                e.Graphics.DrawString(textToDraw, new Font("Arial", penWidth + 8), new SolidBrush(penCol), new PointF(cursorPos[1].X, cursorPos[1].Y));
             }
         }
 
@@ -235,6 +258,7 @@ namespace InfiniPad
             Main.DisplayBubbleMessage(3, "Imgur Upload Completed", "Your image is live at " + PictureLink.link + "! This link has been copied to your clipboard.");
             Clipboard.SetText(PictureLink.link.ToString());
             GC.Collect();
+            Main.getMainForm().addImgurItem(PictureLink.link, PictureLink.deletehash);
             this.Close();
         }
 
@@ -246,9 +270,29 @@ namespace InfiniPad
         private void editor_Resize(object sender, EventArgs e)
         {
             picPanel.Width = this.Width-27;
-            picPanel.Height = this.Height - editGroupBox.Size.Height*2;
+            picPanel.Height = this.Height - editGroupBox.Size.Height*2-15;
             editGroupBox.Location =  new Point(this.editGroupBox.Location.X, this.picPanel.Location.Y+this.picPanel.Size.Height);
             editGroupBox.Width = this.Width - this.editGroupBox.Location.X*3;
+        }
+
+        private void textDrawButton_Click(object sender, EventArgs e)
+        {
+            textToDraw = textDrawBox.Text;
+            if (!string.IsNullOrWhiteSpace(textToDraw))
+                Using = Tool.Text;
+        }
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.AllowFullOpen = true;
+            cd.Color = penCol;
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                penCol = cd.Color;
+                refreshPen();
+                refreshBtnColor();
+            }
         }
     }
 }

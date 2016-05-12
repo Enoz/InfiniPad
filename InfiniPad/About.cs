@@ -19,6 +19,11 @@ namespace InfiniPad
             Process.Start("https://github.com/Enoz/InfiniPad");
         }
 
+        private void btnImgur_Click(object sender, System.EventArgs e)
+        {
+            Process.Start("https://api.imgur.com/");
+        }
+
         private void About_Load(object sender, System.EventArgs e)
         {
             this.MaximumSize = this.Size;
