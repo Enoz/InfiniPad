@@ -30,7 +30,7 @@ namespace InfiniPad
             Point offsetPoint = new Point(0, PaintHelp.getYOffset());
             this.Location = offsetPoint;
             this.bmpDesktop = PaintHelp.GetScreen(offsetPoint, fullSize);
-            this.fntMeasure = PaintHelp.GetFont("Cambria", 35, FontStyle.Regular);
+            this.fntMeasure = PaintHelp.GetFont("Cambria", 45, FontStyle.Regular);
         }
 
         private void ScreenshotHelper_Paint(object sender, PaintEventArgs e)
@@ -44,8 +44,14 @@ namespace InfiniPad
             }
             else
             {
-                PaintHelp.DrawOutlinedRect(g, PaintHelp.fixNegRect(startP, endP), new SolidBrush(Color.Red), 2);
-                PaintHelp.DrawAroundRect(g, PaintHelp.fixNegRect(startP, endP), new Rectangle(0, 0, fullSize.Width, fullSize.Height), rectBrush);
+                Rectangle drawArea = PaintHelp.fixNegRect(startP, endP);
+                PaintHelp.DrawOutlinedRect(g, drawArea, new SolidBrush(Color.Red), 2);
+                PaintHelp.DrawAroundRect(g, drawArea, new Rectangle(0, 0, fullSize.Width, fullSize.Height), rectBrush);
+                PaintHelp.DrawRotatedText(g, Math.Abs(startP.X-endP.X).ToString(), fntMeasure, new SolidBrush(Color.Aquamarine), new PointF(drawArea.X, drawArea.Y+drawArea.Size.Height), 0);
+
+                string ySize = Math.Abs(startP.Y - endP.Y).ToString();
+                PaintHelp.DrawRotatedText(g, ySize, fntMeasure, new SolidBrush(Color.Aquamarine),
+                    new PointF(drawArea.X-g.MeasureString(ySize, fntMeasure).Height-10, drawArea.Y+drawArea.Size.Height-g.MeasureString(ySize, fntMeasure).Width), -90);
             }
             
         }
@@ -66,7 +72,6 @@ namespace InfiniPad
             catch (ArgumentException)
             {
                 this.Close(); //This occurs when your startP and endP are the same
-                
             }
             
         }
