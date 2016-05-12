@@ -122,7 +122,7 @@ namespace InfiniPad
             }
             catch (Exception)
             {
-                return new Bitmap(5,5); //return nothing
+                return new Bitmap(5,5); //return blank, transparent image
             }
         }
 

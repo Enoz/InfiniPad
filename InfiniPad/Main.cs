@@ -11,8 +11,8 @@ namespace InfiniPad
         private Hotkeys hk;
         public Main()
         {
-            string headerText = Assembly.GetEntryAssembly().GetName().Name + " v" + Assembly.GetEntryAssembly().GetName().Version.ToString().Replace(".0", "");
             InitializeComponent();
+            string headerText = Assembly.GetEntryAssembly().GetName().Name + " v" + Assembly.GetEntryAssembly().GetName().Version.ToString().Replace(".0", "");
             this.Icon = Properties.Resources.icon;
             this.Text = headerText;
 
@@ -107,7 +107,8 @@ namespace InfiniPad
 
         public static void TakeWindowScreen()
         {
-
+            //takes a SS of the foreground window, needs to be completed
+            //dllimport -> GetForegroundWindow()
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
