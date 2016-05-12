@@ -16,7 +16,12 @@ namespace InfiniPad
 
         public static void DrawOutlinedRect(Graphics g, Rectangle rect, Brush b, int thickness)
         {
-            
+            g.FillRectangle(b, new Rectangle(rect.X - thickness, rect.Y, thickness, rect.Height)); //left
+            g.FillRectangle(b, new Rectangle(rect.X - thickness, rect.Y + rect.Height, //bottom
+                rect.Width + (thickness * 2), thickness));
+            g.FillRectangle(b, new Rectangle(rect.X + rect.Width, rect.Y, thickness, rect.Height)); //right
+            g.FillRectangle(b, new Rectangle(rect.X - thickness, rect.Y -thickness, //bottom
+                rect.Width + (thickness * 2), thickness));
         }
 
         public static Rectangle fixNegRect(Point p1, Point p2)
