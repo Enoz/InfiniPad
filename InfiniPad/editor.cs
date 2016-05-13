@@ -293,7 +293,7 @@ namespace InfiniPad
                 refreshPen();
                 refreshBtnColor();
             }*/
-            Color res = Globals.requestColorDialog();
+            Color res = Globals.requestColorDialog(btnColor);
             if(res != Color.Empty)
             {
                 penCol = res;

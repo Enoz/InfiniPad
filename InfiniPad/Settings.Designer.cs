@@ -56,6 +56,8 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.btnOutlineColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnMeasurementColor = new System.Windows.Forms.Button();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -340,6 +342,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnMeasurementColor);
+            this.tabPage4.Controls.Add(this.label6);
             this.tabPage4.Controls.Add(this.btnOutlineColor);
             this.tabPage4.Controls.Add(this.label5);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -354,7 +358,7 @@
             // 
             this.btnOutlineColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOutlineColor.Font = new System.Drawing.Font("Lao UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOutlineColor.Location = new System.Drawing.Point(83, 6);
+            this.btnOutlineColor.Location = new System.Drawing.Point(114, 6);
             this.btnOutlineColor.Name = "btnOutlineColor";
             this.btnOutlineColor.Size = new System.Drawing.Size(62, 23);
             this.btnOutlineColor.TabIndex = 3;
@@ -369,6 +373,26 @@
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 2;
             this.label5.Text = "Outline Color";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 40);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Measurement Color";
+            // 
+            // btnMeasurementColor
+            // 
+            this.btnMeasurementColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMeasurementColor.Font = new System.Drawing.Font("Lao UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMeasurementColor.Location = new System.Drawing.Point(114, 35);
+            this.btnMeasurementColor.Name = "btnMeasurementColor";
+            this.btnMeasurementColor.Size = new System.Drawing.Size(62, 23);
+            this.btnMeasurementColor.TabIndex = 3;
+            this.btnMeasurementColor.UseVisualStyleBackColor = true;
+            this.btnMeasurementColor.Click += new System.EventHandler(this.btnMeasurementColor_Click);
             // 
             // Settings
             // 
@@ -432,5 +456,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button btnOutlineColor;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnMeasurementColor;
+        private System.Windows.Forms.Label label6;
     }
 }

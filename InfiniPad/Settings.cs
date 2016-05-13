@@ -29,6 +29,7 @@ namespace InfiniPad
             trackOpacity.Value              = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
 
             btnOutlineColor.BackColor       = Properties.Settings.Default.OutlineColor;
+            btnMeasurementColor.BackColor   = Properties.Settings.Default.MeasurementColor;
 
 
             checkMonitorCtrl.CheckedChanged += RefreshModifiers;
@@ -130,7 +131,7 @@ namespace InfiniPad
 
         private void btnPenColor_Click(object sender, EventArgs e)
         {
-            Color res = Globals.requestColorDialog();
+            Color res = Globals.requestColorDialog(btnPenColor);
             if (res == Color.Empty)
                 return;
             Properties.Settings.Default.PenColor = res;
@@ -168,11 +169,21 @@ namespace InfiniPad
 
         private void btnOutlineColor_Click(object sender, EventArgs e)
         {
-            Color col = Globals.requestColorDialog();
+            Color col = Globals.requestColorDialog(btnOutlineColor);
             if (col == Color.Empty)
                 return;
             btnOutlineColor.BackColor = col;
             Properties.Settings.Default.OutlineColor = col;
+            Properties.Settings.Default.Save();
+        }
+
+        private void btnMeasurementColor_Click(object sender, EventArgs e)
+        {
+            Color col = Globals.requestColorDialog(btnMeasurementColor);
+            if (col == Color.Empty)
+                return;
+            btnMeasurementColor.BackColor = col;
+            Properties.Settings.Default.MeasurementColor = col;
             Properties.Settings.Default.Save();
         }
     }

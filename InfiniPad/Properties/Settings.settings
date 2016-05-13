@@ -41,5 +41,8 @@
     <Setting Name="OutlineColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Aqua</Value>
     </Setting>
+    <Setting Name="MeasurementColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Aquamarine</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

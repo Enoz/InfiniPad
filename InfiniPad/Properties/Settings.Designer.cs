@@ -178,5 +178,17 @@ namespace InfiniPad.Properties {
                 this["OutlineColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Aquamarine")]
+        public global::System.Drawing.Color MeasurementColor {
+            get {
+                return ((global::System.Drawing.Color)(this["MeasurementColor"]));
+            }
+            set {
+                this["MeasurementColor"] = value;
+            }
+        }
     }
 }
