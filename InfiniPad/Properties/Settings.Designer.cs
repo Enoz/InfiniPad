@@ -166,5 +166,17 @@ namespace InfiniPad.Properties {
                 this["TextDefault"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Aqua")]
+        public global::System.Drawing.Color OutlineColor {
+            get {
+                return ((global::System.Drawing.Color)(this["OutlineColor"]));
+            }
+            set {
+                this["OutlineColor"] = value;
+            }
+        }
     }
 }

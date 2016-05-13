@@ -10,7 +10,7 @@ namespace InfiniPad
         private Point startP, endP;
         private Brush rectBrush     = new SolidBrush(Color.FromArgb(128, 0, 0, 0));
         private Brush measBrush     = new SolidBrush(Color.FromArgb(255, 0, 255, 128));
-        private Brush outlineBrush  = new SolidBrush(Color.FromArgb(255,0,0,220));
+        private Brush outlineBrush  = new SolidBrush(Properties.Settings.Default.OutlineColor);
         private Font fntMeasure;
         private Bitmap bmpDesktop;
 

@@ -38,5 +38,8 @@
     <Setting Name="TextDefault" Type="System.String" Scope="User">
       <Value Profile="(Default)">Text</Value>
     </Setting>
+    <Setting Name="OutlineColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Aqua</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

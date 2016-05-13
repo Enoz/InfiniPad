@@ -39,7 +39,9 @@
             this.checkMonitorCtrl = new System.Windows.Forms.CheckBox();
             this.groupHotkeys = new System.Windows.Forms.GroupBox();
             this.groupEditor = new System.Windows.Forms.GroupBox();
+            this.textEdit = new System.Windows.Forms.TextBox();
             this.btnPenColor = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.checkEnabledEdit = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -51,8 +53,9 @@
             this.pictureWatermark = new System.Windows.Forms.PictureBox();
             this.buttonChangeWatermark = new System.Windows.Forms.Button();
             this.checkEnabledWatermark = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textEdit = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnOutlineColor = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -62,6 +65,7 @@
             this.groupWatermark.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxPartial
@@ -181,6 +185,14 @@
             this.groupEditor.TabStop = false;
             this.groupEditor.Text = "Editor";
             // 
+            // textEdit
+            // 
+            this.textEdit.Location = new System.Drawing.Point(100, 53);
+            this.textEdit.Name = "textEdit";
+            this.textEdit.Size = new System.Drawing.Size(100, 20);
+            this.textEdit.TabIndex = 2;
+            this.textEdit.TextChanged += new System.EventHandler(this.textEdit_TextChanged);
+            // 
             // btnPenColor
             // 
             this.btnPenColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -191,6 +203,15 @@
             this.btnPenColor.TabIndex = 1;
             this.btnPenColor.UseVisualStyleBackColor = true;
             this.btnPenColor.Click += new System.EventHandler(this.btnPenColor_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Default Edit Text";
             // 
             // label3
             // 
@@ -217,6 +238,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -316,22 +338,37 @@
             this.checkEnabledWatermark.UseVisualStyleBackColor = true;
             this.checkEnabledWatermark.CheckedChanged += new System.EventHandler(this.checkEnabledWatermark_CheckedChanged);
             // 
-            // label4
+            // tabPage4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 56);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Default Edit Text";
+            this.tabPage4.Controls.Add(this.btnOutlineColor);
+            this.tabPage4.Controls.Add(this.label5);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(281, 237);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Screen Shot";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // textEdit
+            // btnOutlineColor
             // 
-            this.textEdit.Location = new System.Drawing.Point(100, 53);
-            this.textEdit.Name = "textEdit";
-            this.textEdit.Size = new System.Drawing.Size(100, 20);
-            this.textEdit.TabIndex = 2;
-            this.textEdit.TextChanged += new System.EventHandler(this.textEdit_TextChanged);
+            this.btnOutlineColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOutlineColor.Font = new System.Drawing.Font("Lao UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOutlineColor.Location = new System.Drawing.Point(83, 6);
+            this.btnOutlineColor.Name = "btnOutlineColor";
+            this.btnOutlineColor.Size = new System.Drawing.Size(62, 23);
+            this.btnOutlineColor.TabIndex = 3;
+            this.btnOutlineColor.UseVisualStyleBackColor = true;
+            this.btnOutlineColor.Click += new System.EventHandler(this.btnOutlineColor_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Outline Color";
             // 
             // Settings
             // 
@@ -359,6 +396,8 @@
             this.groupWatermark.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -390,5 +429,8 @@
         private System.Windows.Forms.TrackBar trackOpacity;
         private System.Windows.Forms.TextBox textEdit;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button btnOutlineColor;
+        private System.Windows.Forms.Label label5;
     }
 }

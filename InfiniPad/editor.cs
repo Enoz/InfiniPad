@@ -258,7 +258,7 @@ namespace InfiniPad
             Main.DisplayBubbleMessage(3, "Imgur Upload Completed", "Your image is live at " + PictureLink.link + "! This link has been copied to your clipboard.");
             Clipboard.SetText(PictureLink.link.ToString());
             GC.Collect();
-            Main.getMainForm().addImgurItem(PictureLink.link, PictureLink.deletehash);
+            Globals.getMainForm().addImgurItem(PictureLink.link, PictureLink.deletehash);
             this.Close();
         }
 
@@ -284,12 +284,19 @@ namespace InfiniPad
 
         private void btnColor_Click(object sender, EventArgs e)
         {
-            ColorDialog cd = new ColorDialog();
+            /*ColorDialog cd = new ColorDialog();
             cd.AllowFullOpen = true;
             cd.Color = penCol;
             if (cd.ShowDialog() == DialogResult.OK)
             {
                 penCol = cd.Color;
+                refreshPen();
+                refreshBtnColor();
+            }*/
+            Color res = Globals.requestColorDialog();
+            if(res != Color.Empty)
+            {
+                penCol = res;
                 refreshPen();
                 refreshBtnColor();
             }

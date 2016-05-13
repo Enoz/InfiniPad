@@ -28,6 +28,9 @@ namespace InfiniPad
 
             trackOpacity.Value              = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
 
+            btnOutlineColor.BackColor       = Properties.Settings.Default.OutlineColor;
+
+
             checkMonitorCtrl.CheckedChanged += RefreshModifiers;
             checkPartialCtrl.CheckedChanged += RefreshModifiers;
             checkMonitorShift.CheckedChanged += RefreshModifiers;
@@ -127,16 +130,14 @@ namespace InfiniPad
 
         private void btnPenColor_Click(object sender, EventArgs e)
         {
-            ColorDialog cd = new ColorDialog();
-            cd.ShowHelp = false;
-            if(cd.ShowDialog() == DialogResult.OK)
-            {
-                Properties.Settings.Default.PenColor = cd.Color;
-                Properties.Settings.Default.Save();
-                btnPenColor.BackColor = cd.Color;
-            }
-            cd.Dispose();
+            Color res = Globals.requestColorDialog();
+            if (res == Color.Empty)
+                return;
+            Properties.Settings.Default.PenColor = res;
+            Properties.Settings.Default.Save();
+            btnPenColor.BackColor = res;
         }
+
         private void buttonChangeWatermark_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -162,6 +163,16 @@ namespace InfiniPad
         private void textEdit_TextChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.TextDefault = (!String.IsNullOrWhiteSpace(textEdit.Text) ? textEdit.Text : "Text");
+            Properties.Settings.Default.Save();
+        }
+
+        private void btnOutlineColor_Click(object sender, EventArgs e)
+        {
+            Color col = Globals.requestColorDialog();
+            if (col == Color.Empty)
+                return;
+            btnOutlineColor.BackColor = col;
+            Properties.Settings.Default.OutlineColor = col;
             Properties.Settings.Default.Save();
         }
     }

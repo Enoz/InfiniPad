@@ -70,15 +70,6 @@ namespace InfiniPad
             new PartialScreenie();
         }
 
-        public static Main getMainForm()
-        {
-            foreach (Form f in Application.OpenForms)
-            {
-                if (f is Main)
-                    return (Main)f;
-            }
-            return null;
-        }
 
         public static void TakeFullScreen()
         {
