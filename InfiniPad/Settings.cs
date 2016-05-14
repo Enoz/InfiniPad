@@ -131,7 +131,7 @@ namespace InfiniPad
 
         private void btnPenColor_Click(object sender, EventArgs e)
         {
-            Color res = Globals.requestColorDialog();
+            Color res = Globals.requestColorDialog(btnPenColor);
             if (res == Color.Empty)
                 return;
             Properties.Settings.Default.PenColor = res;
@@ -169,7 +169,7 @@ namespace InfiniPad
 
         private void btnOutlineColor_Click(object sender, EventArgs e)
         {
-            Color col = Globals.requestColorDialog();
+            Color col = Globals.requestColorDialog(btnOutlineColor);
             if (col == Color.Empty)
                 return;
             btnOutlineColor.BackColor = col;
@@ -179,7 +179,7 @@ namespace InfiniPad
 
         private void btnMeasurementColor_Click(object sender, EventArgs e)
         {
-            Color col = Globals.requestColorDialog();
+            Color col = Globals.requestColorDialog(btnMeasurementColor);
             if (col == Color.Empty)
                 return;
             btnMeasurementColor.BackColor = col;

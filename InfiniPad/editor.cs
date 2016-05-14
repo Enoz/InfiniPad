@@ -19,7 +19,6 @@ namespace InfiniPad
             }
         }
 
-        //Dictionary<string, int> sizelis = new Dictionary<string, int>();
         private enum Tool
         {
             None = 1,
@@ -284,16 +283,7 @@ namespace InfiniPad
 
         private void btnColor_Click(object sender, EventArgs e)
         {
-            /*ColorDialog cd = new ColorDialog();
-            cd.AllowFullOpen = true;
-            cd.Color = penCol;
-            if (cd.ShowDialog() == DialogResult.OK)
-            {
-                penCol = cd.Color;
-                refreshPen();
-                refreshBtnColor();
-            }*/
-            Color res = Globals.requestColorDialog();
+            Color res = Globals.requestColorDialog(btnColor);
             if(res != Color.Empty)
             {
                 penCol = res;
