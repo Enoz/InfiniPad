@@ -22,9 +22,6 @@ namespace InfiniPad
             g.FillRectangle(b, new Rectangle(rect.X + rect.Width, rect.Y, thickness, rect.Height)); //right
             g.FillRectangle(b, new Rectangle(rect.X - thickness, rect.Y -thickness, //bottom
                 rect.Width + (thickness * 2), thickness));
-
-            //DrawAroundRect(g, rect, new Rectangle(rect.X-thickness, rect.Y-thickness, rect.Width + (thickness*2), rect.Height + (thickness*2)), b);
-            //need to figure out how to get this to work
         }
 
         public static Rectangle fixNegRect(Point p1, Point p2)

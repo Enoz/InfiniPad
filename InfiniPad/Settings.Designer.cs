@@ -45,29 +45,31 @@
             this.label3 = new System.Windows.Forms.Label();
             this.checkEnabledEdit = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabShortcuts = new System.Windows.Forms.TabPage();
+            this.tabEditor = new System.Windows.Forms.TabPage();
+            this.tabWatermark = new System.Windows.Forms.TabPage();
             this.groupWatermark = new System.Windows.Forms.GroupBox();
             this.trackOpacity = new System.Windows.Forms.TrackBar();
             this.pictureWatermark = new System.Windows.Forms.PictureBox();
             this.buttonChangeWatermark = new System.Windows.Forms.Button();
             this.checkEnabledWatermark = new System.Windows.Forms.CheckBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabScreenshot = new System.Windows.Forms.TabPage();
+            this.btnMeasurementColor = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnOutlineColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnMeasurementColor = new System.Windows.Forms.Button();
+            this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.chkClipboard = new System.Windows.Forms.CheckBox();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabShortcuts.SuspendLayout();
+            this.tabEditor.SuspendLayout();
+            this.tabWatermark.SuspendLayout();
             this.groupWatermark.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).BeginInit();
-            this.tabPage4.SuspendLayout();
+            this.tabScreenshot.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxPartial
@@ -168,13 +170,14 @@
             this.groupHotkeys.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupHotkeys.Location = new System.Drawing.Point(3, 29);
             this.groupHotkeys.Name = "groupHotkeys";
-            this.groupHotkeys.Size = new System.Drawing.Size(275, 205);
+            this.groupHotkeys.Size = new System.Drawing.Size(283, 205);
             this.groupHotkeys.TabIndex = 6;
             this.groupHotkeys.TabStop = false;
             this.groupHotkeys.Text = "Keyboard Shortcuts";
             // 
             // groupEditor
             // 
+            this.groupEditor.Controls.Add(this.chkClipboard);
             this.groupEditor.Controls.Add(this.textEdit);
             this.groupEditor.Controls.Add(this.btnPenColor);
             this.groupEditor.Controls.Add(this.label4);
@@ -182,14 +185,14 @@
             this.groupEditor.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupEditor.Location = new System.Drawing.Point(3, 29);
             this.groupEditor.Name = "groupEditor";
-            this.groupEditor.Size = new System.Drawing.Size(275, 205);
+            this.groupEditor.Size = new System.Drawing.Size(283, 205);
             this.groupEditor.TabIndex = 7;
             this.groupEditor.TabStop = false;
             this.groupEditor.Text = "Editor";
             // 
             // textEdit
             // 
-            this.textEdit.Location = new System.Drawing.Point(100, 53);
+            this.textEdit.Location = new System.Drawing.Point(101, 76);
             this.textEdit.Name = "textEdit";
             this.textEdit.Size = new System.Drawing.Size(100, 20);
             this.textEdit.TabIndex = 2;
@@ -199,7 +202,7 @@
             // 
             this.btnPenColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPenColor.Font = new System.Drawing.Font("Lao UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPenColor.Location = new System.Drawing.Point(104, 19);
+            this.btnPenColor.Location = new System.Drawing.Point(105, 42);
             this.btnPenColor.Name = "btnPenColor";
             this.btnPenColor.Size = new System.Drawing.Size(62, 23);
             this.btnPenColor.TabIndex = 1;
@@ -209,7 +212,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 56);
+            this.label4.Location = new System.Drawing.Point(9, 79);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 13);
             this.label4.TabIndex = 0;
@@ -218,7 +221,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 24);
+            this.label3.Location = new System.Drawing.Point(9, 47);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 0;
@@ -237,52 +240,54 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabGeneral);
+            this.tabControl1.Controls.Add(this.tabShortcuts);
+            this.tabControl1.Controls.Add(this.tabEditor);
+            this.tabControl1.Controls.Add(this.tabWatermark);
+            this.tabControl1.Controls.Add(this.tabScreenshot);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(289, 263);
+            this.tabControl1.Size = new System.Drawing.Size(297, 263);
             this.tabControl1.TabIndex = 9;
             // 
-            // tabPage1
+            // tabShortcuts
             // 
-            this.tabPage1.Controls.Add(this.checkEnabledHotkeys);
-            this.tabPage1.Controls.Add(this.groupHotkeys);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(281, 237);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Shortcuts";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabShortcuts.Controls.Add(this.checkEnabledHotkeys);
+            this.tabShortcuts.Controls.Add(this.groupHotkeys);
+            this.tabShortcuts.Location = new System.Drawing.Point(4, 22);
+            this.tabShortcuts.Name = "tabShortcuts";
+            this.tabShortcuts.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShortcuts.Size = new System.Drawing.Size(289, 237);
+            this.tabShortcuts.TabIndex = 0;
+            this.tabShortcuts.Text = "Shortcuts";
+            this.tabShortcuts.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabEditor
             // 
-            this.tabPage2.Controls.Add(this.checkEnabledEdit);
-            this.tabPage2.Controls.Add(this.groupEditor);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(281, 237);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Editor";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabEditor.Controls.Add(this.checkEnabledEdit);
+            this.tabEditor.Controls.Add(this.groupEditor);
+            this.tabEditor.Location = new System.Drawing.Point(4, 22);
+            this.tabEditor.Name = "tabEditor";
+            this.tabEditor.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEditor.Size = new System.Drawing.Size(289, 237);
+            this.tabEditor.TabIndex = 1;
+            this.tabEditor.Text = "Editor";
+            this.tabEditor.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // tabWatermark
             // 
-            this.tabPage3.Controls.Add(this.groupWatermark);
-            this.tabPage3.Controls.Add(this.checkEnabledWatermark);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(281, 237);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Watermark";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabWatermark.Controls.Add(this.groupWatermark);
+            this.tabWatermark.Controls.Add(this.checkEnabledWatermark);
+            this.tabWatermark.Location = new System.Drawing.Point(4, 22);
+            this.tabWatermark.Name = "tabWatermark";
+            this.tabWatermark.Padding = new System.Windows.Forms.Padding(3);
+            this.tabWatermark.Size = new System.Drawing.Size(289, 237);
+            this.tabWatermark.TabIndex = 2;
+            this.tabWatermark.Text = "Watermark";
+            this.tabWatermark.UseVisualStyleBackColor = true;
             // 
             // groupWatermark
             // 
@@ -292,7 +297,7 @@
             this.groupWatermark.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupWatermark.Location = new System.Drawing.Point(3, 33);
             this.groupWatermark.Name = "groupWatermark";
-            this.groupWatermark.Size = new System.Drawing.Size(275, 201);
+            this.groupWatermark.Size = new System.Drawing.Size(283, 201);
             this.groupWatermark.TabIndex = 1;
             this.groupWatermark.TabStop = false;
             this.groupWatermark.Text = "Watermark";
@@ -340,19 +345,39 @@
             this.checkEnabledWatermark.UseVisualStyleBackColor = true;
             this.checkEnabledWatermark.CheckedChanged += new System.EventHandler(this.checkEnabledWatermark_CheckedChanged);
             // 
-            // tabPage4
+            // tabScreenshot
             // 
-            this.tabPage4.Controls.Add(this.btnMeasurementColor);
-            this.tabPage4.Controls.Add(this.label6);
-            this.tabPage4.Controls.Add(this.btnOutlineColor);
-            this.tabPage4.Controls.Add(this.label5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(281, 237);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Screen Shot";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabScreenshot.Controls.Add(this.btnMeasurementColor);
+            this.tabScreenshot.Controls.Add(this.label6);
+            this.tabScreenshot.Controls.Add(this.btnOutlineColor);
+            this.tabScreenshot.Controls.Add(this.label5);
+            this.tabScreenshot.Location = new System.Drawing.Point(4, 22);
+            this.tabScreenshot.Name = "tabScreenshot";
+            this.tabScreenshot.Padding = new System.Windows.Forms.Padding(3);
+            this.tabScreenshot.Size = new System.Drawing.Size(289, 237);
+            this.tabScreenshot.TabIndex = 3;
+            this.tabScreenshot.Text = "Screen Shot";
+            this.tabScreenshot.UseVisualStyleBackColor = true;
+            // 
+            // btnMeasurementColor
+            // 
+            this.btnMeasurementColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMeasurementColor.Font = new System.Drawing.Font("Lao UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMeasurementColor.Location = new System.Drawing.Point(114, 35);
+            this.btnMeasurementColor.Name = "btnMeasurementColor";
+            this.btnMeasurementColor.Size = new System.Drawing.Size(62, 23);
+            this.btnMeasurementColor.TabIndex = 3;
+            this.btnMeasurementColor.UseVisualStyleBackColor = true;
+            this.btnMeasurementColor.Click += new System.EventHandler(this.btnMeasurementColor_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 40);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Measurement Color";
             // 
             // btnOutlineColor
             // 
@@ -374,31 +399,32 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Outline Color";
             // 
-            // label6
+            // tabGeneral
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 40);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Measurement Color";
+            this.tabGeneral.Location = new System.Drawing.Point(4, 22);
+            this.tabGeneral.Name = "tabGeneral";
+            this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGeneral.Size = new System.Drawing.Size(289, 237);
+            this.tabGeneral.TabIndex = 4;
+            this.tabGeneral.Text = "General";
+            this.tabGeneral.UseVisualStyleBackColor = true;
             // 
-            // btnMeasurementColor
+            // chkClipboard
             // 
-            this.btnMeasurementColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnMeasurementColor.Font = new System.Drawing.Font("Lao UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMeasurementColor.Location = new System.Drawing.Point(114, 35);
-            this.btnMeasurementColor.Name = "btnMeasurementColor";
-            this.btnMeasurementColor.Size = new System.Drawing.Size(62, 23);
-            this.btnMeasurementColor.TabIndex = 3;
-            this.btnMeasurementColor.UseVisualStyleBackColor = true;
-            this.btnMeasurementColor.Click += new System.EventHandler(this.btnMeasurementColor_Click);
+            this.chkClipboard.AutoSize = true;
+            this.chkClipboard.Location = new System.Drawing.Point(12, 19);
+            this.chkClipboard.Name = "chkClipboard";
+            this.chkClipboard.Size = new System.Drawing.Size(109, 17);
+            this.chkClipboard.TabIndex = 3;
+            this.chkClipboard.Text = "Copy to Clipboard";
+            this.chkClipboard.UseVisualStyleBackColor = true;
+            this.chkClipboard.CheckedChanged += new System.EventHandler(this.chkClipboard_CheckedChanged);
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 263);
+            this.ClientSize = new System.Drawing.Size(297, 263);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -411,17 +437,17 @@
             this.groupEditor.ResumeLayout(false);
             this.groupEditor.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabShortcuts.ResumeLayout(false);
+            this.tabShortcuts.PerformLayout();
+            this.tabEditor.ResumeLayout(false);
+            this.tabEditor.PerformLayout();
+            this.tabWatermark.ResumeLayout(false);
+            this.tabWatermark.PerformLayout();
             this.groupWatermark.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).EndInit();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.tabScreenshot.ResumeLayout(false);
+            this.tabScreenshot.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -443,9 +469,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkEnabledEdit;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabShortcuts;
+        private System.Windows.Forms.TabPage tabEditor;
+        private System.Windows.Forms.TabPage tabWatermark;
         private System.Windows.Forms.CheckBox checkEnabledWatermark;
         private System.Windows.Forms.GroupBox groupWatermark;
         private System.Windows.Forms.PictureBox pictureWatermark;
@@ -453,10 +479,12 @@
         private System.Windows.Forms.TrackBar trackOpacity;
         private System.Windows.Forms.TextBox textEdit;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabScreenshot;
         private System.Windows.Forms.Button btnOutlineColor;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnMeasurementColor;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TabPage tabGeneral;
+        private System.Windows.Forms.CheckBox chkClipboard;
     }
 }

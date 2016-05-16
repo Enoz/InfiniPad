@@ -44,5 +44,8 @@
     <Setting Name="MeasurementColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Aquamarine</Value>
     </Setting>
+    <Setting Name="ClipboardOnUpload" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

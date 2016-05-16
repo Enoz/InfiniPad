@@ -25,6 +25,7 @@ namespace InfiniPad
 
             btnPenColor.BackColor           = Properties.Settings.Default.PenColor;
             textEdit.Text                   = Properties.Settings.Default.TextDefault;
+            chkClipboard.Checked            = Properties.Settings.Default.ClipboardOnUpload;
 
             trackOpacity.Value              = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
 
@@ -184,6 +185,12 @@ namespace InfiniPad
                 return;
             btnMeasurementColor.BackColor = col;
             Properties.Settings.Default.MeasurementColor = col;
+            Properties.Settings.Default.Save();
+        }
+
+        private void chkClipboard_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ClipboardOnUpload = chkClipboard.Checked;
             Properties.Settings.Default.Save();
         }
     }

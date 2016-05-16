@@ -190,5 +190,17 @@ namespace InfiniPad.Properties {
                 this["MeasurementColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ClipboardOnUpload {
+            get {
+                return ((bool)(this["ClipboardOnUpload"]));
+            }
+            set {
+                this["ClipboardOnUpload"] = value;
+            }
+        }
     }
 }

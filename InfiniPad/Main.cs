@@ -90,7 +90,6 @@ namespace InfiniPad
                 {
                     Bitmap bmp = new Bitmap(ofd.FileName);
                     new editor(bmp);
-
                 }
                 ofd.Dispose();
             }
@@ -151,6 +150,13 @@ namespace InfiniPad
 
         public void addImgurItem(Uri link, string deletehash)
         {
+            if (listViewLinks.InvokeRequired)
+            {
+                listViewLinks.Invoke((MethodInvoker)delegate {
+                    listViewLinks.Items.Add(new ListViewItem(new String[] { link.ToString(), deletehash }));
+                });
+                return;
+            }
             listViewLinks.Items.Add(new ListViewItem(new String[] {link.ToString(), deletehash}));
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace InfiniPad
 {
@@ -30,14 +31,15 @@ namespace InfiniPad
         private bool bMouseDown = false;
         private Bitmap curImg;
         private List<Bitmap> picHistory = new List<Bitmap>();
-        public Color penCol;
-        Pen penObj;
-        int penWidth;
-        Point[] cursorPos = {
+        private Color penCol;
+        private Pen penObj;
+        private int penWidth;
+        private Thread uploadThread;
+        private Point[] cursorPos = {
             new Point(0,0),
             new Point(1,1),
         };
-        PenSize[] sizelist =
+        private PenSize[] sizelist =
         {
             new PenSize("Pixel", 1),
             new PenSize("Small", 2),
@@ -45,9 +47,7 @@ namespace InfiniPad
             new PenSize("Large", 10),
             new PenSize("Huge", 25),
         };
-
-
-
+        
         public editor(Bitmap Image)
         {
             InitializeComponent();
@@ -61,6 +61,8 @@ namespace InfiniPad
             penObj              = new Pen(penCol, 4);
             penWidth            = sizelist[2].Size;
             cmbPenSize.Text     = sizelist[2].Name;
+            uploadThread        = new Thread(new ThreadStart(_UploadImage));
+            uploadThread.SetApartmentState(ApartmentState.STA);
 
             foreach(PenSize ps in sizelist)
                 cmbPenSize.Items.Add(ps.Name);
@@ -76,23 +78,14 @@ namespace InfiniPad
             bool enbld          = Properties.Settings.Default.EditorEnabled;
             this.Visible        = enbld;
             if (!enbld)
-            {
-                UploadImage();
-            }
+                _UploadImage();
 
             
 
         }
 
-        private void refreshBtnColor()
-        {
-            btnColor.BackColor = penCol;
-        }
-
-        private void btnPen_Click(object sender, EventArgs e)
-        {
-            Using = Tool.Pen;
-        }
+        private void refreshBtnColor(){ btnColor.BackColor = penCol; }
+        private void btnPen_Click(object sender, EventArgs e){ Using = Tool.Pen; }
 
         private void picEdit_MouseDown(object sender, MouseEventArgs e)
         {
@@ -188,20 +181,9 @@ namespace InfiniPad
             }
         }
 
-        private void copyToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetImage(curImg);
-        }
-
-        private void picEdit_MouseEnter(object sender, EventArgs e)
-        {
-            Cursor.Hide();
-        }
-
-        private void picEdit_MouseLeave(object sender, EventArgs e)
-        {
-            Cursor.Show();
-        }
+        private void copyToClipboardToolStripMenuItem_Click(object sender, EventArgs e){ Clipboard.SetImage(curImg); }
+        private void picEdit_MouseEnter(object sender, EventArgs e){ Cursor.Hide(); }
+        private void picEdit_MouseLeave(object sender, EventArgs e){ Cursor.Show(); }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -239,32 +221,32 @@ namespace InfiniPad
             picEdit.Image = curImg;
         }
 
-        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            undo();
-        }
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e){ undo(); }
+        private void resetCtrlRToolStripMenuItem_Click(object sender, EventArgs e){ reset(); }
+        private void UploadImage() { uploadThread.Start(); }
 
-        private void resetCtrlRToolStripMenuItem_Click(object sender, EventArgs e)
+        private void _UploadImage()
         {
-            reset();
-        }
-
-        private void UploadImage()
-        {
-            this.Hide();
+            while (this.Handle == null)
+                Application.DoEvents();
+            this.Invoke((MethodInvoker)delegate
+            {
+                this.Hide();
+            });
             var PictureLink = Upload.toImgur(curImg);
-            
-            Main.DisplayBubbleMessage(3, "Imgur Upload Completed", "Your image is live at " + PictureLink.link + "! This link has been copied to your clipboard.");
-            Clipboard.SetText(PictureLink.link.ToString());
+            bool shouldClipboard = Properties.Settings.Default.ClipboardOnUpload;
+            Main.DisplayBubbleMessage(3, "Imgur Upload Completed", "Your image is live at " + PictureLink.link + "!" + (shouldClipboard ? " This link has been copied to your clipboard." : ""));
+            if(shouldClipboard)
+                Clipboard.SetText(PictureLink.link.ToString());
             GC.Collect();
             Globals.getMainForm().addImgurItem(PictureLink.link, PictureLink.deletehash);
-            this.Close();
+            this.Invoke((MethodInvoker)delegate
+            {
+                this.Close();
+            });
         }
 
-        private void HandleUpload(object sender, EventArgs e)
-        {
-            UploadImage();
-        }
+        private void HandleUpload(object sender, EventArgs e){ UploadImage(); }
 
         private void editor_Resize(object sender, EventArgs e)
         {

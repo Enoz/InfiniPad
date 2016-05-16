@@ -38,8 +38,8 @@ namespace InfiniPad
 
             ColorDic.Add("Red", Color.Red);
             ColorDic.Add("Blue", Color.Blue);
-            ColorDic.Add("Pink", Color.Pink);
-            ColorDic.Add("Aqua", Color.Aqua);
+            ColorDic.Add("Orange", Color.Orange);
+            ColorDic.Add("Green", Color.Green);
 
             foreach ( KeyValuePair<string, Color> pair in ColorDic)
                 cm.Items.Add(new ToolStripMenuItem(pair.Key, new Bitmap(1, 1), (s, e) => { res = pair.Value; }));
