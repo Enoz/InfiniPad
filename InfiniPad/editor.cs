@@ -227,11 +227,10 @@ namespace InfiniPad
 
         private void _UploadImage()
         {
-            // fix this
-            while (this.Handle == null)
-                Application.DoEvents();
             this.Invoke((MethodInvoker)delegate
             {
+                while (this.Handle == null)
+                    Application.DoEvents();
                 this.Hide();
             });
             var PictureLink = Upload.toImgur(curImg);
