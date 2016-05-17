@@ -223,7 +223,9 @@ namespace InfiniPad
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e){ undo(); }
         private void resetCtrlRToolStripMenuItem_Click(object sender, EventArgs e){ reset(); }
+        private void HandleUpload(object sender, EventArgs e) { UploadImage(); }
         private void UploadImage() { uploadThread.Start(); }
+        
 
         private void _UploadImage()
         {
@@ -246,14 +248,12 @@ namespace InfiniPad
             });
         }
 
-        private void HandleUpload(object sender, EventArgs e){ UploadImage(); }
-
         private void editor_Resize(object sender, EventArgs e)
         {
             picPanel.Width = this.Width-27;
-            picPanel.Height = this.Height - editGroupBox.Size.Height*2-15;
-            editGroupBox.Location =  new Point(this.editGroupBox.Location.X, this.picPanel.Location.Y+this.picPanel.Size.Height);
-            editGroupBox.Width = this.Width - this.editGroupBox.Location.X*3;
+            editGroupBox.Location = new Point(this.editGroupBox.Location.X, this.Size.Height - this.editGroupBox.Height*2);
+            picPanel.Height = editGroupBox.Location.Y - picPanel.Location.Y;
+            editGroupBox.Width = this.Width - editGroupBox.Location.X - 27;
         }
 
         private void textDrawButton_Click(object sender, EventArgs e)

@@ -11,36 +11,41 @@ namespace InfiniPad
         {
             hkInstance = hk;
             InitializeComponent();
-            checkEnabledHotkeys.Checked             = Properties.Settings.Default.HotkeysEnabled;
-            checkEnabledEdit.Checked                = Properties.Settings.Default.EditorEnabled;
-            checkEnabledWatermark.Checked           = Properties.Settings.Default.WatermarkEnabled;
+            applySettings();
+        }
 
-            textBoxPartial.Text             = ((char)Properties.Settings.Default.PartialHotkey).ToString().ToUpper();
-            textBoxMonitor.Text             = ((char)Properties.Settings.Default.MonitorHotkey).ToString().ToUpper();
-            checkPartialCtrl.Checked        = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
-            checkPartialShift.Checked       = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
+        private void applySettings()
+        {
+            checkEnabledHotkeys.Checked = Properties.Settings.Default.HotkeysEnabled;
+            checkEnabledEdit.Checked = Properties.Settings.Default.EditorEnabled;
+            checkEnabledWatermark.Checked = Properties.Settings.Default.WatermarkEnabled;
 
-            checkMonitorCtrl.Checked        = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
-            checkMonitorShift.Checked       = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
+            textBoxPartial.Text = ((char)Properties.Settings.Default.PartialHotkey).ToString().ToUpper();
+            textBoxMonitor.Text = ((char)Properties.Settings.Default.MonitorHotkey).ToString().ToUpper();
+            checkPartialCtrl.Checked = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
+            checkPartialShift.Checked = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
 
-            btnPenColor.BackColor           = Properties.Settings.Default.PenColor;
-            textEdit.Text                   = Properties.Settings.Default.TextDefault;
-            chkClipboard.Checked            = Properties.Settings.Default.ClipboardOnUpload;
+            checkMonitorCtrl.Checked = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
+            checkMonitorShift.Checked = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
 
-            trackOpacity.Value              = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
+            btnPenColor.BackColor = Properties.Settings.Default.PenColor;
+            textEdit.Text = Properties.Settings.Default.TextDefault;
+            chkClipboard.Checked = Properties.Settings.Default.ClipboardOnUpload;
 
-            btnOutlineColor.BackColor       = Properties.Settings.Default.OutlineColor;
-            btnMeasurementColor.BackColor   = Properties.Settings.Default.MeasurementColor;
+            trackOpacity.Value = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
+
+            btnOutlineColor.BackColor = Properties.Settings.Default.OutlineColor;
+            btnMeasurementColor.BackColor = Properties.Settings.Default.MeasurementColor;
 
 
             checkMonitorCtrl.CheckedChanged += RefreshModifiers;
             checkPartialCtrl.CheckedChanged += RefreshModifiers;
             checkMonitorShift.CheckedChanged += RefreshModifiers;
             checkPartialShift.CheckedChanged += RefreshModifiers;
-            
+
 
             RefreshEnabledStatus();
-            if(checkEnabledWatermark.Checked)
+            if (checkEnabledWatermark.Checked)
                 RefreshImages();
         }
 
@@ -192,6 +197,14 @@ namespace InfiniPad
         {
             Properties.Settings.Default.ClipboardOnUpload = chkClipboard.Checked;
             Properties.Settings.Default.Save();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("This will reset settings to when you first started\n the program. Continue?", "InfiniPad", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes){
+                Properties.Settings.Default.Reset();
+                applySettings();
+            }
         }
     }
 }

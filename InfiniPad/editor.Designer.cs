@@ -84,9 +84,9 @@
             this.editGroupBox.Controls.Add(this.btnDone);
             this.editGroupBox.Controls.Add(this.cmbPenSize);
             this.editGroupBox.Controls.Add(this.btnPen);
-            this.editGroupBox.Location = new System.Drawing.Point(12, 499);
+            this.editGroupBox.Location = new System.Drawing.Point(3, 496);
             this.editGroupBox.Name = "editGroupBox";
-            this.editGroupBox.Size = new System.Drawing.Size(661, 52);
+            this.editGroupBox.Size = new System.Drawing.Size(670, 45);
             this.editGroupBox.TabIndex = 2;
             this.editGroupBox.TabStop = false;
             this.editGroupBox.Text = "Edit";
@@ -94,7 +94,7 @@
             // btnColor
             // 
             this.btnColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnColor.Location = new System.Drawing.Point(111, 21);
+            this.btnColor.Location = new System.Drawing.Point(109, 15);
             this.btnColor.Name = "btnColor";
             this.btnColor.Size = new System.Drawing.Size(44, 25);
             this.btnColor.TabIndex = 5;
@@ -104,7 +104,7 @@
             // textDrawBox
             // 
             this.textDrawBox.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.textDrawBox.Location = new System.Drawing.Point(354, 24);
+            this.textDrawBox.Location = new System.Drawing.Point(352, 19);
             this.textDrawBox.Name = "textDrawBox";
             this.textDrawBox.Size = new System.Drawing.Size(100, 20);
             this.textDrawBox.TabIndex = 4;
@@ -112,9 +112,9 @@
             // 
             // textDrawButton
             // 
-            this.textDrawButton.Location = new System.Drawing.Point(460, 22);
+            this.textDrawButton.Location = new System.Drawing.Point(458, 18);
             this.textDrawButton.Name = "textDrawButton";
-            this.textDrawButton.Size = new System.Drawing.Size(39, 23);
+            this.textDrawButton.Size = new System.Drawing.Size(39, 22);
             this.textDrawButton.TabIndex = 3;
             this.textDrawButton.Text = "Text";
             this.textDrawButton.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             // 
             // btnDone
             // 
-            this.btnDone.Location = new System.Drawing.Point(6, 21);
+            this.btnDone.Location = new System.Drawing.Point(4, 14);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(99, 26);
             this.btnDone.TabIndex = 2;
@@ -133,7 +133,7 @@
             // cmbPenSize
             // 
             this.cmbPenSize.FormattingEnabled = true;
-            this.cmbPenSize.Location = new System.Drawing.Point(227, 24);
+            this.cmbPenSize.Location = new System.Drawing.Point(225, 18);
             this.cmbPenSize.Name = "cmbPenSize";
             this.cmbPenSize.Size = new System.Drawing.Size(121, 21);
             this.cmbPenSize.TabIndex = 1;
@@ -141,7 +141,7 @@
             // 
             // btnPen
             // 
-            this.btnPen.Location = new System.Drawing.Point(161, 21);
+            this.btnPen.Location = new System.Drawing.Point(159, 15);
             this.btnPen.Name = "btnPen";
             this.btnPen.Size = new System.Drawing.Size(60, 25);
             this.btnPen.TabIndex = 0;
@@ -219,7 +219,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(681, 560);
+            this.ClientSize = new System.Drawing.Size(681, 545);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.editGroupBox);
             this.Controls.Add(this.picPanel);

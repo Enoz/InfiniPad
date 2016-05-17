@@ -39,12 +39,15 @@
             this.checkMonitorCtrl = new System.Windows.Forms.CheckBox();
             this.groupHotkeys = new System.Windows.Forms.GroupBox();
             this.groupEditor = new System.Windows.Forms.GroupBox();
+            this.chkClipboard = new System.Windows.Forms.CheckBox();
             this.textEdit = new System.Windows.Forms.TextBox();
             this.btnPenColor = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.checkEnabledEdit = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.btnReset = new System.Windows.Forms.Button();
             this.tabShortcuts = new System.Windows.Forms.TabPage();
             this.tabEditor = new System.Windows.Forms.TabPage();
             this.tabWatermark = new System.Windows.Forms.TabPage();
@@ -58,11 +61,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnOutlineColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.tabGeneral = new System.Windows.Forms.TabPage();
-            this.chkClipboard = new System.Windows.Forms.CheckBox();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabGeneral.SuspendLayout();
             this.tabShortcuts.SuspendLayout();
             this.tabEditor.SuspendLayout();
             this.tabWatermark.SuspendLayout();
@@ -190,6 +192,17 @@
             this.groupEditor.TabStop = false;
             this.groupEditor.Text = "Editor";
             // 
+            // chkClipboard
+            // 
+            this.chkClipboard.AutoSize = true;
+            this.chkClipboard.Location = new System.Drawing.Point(12, 19);
+            this.chkClipboard.Name = "chkClipboard";
+            this.chkClipboard.Size = new System.Drawing.Size(109, 17);
+            this.chkClipboard.TabIndex = 3;
+            this.chkClipboard.Text = "Copy to Clipboard";
+            this.chkClipboard.UseVisualStyleBackColor = true;
+            this.chkClipboard.CheckedChanged += new System.EventHandler(this.chkClipboard_CheckedChanged);
+            // 
             // textEdit
             // 
             this.textEdit.Location = new System.Drawing.Point(101, 76);
@@ -252,6 +265,27 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(297, 263);
             this.tabControl1.TabIndex = 9;
+            // 
+            // tabGeneral
+            // 
+            this.tabGeneral.Controls.Add(this.btnReset);
+            this.tabGeneral.Location = new System.Drawing.Point(4, 22);
+            this.tabGeneral.Name = "tabGeneral";
+            this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGeneral.Size = new System.Drawing.Size(289, 237);
+            this.tabGeneral.TabIndex = 4;
+            this.tabGeneral.Text = "General";
+            this.tabGeneral.UseVisualStyleBackColor = true;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(6, 6);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(94, 23);
+            this.btnReset.TabIndex = 0;
+            this.btnReset.Text = "Reset Settings";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // tabShortcuts
             // 
@@ -399,27 +433,6 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Outline Color";
             // 
-            // tabGeneral
-            // 
-            this.tabGeneral.Location = new System.Drawing.Point(4, 22);
-            this.tabGeneral.Name = "tabGeneral";
-            this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeneral.Size = new System.Drawing.Size(289, 237);
-            this.tabGeneral.TabIndex = 4;
-            this.tabGeneral.Text = "General";
-            this.tabGeneral.UseVisualStyleBackColor = true;
-            // 
-            // chkClipboard
-            // 
-            this.chkClipboard.AutoSize = true;
-            this.chkClipboard.Location = new System.Drawing.Point(12, 19);
-            this.chkClipboard.Name = "chkClipboard";
-            this.chkClipboard.Size = new System.Drawing.Size(109, 17);
-            this.chkClipboard.TabIndex = 3;
-            this.chkClipboard.Text = "Copy to Clipboard";
-            this.chkClipboard.UseVisualStyleBackColor = true;
-            this.chkClipboard.CheckedChanged += new System.EventHandler(this.chkClipboard_CheckedChanged);
-            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,6 +450,7 @@
             this.groupEditor.ResumeLayout(false);
             this.groupEditor.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabGeneral.ResumeLayout(false);
             this.tabShortcuts.ResumeLayout(false);
             this.tabShortcuts.PerformLayout();
             this.tabEditor.ResumeLayout(false);
@@ -486,5 +500,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage tabGeneral;
         private System.Windows.Forms.CheckBox chkClipboard;
+        private System.Windows.Forms.Button btnReset;
     }
 }
