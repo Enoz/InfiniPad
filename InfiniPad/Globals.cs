@@ -64,7 +64,7 @@ namespace InfiniPad
             {
                 RegistryKey startupKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                 if (enabled)
-                    startupKey.SetValue("InfiniPad", AppDomain.CurrentDomain.BaseDirectory);
+                    startupKey.SetValue("InfiniPad", Assembly.GetEntryAssembly().Location.Replace(@"\\", @"/"));
                 else
                     startupKey.DeleteValue("InfiniPad");
             }

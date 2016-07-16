@@ -124,7 +124,7 @@ namespace InfiniPad
             this.Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonPartial_Click(object sender, EventArgs e)
         {
             TakePartialScreen();
         }

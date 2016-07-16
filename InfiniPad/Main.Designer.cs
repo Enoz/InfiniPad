@@ -53,7 +53,7 @@
             this.buttonPartial.TabIndex = 0;
             this.buttonPartial.Text = "Take Partial Screenshot";
             this.buttonPartial.UseVisualStyleBackColor = true;
-            this.buttonPartial.Click += new System.EventHandler(this.button1_Click);
+            this.buttonPartial.Click += new System.EventHandler(this.buttonPartial_Click);
             // 
             // menuStrip1
             // 
