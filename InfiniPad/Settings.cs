@@ -16,32 +16,33 @@ namespace InfiniPad
 
         private void applySettings()
         {
-            checkEnabledHotkeys.Checked = Properties.Settings.Default.HotkeysEnabled;
-            checkEnabledEdit.Checked = Properties.Settings.Default.EditorEnabled;
-            checkEnabledWatermark.Checked = Properties.Settings.Default.WatermarkEnabled;
+            checkEnabledHotkeys.Checked         = Properties.Settings.Default.HotkeysEnabled;
+            checkEnabledEdit.Checked            = Properties.Settings.Default.EditorEnabled;
+            checkEnabledWatermark.Checked       = Properties.Settings.Default.WatermarkEnabled;
 
-            textBoxPartial.Text = ((char)Properties.Settings.Default.PartialHotkey).ToString().ToUpper();
-            textBoxMonitor.Text = ((char)Properties.Settings.Default.MonitorHotkey).ToString().ToUpper();
-            checkPartialCtrl.Checked = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
-            checkPartialShift.Checked = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
+            textBoxPartial.Text                 = ((char)Properties.Settings.Default.PartialHotkey).ToString().ToUpper();
+            textBoxMonitor.Text                 = ((char)Properties.Settings.Default.MonitorHotkey).ToString().ToUpper();
+            checkPartialCtrl.Checked            = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
+            checkPartialShift.Checked           = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
 
-            checkMonitorCtrl.Checked = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
-            checkMonitorShift.Checked = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
+            checkMonitorCtrl.Checked            = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
+            checkMonitorShift.Checked           = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
 
-            btnPenColor.BackColor = Properties.Settings.Default.PenColor;
-            textEdit.Text = Properties.Settings.Default.TextDefault;
-            chkClipboard.Checked = Properties.Settings.Default.ClipboardOnUpload;
+            btnPenColor.BackColor               = Properties.Settings.Default.PenColor;
+            textEdit.Text                       = Properties.Settings.Default.TextDefault;
+            chkClipboard.Checked                = Properties.Settings.Default.ClipboardOnUpload;
+            chkStartup.Checked                  = Properties.Settings.Default.RunOnStartup;
 
-            trackOpacity.Value = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
+            trackOpacity.Value                  = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
 
-            btnOutlineColor.BackColor = Properties.Settings.Default.OutlineColor;
-            btnMeasurementColor.BackColor = Properties.Settings.Default.MeasurementColor;
+            btnOutlineColor.BackColor           = Properties.Settings.Default.OutlineColor;
+            btnMeasurementColor.BackColor       = Properties.Settings.Default.MeasurementColor;
 
 
-            checkMonitorCtrl.CheckedChanged += RefreshModifiers;
-            checkPartialCtrl.CheckedChanged += RefreshModifiers;
-            checkMonitorShift.CheckedChanged += RefreshModifiers;
-            checkPartialShift.CheckedChanged += RefreshModifiers;
+            checkMonitorCtrl.CheckedChanged     += RefreshModifiers;
+            checkPartialCtrl.CheckedChanged     += RefreshModifiers;
+            checkMonitorShift.CheckedChanged    += RefreshModifiers;
+            checkPartialShift.CheckedChanged    += RefreshModifiers;
 
 
             RefreshEnabledStatus();
@@ -205,6 +206,19 @@ namespace InfiniPad
                 Properties.Settings.Default.Reset();
                 applySettings();
             }
+        }
+
+        private void chkStartup_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enabled = chkStartup.Checked;
+            Properties.Settings.Default.RunOnStartup = enabled;
+            Properties.Settings.Default.Save();
+            Globals.addToStartup(enabled);
+        }
+
+        private void btnUninstall_Click(object sender, EventArgs e)
+        {
+            Globals.Uninstall();
         }
     }
 }

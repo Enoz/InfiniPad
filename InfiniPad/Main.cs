@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
+using System.IO;
 
 namespace InfiniPad
 {
@@ -29,8 +30,12 @@ namespace InfiniPad
 
             nfi.ContextMenu = ctm;
 
-
             hk.ReapplyHotkeys();
+            if (!Directory.Exists(Globals.MoveToDir))
+                Directory.CreateDirectory(Globals.MoveToDir);
+            #if !DEBUG
+                Globals.moveFile(Globals.MoveToDir + "InfiniPad.exe");
+            #endif
         }
 
         private void Main_Load(object sender, EventArgs e)

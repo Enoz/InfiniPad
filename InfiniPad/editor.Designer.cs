@@ -173,22 +173,22 @@
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // copyToClipboardToolStripMenuItem
             // 
             this.copyToClipboardToolStripMenuItem.Name = "copyToClipboardToolStripMenuItem";
-            this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.copyToClipboardToolStripMenuItem.Text = "Copy To Clipboard";
             this.copyToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyToClipboardToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.uploadToolStripMenuItem.Text = "Upload";
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.uploadToolStripMenuItem.Text = "Upload to Imgur";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.HandleUpload);
             // 
             // editToolStripMenuItem

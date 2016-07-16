@@ -39,7 +39,6 @@
             this.checkMonitorCtrl = new System.Windows.Forms.CheckBox();
             this.groupHotkeys = new System.Windows.Forms.GroupBox();
             this.groupEditor = new System.Windows.Forms.GroupBox();
-            this.chkClipboard = new System.Windows.Forms.CheckBox();
             this.textEdit = new System.Windows.Forms.TextBox();
             this.btnPenColor = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.checkEnabledEdit = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.chkClipboard = new System.Windows.Forms.CheckBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.tabShortcuts = new System.Windows.Forms.TabPage();
             this.tabEditor = new System.Windows.Forms.TabPage();
@@ -61,6 +61,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnOutlineColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.chkStartup = new System.Windows.Forms.CheckBox();
+            this.btnUninstall = new System.Windows.Forms.Button();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -179,7 +181,6 @@
             // 
             // groupEditor
             // 
-            this.groupEditor.Controls.Add(this.chkClipboard);
             this.groupEditor.Controls.Add(this.textEdit);
             this.groupEditor.Controls.Add(this.btnPenColor);
             this.groupEditor.Controls.Add(this.label4);
@@ -192,20 +193,9 @@
             this.groupEditor.TabStop = false;
             this.groupEditor.Text = "Editor";
             // 
-            // chkClipboard
-            // 
-            this.chkClipboard.AutoSize = true;
-            this.chkClipboard.Location = new System.Drawing.Point(12, 19);
-            this.chkClipboard.Name = "chkClipboard";
-            this.chkClipboard.Size = new System.Drawing.Size(109, 17);
-            this.chkClipboard.TabIndex = 3;
-            this.chkClipboard.Text = "Copy to Clipboard";
-            this.chkClipboard.UseVisualStyleBackColor = true;
-            this.chkClipboard.CheckedChanged += new System.EventHandler(this.chkClipboard_CheckedChanged);
-            // 
             // textEdit
             // 
-            this.textEdit.Location = new System.Drawing.Point(101, 76);
+            this.textEdit.Location = new System.Drawing.Point(100, 53);
             this.textEdit.Name = "textEdit";
             this.textEdit.Size = new System.Drawing.Size(100, 20);
             this.textEdit.TabIndex = 2;
@@ -214,8 +204,8 @@
             // btnPenColor
             // 
             this.btnPenColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPenColor.Font = new System.Drawing.Font("Lao UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPenColor.Location = new System.Drawing.Point(105, 42);
+            this.btnPenColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPenColor.Location = new System.Drawing.Point(104, 19);
             this.btnPenColor.Name = "btnPenColor";
             this.btnPenColor.Size = new System.Drawing.Size(62, 23);
             this.btnPenColor.TabIndex = 1;
@@ -225,7 +215,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 79);
+            this.label4.Location = new System.Drawing.Point(8, 56);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 13);
             this.label4.TabIndex = 0;
@@ -234,7 +224,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 47);
+            this.label3.Location = new System.Drawing.Point(8, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 0;
@@ -268,6 +258,9 @@
             // 
             // tabGeneral
             // 
+            this.tabGeneral.Controls.Add(this.btnUninstall);
+            this.tabGeneral.Controls.Add(this.chkStartup);
+            this.tabGeneral.Controls.Add(this.chkClipboard);
             this.tabGeneral.Controls.Add(this.btnReset);
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
@@ -276,6 +269,17 @@
             this.tabGeneral.TabIndex = 4;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
+            // 
+            // chkClipboard
+            // 
+            this.chkClipboard.AutoSize = true;
+            this.chkClipboard.Location = new System.Drawing.Point(8, 66);
+            this.chkClipboard.Name = "chkClipboard";
+            this.chkClipboard.Size = new System.Drawing.Size(109, 17);
+            this.chkClipboard.TabIndex = 4;
+            this.chkClipboard.Text = "Copy to Clipboard";
+            this.chkClipboard.UseVisualStyleBackColor = true;
+            this.chkClipboard.CheckedChanged += new System.EventHandler(this.chkClipboard_CheckedChanged);
             // 
             // btnReset
             // 
@@ -396,7 +400,7 @@
             // btnMeasurementColor
             // 
             this.btnMeasurementColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnMeasurementColor.Font = new System.Drawing.Font("Lao UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMeasurementColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMeasurementColor.Location = new System.Drawing.Point(114, 35);
             this.btnMeasurementColor.Name = "btnMeasurementColor";
             this.btnMeasurementColor.Size = new System.Drawing.Size(62, 23);
@@ -416,7 +420,7 @@
             // btnOutlineColor
             // 
             this.btnOutlineColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOutlineColor.Font = new System.Drawing.Font("Lao UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOutlineColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOutlineColor.Location = new System.Drawing.Point(114, 6);
             this.btnOutlineColor.Name = "btnOutlineColor";
             this.btnOutlineColor.Size = new System.Drawing.Size(62, 23);
@@ -432,6 +436,27 @@
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 2;
             this.label5.Text = "Outline Color";
+            // 
+            // chkStartup
+            // 
+            this.chkStartup.AutoSize = true;
+            this.chkStartup.Location = new System.Drawing.Point(8, 89);
+            this.chkStartup.Name = "chkStartup";
+            this.chkStartup.Size = new System.Drawing.Size(100, 17);
+            this.chkStartup.TabIndex = 5;
+            this.chkStartup.Text = "Run On Startup";
+            this.chkStartup.UseVisualStyleBackColor = true;
+            this.chkStartup.CheckedChanged += new System.EventHandler(this.chkStartup_CheckedChanged);
+            // 
+            // btnUninstall
+            // 
+            this.btnUninstall.Location = new System.Drawing.Point(6, 37);
+            this.btnUninstall.Name = "btnUninstall";
+            this.btnUninstall.Size = new System.Drawing.Size(94, 23);
+            this.btnUninstall.TabIndex = 6;
+            this.btnUninstall.Text = "Uninstall";
+            this.btnUninstall.UseVisualStyleBackColor = true;
+            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
             // 
             // Settings
             // 
@@ -451,6 +476,7 @@
             this.groupEditor.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
+            this.tabGeneral.PerformLayout();
             this.tabShortcuts.ResumeLayout(false);
             this.tabShortcuts.PerformLayout();
             this.tabEditor.ResumeLayout(false);
@@ -499,7 +525,9 @@
         private System.Windows.Forms.Button btnMeasurementColor;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage tabGeneral;
-        private System.Windows.Forms.CheckBox chkClipboard;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.CheckBox chkClipboard;
+        private System.Windows.Forms.CheckBox chkStartup;
+        private System.Windows.Forms.Button btnUninstall;
     }
 }
