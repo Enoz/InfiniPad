@@ -34,6 +34,7 @@ namespace InfiniPad
             chkStartup.Checked                  = Properties.Settings.Default.RunOnStartup;
 
             trackOpacity.Value                  = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
+            trackScale.Value                    = (int)(Properties.Settings.Default.WatermarkScale * 100);
 
             btnOutlineColor.BackColor           = Properties.Settings.Default.OutlineColor;
             btnMeasurementColor.BackColor       = Properties.Settings.Default.MeasurementColor;
@@ -166,6 +167,13 @@ namespace InfiniPad
             Properties.Settings.Default.WatermarkOpacity = (float)trackOpacity.Value / 100f;
             Properties.Settings.Default.Save();
             RefreshImages();
+        }
+
+
+        private void trackScale_Scroll(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.WatermarkScale = (float)trackScale.Value / 100f;
+            Properties.Settings.Default.Save();
         }
 
         private void textEdit_TextChanged(object sender, EventArgs e)

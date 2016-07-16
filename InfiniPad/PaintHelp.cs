@@ -160,8 +160,8 @@ namespace InfiniPad
             if (scale > 1)
                 scale = 1f;
 
-
-            Bitmap resized = ResizeBitmap(watermark, (int)(watermark.Width * scale), (int)(watermark.Height * scale));
+            float settingsScale = Properties.Settings.Default.WatermarkScale;
+            Bitmap resized = ResizeBitmap(watermark, (int)(watermark.Width * scale * settingsScale), (int)(watermark.Height * scale * settingsScale));
             resized = setOpacity(resized, Properties.Settings.Default.WatermarkOpacity);
             using (Graphics g = Graphics.FromImage(bmp))
             {

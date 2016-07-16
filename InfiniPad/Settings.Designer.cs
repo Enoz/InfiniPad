@@ -46,6 +46,8 @@
             this.checkEnabledEdit = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.btnUninstall = new System.Windows.Forms.Button();
+            this.chkStartup = new System.Windows.Forms.CheckBox();
             this.chkClipboard = new System.Windows.Forms.CheckBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.tabShortcuts = new System.Windows.Forms.TabPage();
@@ -61,8 +63,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnOutlineColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.chkStartup = new System.Windows.Forms.CheckBox();
-            this.btnUninstall = new System.Windows.Forms.Button();
+            this.trackScale = new System.Windows.Forms.TrackBar();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -74,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).BeginInit();
             this.tabScreenshot.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackScale)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxPartial
@@ -270,6 +273,27 @@
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
             // 
+            // btnUninstall
+            // 
+            this.btnUninstall.Location = new System.Drawing.Point(6, 37);
+            this.btnUninstall.Name = "btnUninstall";
+            this.btnUninstall.Size = new System.Drawing.Size(94, 23);
+            this.btnUninstall.TabIndex = 6;
+            this.btnUninstall.Text = "Uninstall";
+            this.btnUninstall.UseVisualStyleBackColor = true;
+            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
+            // 
+            // chkStartup
+            // 
+            this.chkStartup.AutoSize = true;
+            this.chkStartup.Location = new System.Drawing.Point(8, 89);
+            this.chkStartup.Name = "chkStartup";
+            this.chkStartup.Size = new System.Drawing.Size(100, 17);
+            this.chkStartup.TabIndex = 5;
+            this.chkStartup.Text = "Run On Startup";
+            this.chkStartup.UseVisualStyleBackColor = true;
+            this.chkStartup.CheckedChanged += new System.EventHandler(this.chkStartup_CheckedChanged);
+            // 
             // chkClipboard
             // 
             this.chkClipboard.AutoSize = true;
@@ -329,6 +353,8 @@
             // 
             // groupWatermark
             // 
+            this.groupWatermark.Controls.Add(this.label7);
+            this.groupWatermark.Controls.Add(this.trackScale);
             this.groupWatermark.Controls.Add(this.trackOpacity);
             this.groupWatermark.Controls.Add(this.pictureWatermark);
             this.groupWatermark.Controls.Add(this.buttonChangeWatermark);
@@ -343,11 +369,12 @@
             // trackOpacity
             // 
             this.trackOpacity.AutoSize = false;
-            this.trackOpacity.Location = new System.Drawing.Point(42, 162);
+            this.trackOpacity.Location = new System.Drawing.Point(246, 18);
             this.trackOpacity.Maximum = 100;
             this.trackOpacity.Minimum = 1;
             this.trackOpacity.Name = "trackOpacity";
-            this.trackOpacity.Size = new System.Drawing.Size(217, 33);
+            this.trackOpacity.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackOpacity.Size = new System.Drawing.Size(31, 146);
             this.trackOpacity.TabIndex = 2;
             this.trackOpacity.Value = 1;
             this.trackOpacity.Scroll += new System.EventHandler(this.trackOpacity_Scroll);
@@ -355,18 +382,18 @@
             // pictureWatermark
             // 
             this.pictureWatermark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureWatermark.Location = new System.Drawing.Point(42, 19);
+            this.pictureWatermark.Location = new System.Drawing.Point(17, 19);
             this.pictureWatermark.Name = "pictureWatermark";
-            this.pictureWatermark.Size = new System.Drawing.Size(217, 142);
+            this.pictureWatermark.Size = new System.Drawing.Size(223, 145);
             this.pictureWatermark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureWatermark.TabIndex = 1;
             this.pictureWatermark.TabStop = false;
             // 
             // buttonChangeWatermark
             // 
-            this.buttonChangeWatermark.Location = new System.Drawing.Point(6, 19);
+            this.buttonChangeWatermark.Location = new System.Drawing.Point(244, 164);
             this.buttonChangeWatermark.Name = "buttonChangeWatermark";
-            this.buttonChangeWatermark.Size = new System.Drawing.Size(30, 23);
+            this.buttonChangeWatermark.Size = new System.Drawing.Size(36, 25);
             this.buttonChangeWatermark.TabIndex = 0;
             this.buttonChangeWatermark.Text = "...";
             this.buttonChangeWatermark.UseVisualStyleBackColor = true;
@@ -437,26 +464,26 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Outline Color";
             // 
-            // chkStartup
+            // trackScale
             // 
-            this.chkStartup.AutoSize = true;
-            this.chkStartup.Location = new System.Drawing.Point(8, 89);
-            this.chkStartup.Name = "chkStartup";
-            this.chkStartup.Size = new System.Drawing.Size(100, 17);
-            this.chkStartup.TabIndex = 5;
-            this.chkStartup.Text = "Run On Startup";
-            this.chkStartup.UseVisualStyleBackColor = true;
-            this.chkStartup.CheckedChanged += new System.EventHandler(this.chkStartup_CheckedChanged);
+            this.trackScale.AutoSize = false;
+            this.trackScale.Location = new System.Drawing.Point(54, 164);
+            this.trackScale.Maximum = 100;
+            this.trackScale.Minimum = 1;
+            this.trackScale.Name = "trackScale";
+            this.trackScale.Size = new System.Drawing.Size(186, 25);
+            this.trackScale.TabIndex = 4;
+            this.trackScale.Value = 100;
+            this.trackScale.Scroll += new System.EventHandler(this.trackScale_Scroll);
             // 
-            // btnUninstall
+            // label7
             // 
-            this.btnUninstall.Location = new System.Drawing.Point(6, 37);
-            this.btnUninstall.Name = "btnUninstall";
-            this.btnUninstall.Size = new System.Drawing.Size(94, 23);
-            this.btnUninstall.TabIndex = 6;
-            this.btnUninstall.Text = "Uninstall";
-            this.btnUninstall.UseVisualStyleBackColor = true;
-            this.btnUninstall.Click += new System.EventHandler(this.btnUninstall_Click);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 170);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Scale";
             // 
             // Settings
             // 
@@ -484,10 +511,12 @@
             this.tabWatermark.ResumeLayout(false);
             this.tabWatermark.PerformLayout();
             this.groupWatermark.ResumeLayout(false);
+            this.groupWatermark.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).EndInit();
             this.tabScreenshot.ResumeLayout(false);
             this.tabScreenshot.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackScale)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -529,5 +558,7 @@
         private System.Windows.Forms.CheckBox chkClipboard;
         private System.Windows.Forms.CheckBox chkStartup;
         private System.Windows.Forms.Button btnUninstall;
+        private System.Windows.Forms.TrackBar trackScale;
+        private System.Windows.Forms.Label label7;
     }
 }

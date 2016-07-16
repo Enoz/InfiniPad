@@ -226,5 +226,17 @@ namespace InfiniPad.Properties {
                 this["HideOnStartup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.7")]
+        public float WatermarkScale {
+            get {
+                return ((float)(this["WatermarkScale"]));
+            }
+            set {
+                this["WatermarkScale"] = value;
+            }
+        }
     }
 }
