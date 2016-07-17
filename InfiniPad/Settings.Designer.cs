@@ -54,6 +54,8 @@
             this.tabEditor = new System.Windows.Forms.TabPage();
             this.tabWatermark = new System.Windows.Forms.TabPage();
             this.groupWatermark = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.trackScale = new System.Windows.Forms.TrackBar();
             this.trackOpacity = new System.Windows.Forms.TrackBar();
             this.pictureWatermark = new System.Windows.Forms.PictureBox();
             this.buttonChangeWatermark = new System.Windows.Forms.Button();
@@ -63,8 +65,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnOutlineColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.trackScale = new System.Windows.Forms.TrackBar();
-            this.label7 = new System.Windows.Forms.Label();
+            this.chkHideStartup = new System.Windows.Forms.CheckBox();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -73,10 +74,10 @@
             this.tabEditor.SuspendLayout();
             this.tabWatermark.SuspendLayout();
             this.groupWatermark.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).BeginInit();
             this.tabScreenshot.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackScale)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxPartial
@@ -261,6 +262,7 @@
             // 
             // tabGeneral
             // 
+            this.tabGeneral.Controls.Add(this.chkHideStartup);
             this.tabGeneral.Controls.Add(this.btnUninstall);
             this.tabGeneral.Controls.Add(this.chkStartup);
             this.tabGeneral.Controls.Add(this.chkClipboard);
@@ -366,6 +368,27 @@
             this.groupWatermark.TabStop = false;
             this.groupWatermark.Text = "Watermark";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(14, 170);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Scale";
+            // 
+            // trackScale
+            // 
+            this.trackScale.AutoSize = false;
+            this.trackScale.Location = new System.Drawing.Point(54, 164);
+            this.trackScale.Maximum = 100;
+            this.trackScale.Minimum = 1;
+            this.trackScale.Name = "trackScale";
+            this.trackScale.Size = new System.Drawing.Size(186, 25);
+            this.trackScale.TabIndex = 4;
+            this.trackScale.Value = 100;
+            this.trackScale.Scroll += new System.EventHandler(this.trackScale_Scroll);
+            // 
             // trackOpacity
             // 
             this.trackOpacity.AutoSize = false;
@@ -464,26 +487,16 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Outline Color";
             // 
-            // trackScale
+            // chkHideStartup
             // 
-            this.trackScale.AutoSize = false;
-            this.trackScale.Location = new System.Drawing.Point(54, 164);
-            this.trackScale.Maximum = 100;
-            this.trackScale.Minimum = 1;
-            this.trackScale.Name = "trackScale";
-            this.trackScale.Size = new System.Drawing.Size(186, 25);
-            this.trackScale.TabIndex = 4;
-            this.trackScale.Value = 100;
-            this.trackScale.Scroll += new System.EventHandler(this.trackScale_Scroll);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 170);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 13);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Scale";
+            this.chkHideStartup.AutoSize = true;
+            this.chkHideStartup.Location = new System.Drawing.Point(8, 112);
+            this.chkHideStartup.Name = "chkHideStartup";
+            this.chkHideStartup.Size = new System.Drawing.Size(102, 17);
+            this.chkHideStartup.TabIndex = 7;
+            this.chkHideStartup.Text = "Hide On Startup";
+            this.chkHideStartup.UseVisualStyleBackColor = true;
+            this.chkHideStartup.CheckedChanged += new System.EventHandler(this.chkHideStartup_CheckedChanged);
             // 
             // Settings
             // 
@@ -512,11 +525,11 @@
             this.tabWatermark.PerformLayout();
             this.groupWatermark.ResumeLayout(false);
             this.groupWatermark.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).EndInit();
             this.tabScreenshot.ResumeLayout(false);
             this.tabScreenshot.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackScale)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -560,5 +573,6 @@
         private System.Windows.Forms.Button btnUninstall;
         private System.Windows.Forms.TrackBar trackScale;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox chkHideStartup;
     }
 }

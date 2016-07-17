@@ -11,7 +11,7 @@ namespace InfiniPad
         {
             InitializeComponent();
             pictureIcon.Image = new Icon(Properties.Resources.icon, 256, 256).ToBitmap();
-            labelVersion.Text = "Version: " + Assembly.GetEntryAssembly().GetName().Version;
+            labelVersion.Text = "Version: " + Globals.getVersion();
         }
 
         private void btnGitHub_Click(object sender, System.EventArgs e)

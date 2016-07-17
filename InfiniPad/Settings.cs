@@ -32,6 +32,7 @@ namespace InfiniPad
             textEdit.Text                       = Properties.Settings.Default.TextDefault;
             chkClipboard.Checked                = Properties.Settings.Default.ClipboardOnUpload;
             chkStartup.Checked                  = Properties.Settings.Default.RunOnStartup;
+            chkHideStartup.Checked              = Properties.Settings.Default.HideOnStartup;
 
             trackOpacity.Value                  = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
             trackScale.Value                    = (int)(Properties.Settings.Default.WatermarkScale * 100);
@@ -227,6 +228,12 @@ namespace InfiniPad
         private void btnUninstall_Click(object sender, EventArgs e)
         {
             Globals.Uninstall();
+        }
+
+        private void chkHideStartup_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.HideOnStartup = chkHideStartup.Checked;
+            Properties.Settings.Default.Save();
         }
     }
 }

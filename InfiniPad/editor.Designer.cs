@@ -132,6 +132,7 @@
             // 
             // cmbPenSize
             // 
+            this.cmbPenSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPenSize.FormattingEnabled = true;
             this.cmbPenSize.Location = new System.Drawing.Point(225, 18);
             this.cmbPenSize.Name = "cmbPenSize";

@@ -55,7 +55,7 @@ namespace InfiniPad
 
         public static string getVersion()
         {
-            return System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString().Replace(".0", String.Empty);
+            return System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString().TrimEnd(new char[] { '.', '0' });
         }
 
         public static void addToStartup(bool enabled)

@@ -13,7 +13,7 @@ namespace InfiniPad
         public Main()
         {
             InitializeComponent();
-            string headerText = Assembly.GetEntryAssembly().GetName().Name + " v" + Assembly.GetEntryAssembly().GetName().Version.ToString().Replace(".0", "");
+            string headerText = string.Format("InfiniPad v{0}", Globals.getVersion());
             this.Icon = Properties.Resources.icon;
             this.Text = headerText;
 
@@ -33,15 +33,28 @@ namespace InfiniPad
             hk.ReapplyHotkeys();
             if (!Directory.Exists(Globals.MoveToDir))
                 Directory.CreateDirectory(Globals.MoveToDir);
-            #if !DEBUG
-                Globals.moveFile(Globals.MoveToDir + "InfiniPad.exe");
-            #endif
+
+            #region movefile
+#if !DEBUG
+                    Globals.moveFile(Globals.MoveToDir + "InfiniPad.exe");
+#endif
+            #endregion
+            
+
+
+        }
+
+        private bool shouldDisplay = !Properties.Settings.Default.HideOnStartup;
+        protected override void SetVisibleCore(bool value)
+        {
+            base.SetVisibleCore(shouldDisplay ? value : false);
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
+            
         }
 
         private void nfiExit(object sender, EventArgs e)
@@ -55,6 +68,7 @@ namespace InfiniPad
             switch (e.Button)
             {
                 case MouseButtons.Left:
+                    shouldDisplay = true;
                     this.Show();
                     break;
             }
@@ -121,6 +135,7 @@ namespace InfiniPad
             
              
             e.Cancel = true;
+            shouldDisplay = false;
             this.Hide();
         }
 

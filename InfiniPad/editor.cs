@@ -60,12 +60,12 @@ namespace InfiniPad
             refreshBtnColor();
             penObj              = new Pen(penCol, 4);
             penWidth            = sizelist[2].Size;
-            cmbPenSize.Text     = sizelist[2].Name;
             uploadThread        = new Thread(new ThreadStart(_UploadImage));
             uploadThread.SetApartmentState(ApartmentState.STA);
 
             foreach(PenSize ps in sizelist)
                 cmbPenSize.Items.Add(ps.Name);
+            cmbPenSize.SelectedItem = cmbPenSize.Items[2];
 
             this.Icon           = Properties.Resources.icon;
 
