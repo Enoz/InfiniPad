@@ -229,23 +229,31 @@ namespace InfiniPad
 
         private void _UploadImage()
         {
-            this.Invoke((MethodInvoker)delegate
+            try
             {
-                while (this.Handle == null)
-                    Application.DoEvents();
-                this.Hide();
-            });
-            var PictureLink = Upload.toImgur(curImg);
-            bool shouldClipboard = Properties.Settings.Default.ClipboardOnUpload;
-            Main.DisplayBubbleMessage(3, "Imgur Upload Completed", "Your image is live at " + PictureLink.link + "!" + (shouldClipboard ? " This link has been copied to your clipboard." : ""));
-            if(shouldClipboard)
-                Clipboard.SetText(PictureLink.link.ToString());
-            GC.Collect();
-            Globals.getMainForm().addImgurItem(PictureLink.link, PictureLink.deletehash);
-            this.Invoke((MethodInvoker)delegate
+                this.Invoke((MethodInvoker)delegate
+                {
+                    while (this.Handle == null)
+                        Application.DoEvents();
+                    this.Hide();
+                });
+                var PictureLink = Upload.toImgur(curImg);
+                bool shouldClipboard = Properties.Settings.Default.ClipboardOnUpload;
+                Main.DisplayBubbleMessage(3, "Imgur Upload Completed", "Your image is live at " + PictureLink.link + "!" + (shouldClipboard ? " This link has been copied to your clipboard." : ""));
+                if (shouldClipboard)
+                    Clipboard.SetText(PictureLink.link.ToString());
+                GC.Collect();
+                Globals.getMainForm().addImgurItem(PictureLink.link, PictureLink.deletehash);
+                this.Invoke((MethodInvoker)delegate
+                {
+                    this.Close();
+                });
+            }
+            catch(Exception ex)
             {
-                this.Close();
-            });
+                Globals.ErrorLog(ex.Message, true);
+            }
+            
         }
 
         private void editor_Resize(object sender, EventArgs e)

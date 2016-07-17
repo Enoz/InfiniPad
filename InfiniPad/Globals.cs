@@ -44,7 +44,17 @@ namespace InfiniPad
             ColorDic.Add("Transparent", Color.FromArgb(0, 255, 255, 255));
 
             foreach ( KeyValuePair<string, Color> pair in ColorDic)
-                cm.Items.Add(new ToolStripMenuItem(pair.Key, new Bitmap(1, 1), (s, e) => { res = pair.Value; }));
+            {
+                Bitmap bmp = new Bitmap(10, 10);
+                for(int k = 0; k < bmp.Width; k++)
+                {
+                    for(int v = 0; v < bmp.Height; v++)
+                    {
+                        bmp.SetPixel(k, v, pair.Value);
+                    }
+                }
+                cm.Items.Add(new ToolStripMenuItem(pair.Key, bmp, (s, e) => { res = pair.Value; }));
+            }
             cm.Items.Add(new ToolStripMenuItem("Custom...", new Bitmap(1, 1), (s, e) => { res = oldDialogPicker(); }));
 
             cm.Show(sender, sender.PointToClient(new Point(Cursor.Position.X, Cursor.Position.Y)));
@@ -68,7 +78,7 @@ namespace InfiniPad
                 else
                     startupKey.DeleteValue("InfiniPad");
             }
-            catch (Exception){}//Key does not exist
+            catch (Exception ex){ ErrorLog(ex.Message, false); }//Key does not exist
             
         }
 
@@ -111,6 +121,26 @@ namespace InfiniPad
                 File.WriteAllText("InfiniUninstall.bat", batchFile);
                 System.Diagnostics.Process.Start("InfiniUninstall.bat");
             }
+        }
+
+        public static void CreateMoveDir()
+        {
+            if (!Directory.Exists(MoveToDir))
+                Directory.CreateDirectory(MoveToDir);
+        }
+
+        public static void ErrorLog(string error, bool shouldShow)
+        {
+            CreateMoveDir();
+            string path = MoveToDir + "log.txt";
+            using (var sw = File.Exists(path) ? File.AppendText(path) : File.CreateText(path))
+            {
+                var culture = new System.Globalization.CultureInfo("en-US");
+
+                sw.WriteLine(string.Format("{0} -- {1}",DateTime.Now.ToString(culture),error));
+            }
+            if (shouldShow)
+                MessageBox.Show(string.Format("An error has occured:\n\n{0}",error), "InfiniPad", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

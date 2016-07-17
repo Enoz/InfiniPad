@@ -3,11 +3,20 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace InfiniPad
 {
     public partial class Main : Form
     {
+
+        #region Imports
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern bool GetWindowRect(IntPtr hWnd, ref Rectangle rect);
+        #endregion
         public static NotifyIcon nfi;
         private Hotkeys hk;
         public Main()
@@ -31,8 +40,7 @@ namespace InfiniPad
             nfi.ContextMenu = ctm;
 
             hk.ReapplyHotkeys();
-            if (!Directory.Exists(Globals.MoveToDir))
-                Directory.CreateDirectory(Globals.MoveToDir);
+            Globals.CreateMoveDir();
 
             #region movefile
 #if !DEBUG
@@ -118,6 +126,12 @@ namespace InfiniPad
         {
             //takes a SS of the foreground window, needs to be completed
             //dllimport -> GetForegroundWindow()
+            /*var hWnd = GetForegroundWindow();
+            Rectangle rectBuffer = new Rectangle();
+            GetWindowRect(hWnd, ref rectBuffer);
+            Bitmap bmp = PaintHelp.GetScreen(rectBuffer.Location, rectBuffer.Size);
+            new editor(bmp);*/
+            
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
