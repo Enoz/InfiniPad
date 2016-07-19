@@ -46,6 +46,7 @@
             this.checkEnabledEdit = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.chkHideStartup = new System.Windows.Forms.CheckBox();
             this.btnUninstall = new System.Windows.Forms.Button();
             this.chkStartup = new System.Windows.Forms.CheckBox();
             this.chkClipboard = new System.Windows.Forms.CheckBox();
@@ -65,7 +66,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnOutlineColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.chkHideStartup = new System.Windows.Forms.CheckBox();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -275,6 +275,17 @@
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
             // 
+            // chkHideStartup
+            // 
+            this.chkHideStartup.AutoSize = true;
+            this.chkHideStartup.Location = new System.Drawing.Point(8, 112);
+            this.chkHideStartup.Name = "chkHideStartup";
+            this.chkHideStartup.Size = new System.Drawing.Size(102, 17);
+            this.chkHideStartup.TabIndex = 7;
+            this.chkHideStartup.Text = "Hide On Startup";
+            this.chkHideStartup.UseVisualStyleBackColor = true;
+            this.chkHideStartup.CheckedChanged += new System.EventHandler(this.chkHideStartup_CheckedChanged);
+            // 
             // btnUninstall
             // 
             this.btnUninstall.Location = new System.Drawing.Point(6, 37);
@@ -381,12 +392,12 @@
             // 
             this.trackScale.AutoSize = false;
             this.trackScale.Location = new System.Drawing.Point(54, 164);
-            this.trackScale.Maximum = 100;
+            this.trackScale.Maximum = 30;
             this.trackScale.Minimum = 1;
             this.trackScale.Name = "trackScale";
             this.trackScale.Size = new System.Drawing.Size(186, 25);
             this.trackScale.TabIndex = 4;
-            this.trackScale.Value = 100;
+            this.trackScale.Value = 30;
             this.trackScale.Scroll += new System.EventHandler(this.trackScale_Scroll);
             // 
             // trackOpacity
@@ -486,17 +497,6 @@
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 2;
             this.label5.Text = "Outline Color";
-            // 
-            // chkHideStartup
-            // 
-            this.chkHideStartup.AutoSize = true;
-            this.chkHideStartup.Location = new System.Drawing.Point(8, 112);
-            this.chkHideStartup.Name = "chkHideStartup";
-            this.chkHideStartup.Size = new System.Drawing.Size(102, 17);
-            this.chkHideStartup.TabIndex = 7;
-            this.chkHideStartup.Text = "Hide On Startup";
-            this.chkHideStartup.UseVisualStyleBackColor = true;
-            this.chkHideStartup.CheckedChanged += new System.EventHandler(this.chkHideStartup_CheckedChanged);
             // 
             // Settings
             // 

@@ -213,6 +213,7 @@ namespace InfiniPad
         {
             if(MessageBox.Show("This will reset settings to when you first started\n the program. Continue?", "InfiniPad", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes){
                 Properties.Settings.Default.Reset();
+                Globals.addToStartup(Properties.Settings.Default.HideOnStartup);
                 applySettings();
             }
         }

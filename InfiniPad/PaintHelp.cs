@@ -140,7 +140,7 @@ namespace InfiniPad
 
                 using (var wrapMode = new System.Drawing.Imaging.ImageAttributes())
                 {
-                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    wrapMode.SetWrapMode(WrapMode.Tile);
                     gfx.DrawImage(bmp, destRect, 0, 0, bmp.Width, bmp.Height, GraphicsUnit.Pixel, wrapMode);
                 }
             }
@@ -159,10 +159,11 @@ namespace InfiniPad
                 scale = 0.01f;
             if (scale > 1)
                 scale = 1f;*/
-            //Properties.settings.default.Watermarkscale
+            //Properties.Settings.Default.WatermarkScale
             int waterScale = watermark.Width * watermark.Height;
             int bmpScale = bmp.Width * bmp.Height;
-            float scale = (bmpScale * .1f) / waterScale;
+
+            float scale = (bmpScale * Properties.Settings.Default.WatermarkScale) / waterScale;
 
             
 

@@ -229,7 +229,7 @@ namespace InfiniPad.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.7")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
         public float WatermarkScale {
             get {
                 return ((float)(this["WatermarkScale"]));
