@@ -152,16 +152,21 @@ namespace InfiniPad
         public static void applyWatermark(ref Bitmap bmp)
         {
             Bitmap watermark = getWatermark();
-            int waterScale = watermark.Width < watermark.Height ? watermark.Width : watermark.Height;
+            /*int waterScale = watermark.Width < watermark.Height ? watermark.Width : watermark.Height;
             int bmpScale = bmp.Width < bmp.Height ? bmp.Width : bmp.Height;
             float scale = 1f - ((float)waterScale / (float)bmpScale);
             if (scale < 0)
                 scale = 0.01f;
             if (scale > 1)
-                scale = 1f;
+                scale = 1f;*/
+            //Properties.settings.default.Watermarkscale
+            int waterScale = watermark.Width * watermark.Height;
+            int bmpScale = bmp.Width * bmp.Height;
+            float scale = (bmpScale * .1f) / waterScale;
 
-            float settingsScale = Properties.Settings.Default.WatermarkScale;
-            Bitmap resized = ResizeBitmap(watermark, (int)(watermark.Width * scale * settingsScale), (int)(watermark.Height * scale * settingsScale));
+            
+
+            Bitmap resized = ResizeBitmap(watermark, (int)(watermark.Width * scale), (int)(watermark.Height * scale));
             resized = setOpacity(resized, Properties.Settings.Default.WatermarkOpacity);
             using (Graphics g = Graphics.FromImage(bmp))
             {

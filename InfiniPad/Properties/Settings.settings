@@ -6,13 +6,13 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="PartialHotkey" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">65</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="HotkeysEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="MonitorHotkey" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">66</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="MonitorModifiers" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

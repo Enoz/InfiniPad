@@ -66,7 +66,10 @@ namespace InfiniPad
                         }
                     }
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    Globals.ErrorLog("WndProc(ref Message m) has failed: " + ex.Message, false);
+                }
             }
             base.WndProc(ref m);
         }

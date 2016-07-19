@@ -37,7 +37,7 @@ namespace InfiniPad.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("65")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int PartialHotkey {
             get {
                 return ((int)(this["PartialHotkey"]));
@@ -61,7 +61,7 @@ namespace InfiniPad.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("66")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int MonitorHotkey {
             get {
                 return ((int)(this["MonitorHotkey"]));
