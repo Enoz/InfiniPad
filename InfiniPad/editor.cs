@@ -251,7 +251,7 @@ namespace InfiniPad
             }
             catch(Exception ex)
             {
-                Globals.ErrorLog(ex.Message, true);
+                Globals.ErrorLog("_UploadImage() Failed: " + ex.Message, false);
             }
             
         }

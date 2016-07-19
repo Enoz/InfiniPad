@@ -11,6 +11,7 @@ namespace InfiniPad
     static class Globals
     {
         public static readonly string MoveToDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\InfiniPad\";
+        public static readonly string logFile = MoveToDir + "log.txt";
         public static Main getMainForm()
         {
             foreach (Form f in Application.OpenForms)
@@ -39,7 +40,7 @@ namespace InfiniPad
 
             ColorDic.Add("Red", Color.Red);
             ColorDic.Add("Blue", Color.Blue);
-            ColorDic.Add("Orange", Color.Orange);
+            ColorDic.Add("Yellow", Color.Yellow);
             ColorDic.Add("Green", Color.Green);
             ColorDic.Add("Transparent", Color.FromArgb(0, 255, 255, 255));
 
@@ -93,10 +94,18 @@ namespace InfiniPad
                 MessageBoxButtons.OK, 
                 MessageBoxIcon.Information);
 
-            if (File.Exists(location))
-                File.Delete(location);
-            File.Move(Assembly.GetExecutingAssembly().Location, location);
-            System.Diagnostics.Process.Start(location);
+            try
+            {
+                if (File.Exists(location))
+                    File.Delete(location);
+                File.Move(Assembly.GetExecutingAssembly().Location, location);
+                System.Diagnostics.Process.Start(location);
+                
+            }
+            catch(Exception ex)
+            {
+                Globals.ErrorLog("moveFile() Failed: " + ex.Message + "\n\n Make sure an older version of InfiniPad is not running.", true);
+            }
             Environment.Exit(0);
         }
 
@@ -108,18 +117,27 @@ namespace InfiniPad
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                addToStartup(false); //Remove startup key
-                string batchFile = string.Empty;
-                string location = Assembly.GetExecutingAssembly().Location.Replace("/", "\\");
-                batchFile += "@echo off\n";
-                batchFile += "echo j | taskkill /f /im InfiniPad.exe\n";
-                batchFile += "echo j | del /F " + location + "\n";
-                batchFile += "echo j | rd /s /q " + MoveToDir + "\n";
-                batchFile += "echo j | del InfiniUninstall.bat";
+                try
+                {
+                    addToStartup(false); //Remove startup key
+                    if (File.Exists(logFile))
+                        File.Delete(logFile);
+                    string batchFile = string.Empty;
+                    string location = Assembly.GetExecutingAssembly().Location.Replace("/", "\\");
+                    batchFile += "@echo off\n";
+                    batchFile += "echo j | taskkill /f /im InfiniPad.exe\n";
+                    batchFile += "echo j | del /F " + location + "\n";
+                    batchFile += "echo j | rd /s /q " + MoveToDir + "\n";
+                    batchFile += "echo j | del InfiniUninstall.bat";
 
 
-                File.WriteAllText("InfiniUninstall.bat", batchFile);
-                System.Diagnostics.Process.Start("InfiniUninstall.bat");
+                    File.WriteAllText("InfiniUninstall.bat", batchFile);
+                    System.Diagnostics.Process.Start("InfiniUninstall.bat");
+                }
+                catch(Exception ex)
+                {
+                    Globals.ErrorLog("Globals.Uninstall() Failed: " + ex.Message, true);
+                }
             }
         }
 
@@ -132,8 +150,7 @@ namespace InfiniPad
         public static void ErrorLog(string error, bool shouldShow)
         {
             CreateMoveDir();
-            string path = MoveToDir + "log.txt";
-            using (var sw = File.Exists(path) ? File.AppendText(path) : File.CreateText(path))
+            using (var sw = File.Exists(logFile) ? File.AppendText(logFile) : File.CreateText(logFile))
             {
                 var culture = new System.Globalization.CultureInfo("en-US");
 

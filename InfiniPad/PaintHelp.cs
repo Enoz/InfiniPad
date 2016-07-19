@@ -152,11 +152,11 @@ namespace InfiniPad
         public static void applyWatermark(ref Bitmap bmp)
         {
             Bitmap watermark = getWatermark();
-            int waterScale = bmp.Width < bmp.Height ? watermark.Width : watermark.Height;
+            int waterScale = watermark.Width < watermark.Height ? watermark.Width : watermark.Height;
             int bmpScale = bmp.Width < bmp.Height ? bmp.Width : bmp.Height;
             float scale = 1f - ((float)waterScale / (float)bmpScale);
             if (scale < 0)
-                scale = 0.15f;
+                scale = 0.01f;
             if (scale > 1)
                 scale = 1f;
 
