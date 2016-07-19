@@ -173,7 +173,7 @@ namespace InfiniPad
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = Upload.FileFilter;
+            sfd.Filter = Imgur.FileFilter;
             sfd.Title = "Save Image";
             if(sfd.ShowDialog() == DialogResult.OK)
             {
@@ -237,7 +237,7 @@ namespace InfiniPad
                         Application.DoEvents();
                     this.Hide();
                 });
-                var PictureLink = Upload.toImgur(curImg);
+                var PictureLink = Imgur.toImgur(curImg);
                 bool shouldClipboard = Properties.Settings.Default.ClipboardOnUpload;
                 Main.DisplayBubbleMessage(3, "Imgur Upload Completed", "Your image is live at " + PictureLink.link + "!" + (shouldClipboard ? " This link has been copied to your clipboard." : ""));
                 if (shouldClipboard)

@@ -111,7 +111,7 @@ namespace InfiniPad
             using (var ofd = new OpenFileDialog())
             {
                 ofd.Title = "Open Image";
-                ofd.Filter = Upload.FileFilter;
+                ofd.Filter = Imgur.FileFilter;
                 ofd.Multiselect = false;
                 if(ofd.ShowDialog() == DialogResult.OK)
                 {
@@ -196,10 +196,10 @@ namespace InfiniPad
 
         private void listViewLinks_ItemActivate(object sender, EventArgs e)
         {
-            var toDelete = new Upload.ImgurInfo();
+            var toDelete = new Imgur.ImgurInfo();
             toDelete.link = new Uri(listViewLinks.SelectedItems[0].SubItems[0].Text);
             toDelete.deletehash = listViewLinks.SelectedItems[0].SubItems[1].Text;
-            Upload.deleteImage(toDelete);
+            Imgur.deleteImage(toDelete);
             listViewLinks.SelectedItems[0].Remove();
             Main.DisplayBubbleMessage(3, "Image Deletion", "You have deleted the image located at " + toDelete.link);
             GC.Collect();

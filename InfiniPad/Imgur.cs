@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace InfiniPad
 {
-    static class Upload
+    static class Imgur
     {
         public readonly static string FileFilter = "JPEG Image|*.jpg|PNG Image|*.png|Bitmap Image|*.bmp|All Files (*.*)|*.*";
         public struct ImgurInfo

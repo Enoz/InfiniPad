@@ -151,7 +151,7 @@ namespace InfiniPad
         private void buttonChangeWatermark_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = Upload.FileFilter;
+            ofd.Filter = Imgur.FileFilter;
             ofd.Title = "Open Image";
             ofd.Multiselect = false;
             if(ofd.ShowDialog() == DialogResult.OK)

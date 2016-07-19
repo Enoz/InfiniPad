@@ -154,7 +154,7 @@ namespace InfiniPad
             {
                 var culture = new System.Globalization.CultureInfo("en-US");
 
-                sw.WriteLine(string.Format("{0} -- {1}",DateTime.Now.ToString(culture),error));
+                sw.WriteLine(string.Format("{0} -- {1}",DateTime.Now.ToString(culture),error.Replace("\n","\t")));
             }
             if (shouldShow)
                 MessageBox.Show(string.Format("An error has occured:\n\n{0}",error), "InfiniPad", MessageBoxButtons.OK, MessageBoxIcon.Error);
