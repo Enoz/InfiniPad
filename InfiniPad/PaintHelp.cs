@@ -14,7 +14,7 @@ namespace InfiniPad
             return new Font(new FontFamily(family), size, style, GraphicsUnit.Pixel);
         }
 
-        public static void DrawOutlinedRect(Graphics g, Rectangle rect, Brush b, int thickness)
+        public static void DrawOutlinedRect(ref Graphics g, Rectangle rect, Brush b, int thickness)
         {
             g.FillRectangle(b, new Rectangle(rect.X - thickness, rect.Y, thickness, rect.Height)); //left
             g.FillRectangle(b, new Rectangle(rect.X - thickness, rect.Y + rect.Height, //bottom
@@ -30,14 +30,14 @@ namespace InfiniPad
             Point start = new Point(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y));
             return new Rectangle(start, sz);
         }
-        public static void DrawAroundRect(Graphics g, Rectangle inRect, Rectangle outRect, Brush b)
+        public static void DrawAroundRect(ref Graphics g, Rectangle inRect, Rectangle outRect, Brush b)
         {
             g.FillRectangle(b, new Rectangle(outRect.X, outRect.Y, outRect.Width, outRect.Y+inRect.Y)); //top
             g.FillRectangle(b, new Rectangle(outRect.X, outRect.Y+inRect.Y, inRect.X-outRect.X, outRect.Height-(outRect.Y + inRect.Y))); //left
             g.FillRectangle(b, new Rectangle(inRect.X, inRect.Y + inRect.Height, outRect.Width - (inRect.X - outRect.X), outRect.Height-(inRect.Y + inRect.Height))); //bottom
             g.FillRectangle(b, new Rectangle(inRect.X+inRect.Width, inRect.Y, outRect.Width-inRect.X+inRect.Width, inRect.Height)); //right
         }
-        public static void DrawRotatedText(Graphics g, string s, Font font, Brush b, PointF pt, float Angle)
+        public static void DrawRotatedText(ref Graphics g, string s, Font font, Brush b, PointF pt, float Angle)
         {
             SizeF len = g.MeasureString(s, font);
             float X = pt.X + ((float)len.Width / 2);
