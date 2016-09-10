@@ -244,6 +244,7 @@ namespace InfiniPad
                     Clipboard.SetText(PictureLink.link.ToString());
                 GC.Collect();
                 Globals.getMainForm().addImgurItem(PictureLink.link, PictureLink.deletehash);
+                curImg.Dispose();
                 this.Invoke((MethodInvoker)delegate
                 {
                     this.Close();

@@ -22,11 +22,18 @@ namespace InfiniPad
 
             textBoxPartial.Text                 = ((char)Properties.Settings.Default.PartialHotkey).ToString().ToUpper();
             textBoxMonitor.Text                 = ((char)Properties.Settings.Default.MonitorHotkey).ToString().ToUpper();
+            textboxWindow.Text                  = ((char)Properties.Settings.Default.WindowHotkey).ToString().ToUpper();
+
             checkPartialCtrl.Checked            = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
             checkPartialShift.Checked           = (Properties.Settings.Default.PartialModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
 
             checkMonitorCtrl.Checked            = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
             checkMonitorShift.Checked           = (Properties.Settings.Default.MonitorModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
+
+            checkWindowCtrl.Checked             = (Properties.Settings.Default.WindowModifiers & KeyModifiers.MOD_CONTROL) == KeyModifiers.MOD_CONTROL;
+            checkWindowShift.Checked            = (Properties.Settings.Default.WindowModifiers & KeyModifiers.MOD_SHIFT) == KeyModifiers.MOD_SHIFT;
+
+
 
             btnPenColor.BackColor               = Properties.Settings.Default.PenColor;
             textEdit.Text                       = Properties.Settings.Default.TextDefault;
@@ -43,8 +50,11 @@ namespace InfiniPad
 
             checkMonitorCtrl.CheckedChanged     += RefreshModifiers;
             checkPartialCtrl.CheckedChanged     += RefreshModifiers;
+            checkWindowCtrl.CheckedChanged      += RefreshModifiers;
             checkMonitorShift.CheckedChanged    += RefreshModifiers;
             checkPartialShift.CheckedChanged    += RefreshModifiers;
+            checkWindowShift.CheckedChanged     += RefreshModifiers;
+            
 
 
             RefreshEnabledStatus();
@@ -83,7 +93,6 @@ namespace InfiniPad
             if (checkPartialShift.Checked)
                 PartialMod = PartialMod | KeyModifiers.MOD_SHIFT;
             Properties.Settings.Default.PartialModifiers = PartialMod;
-            Properties.Settings.Default.Save();
 
             int MonitorMod = 0;
             if (checkMonitorCtrl.Checked)
@@ -91,6 +100,15 @@ namespace InfiniPad
             if (checkMonitorShift.Checked)
                 MonitorMod = MonitorMod | KeyModifiers.MOD_SHIFT;
             Properties.Settings.Default.MonitorModifiers = MonitorMod;
+
+            int WindowMod = 0;
+            if (checkWindowCtrl.Checked)
+                WindowMod = WindowMod | KeyModifiers.MOD_CONTROL;
+            if (checkWindowShift.Checked)
+                WindowMod = WindowMod | KeyModifiers.MOD_SHIFT;
+            Properties.Settings.Default.WindowModifiers = WindowMod;
+
+
             Properties.Settings.Default.Save();
             
             hkInstance.ReapplyHotkeys();
@@ -123,14 +141,12 @@ namespace InfiniPad
         {
             var tb = (TextBox)sender;
             int newChar = (int)(char)(e.KeyChar.ToString().ToUpper()[0]);
-            if(sender == textBoxMonitor)
-            {
-                Properties.Settings.Default.MonitorHotkey = newChar;
-            }
+            if (sender == textBoxMonitor)
+                Properties.Settings.Default.MonitorHotkey   = newChar;
             else if (sender == textBoxPartial)
-            {
-                Properties.Settings.Default.PartialHotkey = newChar;
-            }
+                Properties.Settings.Default.PartialHotkey   = newChar;
+            else if (sender == textboxWindow)
+                Properties.Settings.Default.WindowHotkey    = newChar;
             Properties.Settings.Default.Save();
             tb.Text = ((char)e.KeyChar).ToString().ToUpper();
             

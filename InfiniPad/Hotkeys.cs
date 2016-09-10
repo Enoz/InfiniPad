@@ -100,6 +100,7 @@ namespace InfiniPad
         {
             Register(Main.TakePartialScreen, "PartialScreen", KeyModifiers.MOD_NOREPEAT | Properties.Settings.Default.PartialModifiers, Properties.Settings.Default.PartialHotkey);
             Register(Main.TakeFullScreen, "FullScreen", KeyModifiers.MOD_NOREPEAT | Properties.Settings.Default.MonitorModifiers, Properties.Settings.Default.MonitorHotkey);
+            Register(Main.TakeWindowScreen, "WindowScreen", KeyModifiers.MOD_NOREPEAT | Properties.Settings.Default.WindowModifiers, Properties.Settings.Default.WindowHotkey);
         }
 
 

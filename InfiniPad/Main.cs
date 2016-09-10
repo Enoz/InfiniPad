@@ -14,8 +14,16 @@ namespace InfiniPad
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern IntPtr GetForegroundWindow();
 
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
+
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        public static extern bool GetWindowRect(IntPtr hWnd, ref Rectangle rect);
+        public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
         #endregion
         public static NotifyIcon nfi;
         private Hotkeys hk;
@@ -131,7 +139,17 @@ namespace InfiniPad
             GetWindowRect(hWnd, ref rectBuffer);
             Bitmap bmp = PaintHelp.GetScreen(rectBuffer.Location, rectBuffer.Size);
             new editor(bmp);*/
-            
+
+            IntPtr hWnd = GetForegroundWindow();
+            RECT recBuff;
+            GetWindowRect(hWnd, out recBuff);
+            Rectangle recReal = new Rectangle();
+            recReal.X = recBuff.Left;
+            recReal.Y = recBuff.Top;
+            recReal.Width = recBuff.Right - recBuff.Left + 1;
+            recReal.Height = recBuff.Bottom - recBuff.Top + 1;
+            new editor(PaintHelp.GetScreen(recReal.Location, recReal.Size));
+
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)

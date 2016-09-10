@@ -238,5 +238,29 @@ namespace InfiniPad.Properties {
                 this["WatermarkScale"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int WindowHotkey {
+            get {
+                return ((int)(this["WindowHotkey"]));
+            }
+            set {
+                this["WindowHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int WindowModifiers {
+            get {
+                return ((int)(this["WindowModifiers"]));
+            }
+            set {
+                this["WindowModifiers"] = value;
+            }
+        }
     }
 }

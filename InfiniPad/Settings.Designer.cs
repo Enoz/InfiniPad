@@ -38,6 +38,10 @@
             this.checkMonitorShift = new System.Windows.Forms.CheckBox();
             this.checkMonitorCtrl = new System.Windows.Forms.CheckBox();
             this.groupHotkeys = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textboxWindow = new System.Windows.Forms.TextBox();
+            this.checkWindowCtrl = new System.Windows.Forms.CheckBox();
+            this.checkWindowShift = new System.Windows.Forms.CheckBox();
             this.groupEditor = new System.Windows.Forms.GroupBox();
             this.textEdit = new System.Windows.Forms.TextBox();
             this.btnPenColor = new System.Windows.Forms.Button();
@@ -167,6 +171,10 @@
             // 
             // groupHotkeys
             // 
+            this.groupHotkeys.Controls.Add(this.label8);
+            this.groupHotkeys.Controls.Add(this.textboxWindow);
+            this.groupHotkeys.Controls.Add(this.checkWindowCtrl);
+            this.groupHotkeys.Controls.Add(this.checkWindowShift);
             this.groupHotkeys.Controls.Add(this.checkPartialCtrl);
             this.groupHotkeys.Controls.Add(this.checkMonitorCtrl);
             this.groupHotkeys.Controls.Add(this.textBoxPartial);
@@ -182,6 +190,43 @@
             this.groupHotkeys.TabIndex = 6;
             this.groupHotkeys.TabStop = false;
             this.groupHotkeys.Text = "Keyboard Shortcuts";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(117, 76);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(103, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Window Screenshot";
+            // 
+            // textboxWindow
+            // 
+            this.textboxWindow.Location = new System.Drawing.Point(226, 73);
+            this.textboxWindow.Name = "textboxWindow";
+            this.textboxWindow.Size = new System.Drawing.Size(29, 20);
+            this.textboxWindow.TabIndex = 8;
+            this.textboxWindow.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxChanged);
+            // 
+            // checkWindowCtrl
+            // 
+            this.checkWindowCtrl.AutoSize = true;
+            this.checkWindowCtrl.Location = new System.Drawing.Point(6, 76);
+            this.checkWindowCtrl.Name = "checkWindowCtrl";
+            this.checkWindowCtrl.Size = new System.Drawing.Size(54, 17);
+            this.checkWindowCtrl.TabIndex = 7;
+            this.checkWindowCtrl.Text = "CTRL";
+            this.checkWindowCtrl.UseVisualStyleBackColor = true;
+            // 
+            // checkWindowShift
+            // 
+            this.checkWindowShift.AutoSize = true;
+            this.checkWindowShift.Location = new System.Drawing.Point(66, 76);
+            this.checkWindowShift.Name = "checkWindowShift";
+            this.checkWindowShift.Size = new System.Drawing.Size(57, 17);
+            this.checkWindowShift.TabIndex = 6;
+            this.checkWindowShift.Text = "SHIFT";
+            this.checkWindowShift.UseVisualStyleBackColor = true;
             // 
             // groupEditor
             // 
@@ -574,5 +619,9 @@
         private System.Windows.Forms.TrackBar trackScale;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox chkHideStartup;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textboxWindow;
+        private System.Windows.Forms.CheckBox checkWindowCtrl;
+        private System.Windows.Forms.CheckBox checkWindowShift;
     }
 }
