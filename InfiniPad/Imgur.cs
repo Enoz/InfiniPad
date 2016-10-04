@@ -44,7 +44,7 @@ namespace InfiniPad
 
         private static string getAuth()
         {
-            if (Properties.Settings.Default.account_authed)
+            if (Properties.Settings.Default.account_authed && Properties.Settings.Default.UploadWithAccount)
                 return "Bearer " + Properties.Settings.Default.account_access_token;
             else
                 return "Client-ID " + APIKeys.ImgurClientID;

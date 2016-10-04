@@ -80,6 +80,7 @@
             this.textboxPin = new System.Windows.Forms.TextBox();
             this.btnRedirectAuth = new System.Windows.Forms.Button();
             this.lblAccountID = new System.Windows.Forms.Label();
+            this.chkUploadToAccount = new System.Windows.Forms.CheckBox();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -573,7 +574,7 @@
             // 
             // btnUnlink
             // 
-            this.btnUnlink.Location = new System.Drawing.Point(18, 136);
+            this.btnUnlink.Location = new System.Drawing.Point(18, 149);
             this.btnUnlink.Name = "btnUnlink";
             this.btnUnlink.Size = new System.Drawing.Size(52, 21);
             this.btnUnlink.TabIndex = 4;
@@ -584,7 +585,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(15, 103);
+            this.lblUsername.Location = new System.Drawing.Point(15, 116);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(125, 13);
             this.lblUsername.TabIndex = 3;
@@ -593,7 +594,7 @@
             // lblLinked
             // 
             this.lblLinked.AutoSize = true;
-            this.lblLinked.Location = new System.Drawing.Point(15, 90);
+            this.lblLinked.Location = new System.Drawing.Point(15, 103);
             this.lblLinked.Name = "lblLinked";
             this.lblLinked.Size = new System.Drawing.Size(42, 13);
             this.lblLinked.TabIndex = 2;
@@ -601,13 +602,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkUploadToAccount);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.btnConfirm);
             this.groupBox1.Controls.Add(this.textboxPin);
             this.groupBox1.Controls.Add(this.btnRedirectAuth);
             this.groupBox1.Location = new System.Drawing.Point(8, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(325, 81);
+            this.groupBox1.Size = new System.Drawing.Size(325, 94);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Imgur Authorization";
@@ -651,11 +653,22 @@
             // lblAccountID
             // 
             this.lblAccountID.AutoSize = true;
-            this.lblAccountID.Location = new System.Drawing.Point(16, 120);
+            this.lblAccountID.Location = new System.Drawing.Point(15, 133);
             this.lblAccountID.Name = "lblAccountID";
             this.lblAccountID.Size = new System.Drawing.Size(69, 13);
             this.lblAccountID.TabIndex = 5;
             this.lblAccountID.Text = "account ID : ";
+            // 
+            // chkUploadToAccount
+            // 
+            this.chkUploadToAccount.AutoSize = true;
+            this.chkUploadToAccount.Location = new System.Drawing.Point(10, 70);
+            this.chkUploadToAccount.Name = "chkUploadToAccount";
+            this.chkUploadToAccount.Size = new System.Drawing.Size(199, 17);
+            this.chkUploadToAccount.TabIndex = 4;
+            this.chkUploadToAccount.Text = "Upload Images Using Imgur Account";
+            this.chkUploadToAccount.UseVisualStyleBackColor = true;
+            this.chkUploadToAccount.CheckedChanged += new System.EventHandler(this.chkUploadToAccount_CheckedChanged);
             // 
             // Settings
             // 
@@ -751,5 +764,6 @@
         private System.Windows.Forms.Label lblLinked;
         private System.Windows.Forms.Button btnUnlink;
         private System.Windows.Forms.Label lblAccountID;
+        private System.Windows.Forms.CheckBox chkUploadToAccount;
     }
 }

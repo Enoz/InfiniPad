@@ -48,6 +48,8 @@ namespace InfiniPad
             btnOutlineColor.BackColor           = Properties.Settings.Default.OutlineColor;
             btnMeasurementColor.BackColor       = Properties.Settings.Default.MeasurementColor;
 
+            chkUploadToAccount.Checked          = Properties.Settings.Default.UploadWithAccount;
+
 
             checkMonitorCtrl.CheckedChanged     += RefreshModifiers;
             checkPartialCtrl.CheckedChanged     += RefreshModifiers;
@@ -359,6 +361,12 @@ namespace InfiniPad
                 refreshAccountStatus();
                 Main.DisplayBubbleMessage(10, "Unlinked", "Your account has been unlinked. Complete this process in your  Settings on http://www.imgur.com");
             }
+        }
+
+        private void chkUploadToAccount_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.UploadWithAccount = chkUploadToAccount.Checked;
+            Properties.Settings.Default.Save();
         }
     }
     #endregion
