@@ -262,5 +262,53 @@ namespace InfiniPad.Properties {
                 this["WindowModifiers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public string account_access_token {
+            get {
+                return ((string)(this["account_access_token"]));
+            }
+            set {
+                this["account_access_token"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public string account_refresh_token {
+            get {
+                return ((string)(this["account_refresh_token"]));
+            }
+            set {
+                this["account_refresh_token"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int account_id {
+            get {
+                return ((int)(this["account_id"]));
+            }
+            set {
+                this["account_id"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool account_authed {
+            get {
+                return ((bool)(this["account_authed"]));
+            }
+            set {
+                this["account_authed"] = value;
+            }
+        }
     }
 }

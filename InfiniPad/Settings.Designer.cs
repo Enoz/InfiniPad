@@ -70,6 +70,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnOutlineColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnUnlink = new System.Windows.Forms.Button();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.lblLinked = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnConfirm = new System.Windows.Forms.Button();
+            this.textboxPin = new System.Windows.Forms.TextBox();
+            this.btnRedirectAuth = new System.Windows.Forms.Button();
+            this.lblAccountID = new System.Windows.Forms.Label();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -82,6 +92,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).BeginInit();
             this.tabScreenshot.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxPartial
@@ -184,9 +196,9 @@
             this.groupHotkeys.Controls.Add(this.checkPartialShift);
             this.groupHotkeys.Controls.Add(this.label2);
             this.groupHotkeys.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupHotkeys.Location = new System.Drawing.Point(3, 29);
+            this.groupHotkeys.Location = new System.Drawing.Point(3, 42);
             this.groupHotkeys.Name = "groupHotkeys";
-            this.groupHotkeys.Size = new System.Drawing.Size(283, 205);
+            this.groupHotkeys.Size = new System.Drawing.Size(335, 205);
             this.groupHotkeys.TabIndex = 6;
             this.groupHotkeys.TabStop = false;
             this.groupHotkeys.Text = "Keyboard Shortcuts";
@@ -235,9 +247,9 @@
             this.groupEditor.Controls.Add(this.label4);
             this.groupEditor.Controls.Add(this.label3);
             this.groupEditor.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupEditor.Location = new System.Drawing.Point(3, 29);
+            this.groupEditor.Location = new System.Drawing.Point(3, 42);
             this.groupEditor.Name = "groupEditor";
-            this.groupEditor.Size = new System.Drawing.Size(283, 205);
+            this.groupEditor.Size = new System.Drawing.Size(335, 205);
             this.groupEditor.TabIndex = 7;
             this.groupEditor.TabStop = false;
             this.groupEditor.Text = "Editor";
@@ -297,12 +309,13 @@
             this.tabControl1.Controls.Add(this.tabEditor);
             this.tabControl1.Controls.Add(this.tabWatermark);
             this.tabControl1.Controls.Add(this.tabScreenshot);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(297, 263);
+            this.tabControl1.Size = new System.Drawing.Size(349, 276);
             this.tabControl1.TabIndex = 9;
             // 
             // tabGeneral
@@ -315,7 +328,7 @@
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeneral.Size = new System.Drawing.Size(289, 237);
+            this.tabGeneral.Size = new System.Drawing.Size(341, 250);
             this.tabGeneral.TabIndex = 4;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
@@ -380,7 +393,7 @@
             this.tabShortcuts.Location = new System.Drawing.Point(4, 22);
             this.tabShortcuts.Name = "tabShortcuts";
             this.tabShortcuts.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShortcuts.Size = new System.Drawing.Size(289, 237);
+            this.tabShortcuts.Size = new System.Drawing.Size(341, 250);
             this.tabShortcuts.TabIndex = 0;
             this.tabShortcuts.Text = "Shortcuts";
             this.tabShortcuts.UseVisualStyleBackColor = true;
@@ -392,7 +405,7 @@
             this.tabEditor.Location = new System.Drawing.Point(4, 22);
             this.tabEditor.Name = "tabEditor";
             this.tabEditor.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEditor.Size = new System.Drawing.Size(289, 237);
+            this.tabEditor.Size = new System.Drawing.Size(341, 250);
             this.tabEditor.TabIndex = 1;
             this.tabEditor.Text = "Editor";
             this.tabEditor.UseVisualStyleBackColor = true;
@@ -404,7 +417,7 @@
             this.tabWatermark.Location = new System.Drawing.Point(4, 22);
             this.tabWatermark.Name = "tabWatermark";
             this.tabWatermark.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWatermark.Size = new System.Drawing.Size(289, 237);
+            this.tabWatermark.Size = new System.Drawing.Size(341, 250);
             this.tabWatermark.TabIndex = 2;
             this.tabWatermark.Text = "Watermark";
             this.tabWatermark.UseVisualStyleBackColor = true;
@@ -417,9 +430,9 @@
             this.groupWatermark.Controls.Add(this.pictureWatermark);
             this.groupWatermark.Controls.Add(this.buttonChangeWatermark);
             this.groupWatermark.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupWatermark.Location = new System.Drawing.Point(3, 33);
+            this.groupWatermark.Location = new System.Drawing.Point(3, 46);
             this.groupWatermark.Name = "groupWatermark";
-            this.groupWatermark.Size = new System.Drawing.Size(283, 201);
+            this.groupWatermark.Size = new System.Drawing.Size(335, 201);
             this.groupWatermark.TabIndex = 1;
             this.groupWatermark.TabStop = false;
             this.groupWatermark.Text = "Watermark";
@@ -448,12 +461,12 @@
             // trackOpacity
             // 
             this.trackOpacity.AutoSize = false;
-            this.trackOpacity.Location = new System.Drawing.Point(246, 18);
+            this.trackOpacity.Location = new System.Drawing.Point(246, 12);
             this.trackOpacity.Maximum = 100;
             this.trackOpacity.Minimum = 1;
             this.trackOpacity.Name = "trackOpacity";
             this.trackOpacity.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackOpacity.Size = new System.Drawing.Size(31, 146);
+            this.trackOpacity.Size = new System.Drawing.Size(34, 146);
             this.trackOpacity.TabIndex = 2;
             this.trackOpacity.Value = 1;
             this.trackOpacity.Scroll += new System.EventHandler(this.trackOpacity_Scroll);
@@ -463,7 +476,7 @@
             this.pictureWatermark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureWatermark.Location = new System.Drawing.Point(17, 19);
             this.pictureWatermark.Name = "pictureWatermark";
-            this.pictureWatermark.Size = new System.Drawing.Size(223, 145);
+            this.pictureWatermark.Size = new System.Drawing.Size(223, 139);
             this.pictureWatermark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureWatermark.TabIndex = 1;
             this.pictureWatermark.TabStop = false;
@@ -498,7 +511,7 @@
             this.tabScreenshot.Location = new System.Drawing.Point(4, 22);
             this.tabScreenshot.Name = "tabScreenshot";
             this.tabScreenshot.Padding = new System.Windows.Forms.Padding(3);
-            this.tabScreenshot.Size = new System.Drawing.Size(289, 237);
+            this.tabScreenshot.Size = new System.Drawing.Size(341, 250);
             this.tabScreenshot.TabIndex = 3;
             this.tabScreenshot.Text = "Screen Shot";
             this.tabScreenshot.UseVisualStyleBackColor = true;
@@ -543,11 +556,112 @@
             this.label5.TabIndex = 2;
             this.label5.Text = "Outline Color";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.lblAccountID);
+            this.tabPage1.Controls.Add(this.btnUnlink);
+            this.tabPage1.Controls.Add(this.lblUsername);
+            this.tabPage1.Controls.Add(this.lblLinked);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(341, 250);
+            this.tabPage1.TabIndex = 5;
+            this.tabPage1.Text = "Account";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnUnlink
+            // 
+            this.btnUnlink.Location = new System.Drawing.Point(18, 136);
+            this.btnUnlink.Name = "btnUnlink";
+            this.btnUnlink.Size = new System.Drawing.Size(52, 21);
+            this.btnUnlink.TabIndex = 4;
+            this.btnUnlink.Text = "unlink";
+            this.btnUnlink.UseVisualStyleBackColor = true;
+            this.btnUnlink.Click += new System.EventHandler(this.btnUnlink_Click);
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(15, 103);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(125, 13);
+            this.lblUsername.TabIndex = 3;
+            this.lblUsername.Text = "Logged in as : Username";
+            // 
+            // lblLinked
+            // 
+            this.lblLinked.AutoSize = true;
+            this.lblLinked.Location = new System.Drawing.Point(15, 90);
+            this.lblLinked.Name = "lblLinked";
+            this.lblLinked.Size = new System.Drawing.Size(42, 13);
+            this.lblLinked.TabIndex = 2;
+            this.lblLinked.Text = "Linked!";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.btnConfirm);
+            this.groupBox1.Controls.Add(this.textboxPin);
+            this.groupBox1.Controls.Add(this.btnRedirectAuth);
+            this.groupBox1.Location = new System.Drawing.Point(8, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(325, 81);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Imgur Authorization";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(149, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(25, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "PIN";
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.Location = new System.Drawing.Point(149, 41);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(154, 23);
+            this.btnConfirm.TabIndex = 2;
+            this.btnConfirm.Text = "Confirm";
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            // 
+            // textboxPin
+            // 
+            this.textboxPin.Location = new System.Drawing.Point(180, 19);
+            this.textboxPin.Name = "textboxPin";
+            this.textboxPin.Size = new System.Drawing.Size(123, 20);
+            this.textboxPin.TabIndex = 1;
+            // 
+            // btnRedirectAuth
+            // 
+            this.btnRedirectAuth.Location = new System.Drawing.Point(10, 19);
+            this.btnRedirectAuth.Name = "btnRedirectAuth";
+            this.btnRedirectAuth.Size = new System.Drawing.Size(133, 45);
+            this.btnRedirectAuth.TabIndex = 0;
+            this.btnRedirectAuth.Text = "Authorize";
+            this.btnRedirectAuth.UseVisualStyleBackColor = true;
+            this.btnRedirectAuth.Click += new System.EventHandler(this.btnRedirectAuth_Click);
+            // 
+            // lblAccountID
+            // 
+            this.lblAccountID.AutoSize = true;
+            this.lblAccountID.Location = new System.Drawing.Point(16, 120);
+            this.lblAccountID.Name = "lblAccountID";
+            this.lblAccountID.Size = new System.Drawing.Size(69, 13);
+            this.lblAccountID.TabIndex = 5;
+            this.lblAccountID.Text = "account ID : ";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 263);
+            this.ClientSize = new System.Drawing.Size(349, 276);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -575,6 +689,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureWatermark)).EndInit();
             this.tabScreenshot.ResumeLayout(false);
             this.tabScreenshot.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -623,5 +741,15 @@
         private System.Windows.Forms.TextBox textboxWindow;
         private System.Windows.Forms.CheckBox checkWindowCtrl;
         private System.Windows.Forms.CheckBox checkWindowShift;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.TextBox textboxPin;
+        private System.Windows.Forms.Button btnRedirectAuth;
+        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Label lblLinked;
+        private System.Windows.Forms.Button btnUnlink;
+        private System.Windows.Forms.Label lblAccountID;
     }
 }

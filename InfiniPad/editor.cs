@@ -238,13 +238,21 @@ namespace InfiniPad
                     this.Hide();
                 });
                 var PictureLink = Imgur.toImgur(curImg);
-                bool shouldClipboard = Properties.Settings.Default.ClipboardOnUpload;
-                Main.DisplayBubbleMessage(3, "Imgur Upload Completed", "Your image is live at " + PictureLink.link + "!" + (shouldClipboard ? " This link has been copied to your clipboard." : ""));
-                if (shouldClipboard)
-                    Clipboard.SetText(PictureLink.link.ToString());
-                GC.Collect();
-                Globals.getMainForm().addImgurItem(PictureLink.link, PictureLink.deletehash);
-                curImg.Dispose();
+                if(PictureLink.success)
+                {
+                    bool shouldClipboard = Properties.Settings.Default.ClipboardOnUpload;
+                    Main.DisplayBubbleMessage(3, "Imgur Upload Completed", "Your image is live at " + PictureLink.link + "!" + (shouldClipboard ? " This link has been copied to your clipboard." : ""));
+                    if (shouldClipboard)
+                        Clipboard.SetText(PictureLink.link.ToString());
+                    GC.Collect();
+                    Globals.getMainForm().addImgurItem(PictureLink.link, PictureLink.deletehash);
+                    curImg.Dispose();
+                }
+                else
+                {
+                    Globals.ErrorLog("Imgur.toImgur() failed : " + PictureLink.ex.Message, true);
+                }
+                
                 this.Invoke((MethodInvoker)delegate
                 {
                     this.Close();

@@ -214,7 +214,7 @@ namespace InfiniPad
 
         private void listViewLinks_ItemActivate(object sender, EventArgs e)
         {
-            var toDelete = new Imgur.ImgurInfo();
+            var toDelete = new Imgur.ImageInfo();
             toDelete.link = new Uri(listViewLinks.SelectedItems[0].SubItems[0].Text);
             toDelete.deletehash = listViewLinks.SelectedItems[0].SubItems[1].Text;
             Imgur.deleteImage(toDelete);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Threading;
 
 namespace InfiniPad
 {
@@ -58,6 +59,10 @@ namespace InfiniPad
 
 
             RefreshEnabledStatus();
+
+            Thread accountRefreshThread = new Thread(refreshAccountStatus);
+            accountRefreshThread.Start();
+
             if (checkEnabledWatermark.Checked)
                 RefreshImages();
         }
@@ -68,6 +73,43 @@ namespace InfiniPad
             this.MinimumSize = this.Size;
         }
 
+        #region General
+        private void chkClipboard_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ClipboardOnUpload = chkClipboard.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("This will reset settings to when you first started\n the program. Continue?", "InfiniPad", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                Properties.Settings.Default.Reset();
+                Globals.addToStartup(Properties.Settings.Default.HideOnStartup);
+                applySettings();
+            }
+        }
+
+        private void chkStartup_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enabled = chkStartup.Checked;
+            Properties.Settings.Default.RunOnStartup = enabled;
+            Properties.Settings.Default.Save();
+            Globals.addToStartup(enabled);
+        }
+
+        private void btnUninstall_Click(object sender, EventArgs e)
+        {
+            Globals.Uninstall();
+        }
+
+        private void chkHideStartup_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.HideOnStartup = chkHideStartup.Checked;
+            Properties.Settings.Default.Save();
+        }
+        #endregion
+        #region Hotkeys
         private void RefreshEnabledStatus()
         {
             groupHotkeys.Enabled = Properties.Settings.Default.HotkeysEnabled;
@@ -75,15 +117,7 @@ namespace InfiniPad
             groupWatermark.Enabled = Properties.Settings.Default.WatermarkEnabled;
         }
 
-        private void RefreshImages()
-        {
-            if (checkEnabledWatermark.Checked)
-                pictureWatermark.Image = PaintHelp.setOpacity(PaintHelp.getWatermark(), Properties.Settings.Default.WatermarkOpacity);
-            else
-                pictureWatermark.Image = null;
-            GC.Collect();
 
-        }
 
         private void RefreshModifiers(object sender, EventArgs e)
         {
@@ -110,7 +144,7 @@ namespace InfiniPad
 
 
             Properties.Settings.Default.Save();
-            
+
             hkInstance.ReapplyHotkeys();
         }
 
@@ -121,20 +155,6 @@ namespace InfiniPad
             RefreshEnabledStatus();
         }
 
-        private void checkEnabledEdit_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.EditorEnabled = checkEnabledEdit.Checked;
-            Properties.Settings.Default.Save();
-            RefreshEnabledStatus();
-        }
-
-        private void checkEnabledWatermark_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.WatermarkEnabled = checkEnabledWatermark.Checked;
-            Properties.Settings.Default.Save();
-            RefreshEnabledStatus();
-            RefreshImages();
-        }
 
 
         private void textBoxChanged(object sender, KeyPressEventArgs e)
@@ -142,16 +162,26 @@ namespace InfiniPad
             var tb = (TextBox)sender;
             int newChar = (int)(char)(e.KeyChar.ToString().ToUpper()[0]);
             if (sender == textBoxMonitor)
-                Properties.Settings.Default.MonitorHotkey   = newChar;
+                Properties.Settings.Default.MonitorHotkey = newChar;
             else if (sender == textBoxPartial)
-                Properties.Settings.Default.PartialHotkey   = newChar;
+                Properties.Settings.Default.PartialHotkey = newChar;
             else if (sender == textboxWindow)
-                Properties.Settings.Default.WindowHotkey    = newChar;
+                Properties.Settings.Default.WindowHotkey = newChar;
             Properties.Settings.Default.Save();
             tb.Text = ((char)e.KeyChar).ToString().ToUpper();
-            
+
             e.Handled = true;
             hkInstance.ReapplyHotkeys();
+        }
+
+        #endregion
+        #region Editor
+
+        private void checkEnabledEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.EditorEnabled = checkEnabledEdit.Checked;
+            Properties.Settings.Default.Save();
+            RefreshEnabledStatus();
         }
 
         private void btnPenColor_Click(object sender, EventArgs e)
@@ -164,13 +194,38 @@ namespace InfiniPad
             btnPenColor.BackColor = res;
         }
 
+        private void textEdit_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.TextDefault = (!String.IsNullOrWhiteSpace(textEdit.Text) ? textEdit.Text : "Text");
+            Properties.Settings.Default.Save();
+        }
+        #endregion
+        #region Watermark
+        private void RefreshImages()
+        {
+            if (checkEnabledWatermark.Checked)
+                pictureWatermark.Image = PaintHelp.setOpacity(PaintHelp.getWatermark(), Properties.Settings.Default.WatermarkOpacity);
+            else
+                pictureWatermark.Image = null;
+            GC.Collect();
+
+        }
+
+        private void checkEnabledWatermark_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.WatermarkEnabled = checkEnabledWatermark.Checked;
+            Properties.Settings.Default.Save();
+            RefreshEnabledStatus();
+            RefreshImages();
+        }
+
         private void buttonChangeWatermark_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = Imgur.FileFilter;
             ofd.Title = "Open Image";
             ofd.Multiselect = false;
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Properties.Settings.Default.WatermarkPath = ofd.FileName;
                 Properties.Settings.Default.Save();
@@ -192,13 +247,8 @@ namespace InfiniPad
             Properties.Settings.Default.WatermarkScale = (float)trackScale.Value / 100f;
             Properties.Settings.Default.Save();
         }
-
-        private void textEdit_TextChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.TextDefault = (!String.IsNullOrWhiteSpace(textEdit.Text) ? textEdit.Text : "Text");
-            Properties.Settings.Default.Save();
-        }
-
+        #endregion
+        #region Screenshot
         private void btnOutlineColor_Click(object sender, EventArgs e)
         {
             Color col = Globals.requestColorDialog(btnOutlineColor);
@@ -218,39 +268,100 @@ namespace InfiniPad
             Properties.Settings.Default.MeasurementColor = col;
             Properties.Settings.Default.Save();
         }
-
-        private void chkClipboard_CheckedChanged(object sender, EventArgs e)
+        #endregion
+        #region Account
+        private void btnRedirectAuth_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.ClipboardOnUpload = chkClipboard.Checked;
-            Properties.Settings.Default.Save();
+            System.Diagnostics.Process.Start(APIKeys.ImgurAuthURL);
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
+        private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("This will reset settings to when you first started\n the program. Continue?", "InfiniPad", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes){
-                Properties.Settings.Default.Reset();
-                Globals.addToStartup(Properties.Settings.Default.HideOnStartup);
-                applySettings();
+            Thread t = new Thread(btnConfirmHelper);
+            t.Start();
+        }
+        private void btnConfirmHelper()
+        {
+            btnConfirm.Invoke((MethodInvoker)delegate
+            {
+                btnConfirm.Enabled = false;
+            });
+            string pin = textboxPin.Text;
+            if (String.IsNullOrWhiteSpace(pin))
+                pin = "Invalid PIN";
+            Imgur.AuthInfo info = Imgur.authAccount(textboxPin.Text);
+            if (info.success)
+            {
+                Properties.Settings.Default.account_access_token = info.access_token;
+                Properties.Settings.Default.account_refresh_token = info.refresh_token;
+                Properties.Settings.Default.account_id = info.account_id;
+                Properties.Settings.Default.account_authed = true;
+                Properties.Settings.Default.Save();
+                refreshAccountStatus();
+            }
+            else
+            {
+                Globals.ErrorLog("Imgur.authAccount() Failed from btnConfirm_Click() : " + info.ex.Message, false);
+            }
+
+            btnConfirm.Invoke((MethodInvoker)delegate
+            {
+                btnConfirm.Enabled = true;
+            });
+        }
+
+        private void refreshAccountStatus()
+        {
+
+            bool linked = Properties.Settings.Default.account_authed;
+            lblLinked.InvokeIfRequired(() => {
+                lblLinked.Text = linked ? "Linked!" : "Not Linked!";
+                lblLinked.ForeColor = linked ? Color.Green : Color.Red;
+            });
+
+
+            Imgur.Account acc = new Imgur.Account();
+            acc.url = "none";
+            if (linked)
+            {
+                acc = Imgur.accountInfo(Properties.Settings.Default.account_id);
+                if (!acc.success)
+                {
+                    Globals.ErrorLog("Imgur.accountInfo() Failed from refreshAccountStatus() : " + acc.ex.Message, false);
+                    acc.url = "Failed To Retrieve Username";
+                }
+            }
+                
+            lblUsername.InvokeIfRequired(() =>
+            {
+                lblUsername.Text = linked ? "Signed in as " + acc.url : "";
+            });
+
+            lblAccountID.InvokeIfRequired(() =>
+            {
+                lblAccountID.Text = linked ? "ID: " + acc.id : "";
+            });
+
+            btnUnlink.InvokeIfRequired(() =>
+            {
+                btnUnlink.Visible = Properties.Settings.Default.account_authed;
+            });
+
+
+        }
+        private void btnUnlink_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you wish to unlink your Imgur Account?", "Confirmation",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Properties.Settings.Default.account_authed = false;
+                Properties.Settings.Default.Save();
+                refreshAccountStatus();
+                Main.DisplayBubbleMessage(10, "Unlinked", "Your account has been unlinked. Complete this process in your  Settings on http://www.imgur.com");
             }
         }
-
-        private void chkStartup_CheckedChanged(object sender, EventArgs e)
-        {
-            bool enabled = chkStartup.Checked;
-            Properties.Settings.Default.RunOnStartup = enabled;
-            Properties.Settings.Default.Save();
-            Globals.addToStartup(enabled);
-        }
-
-        private void btnUninstall_Click(object sender, EventArgs e)
-        {
-            Globals.Uninstall();
-        }
-
-        private void chkHideStartup_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.HideOnStartup = chkHideStartup.Checked;
-            Properties.Settings.Default.Save();
-        }
     }
+    #endregion
+
+
 }

@@ -159,5 +159,18 @@ namespace InfiniPad
             if (shouldShow)
                 MessageBox.Show(string.Format("An error has occured:\n\n{0}",error), "InfiniPad", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        //http://stackoverflow.com/questions/2367718/automating-the-invokerequired-code-pattern/12179408#12179408
+        public static void InvokeIfRequired(this Control control, MethodInvoker action)
+        {
+            if (control.InvokeRequired)
+            {
+                control.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
     }
 }
