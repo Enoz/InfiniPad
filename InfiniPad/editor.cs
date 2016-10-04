@@ -231,7 +231,7 @@ namespace InfiniPad
         {
             try
             {
-                this.Invoke((MethodInvoker)delegate
+                this.InvokeIfRequired(() =>
                 {
                     while (this.Handle == null)
                         Application.DoEvents();
