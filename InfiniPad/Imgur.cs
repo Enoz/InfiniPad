@@ -42,13 +42,24 @@ namespace InfiniPad
             public Exception ex;
         }
 
+        #region Auth
         private static string getAuth()
         {
             if (Properties.Settings.Default.account_authed && Properties.Settings.Default.UploadWithAccount)
-                return "Bearer " + Properties.Settings.Default.account_access_token;
+                return getAuthBearer();
             else
-                return "Client-ID " + APIKeys.ImgurClientID;
+                return getAuthClient();
         }
+        private static string getAuthBearer()
+        {
+            return "Bearer " + Properties.Settings.Default.account_access_token;
+        }
+        private static string getAuthClient()
+        {
+            return "Client-ID " + APIKeys.ImgurClientID;
+        }
+        #endregion
+
         public static ImageInfo toImgur(Bitmap bmp)
         {
             ImageConverter convert = new ImageConverter();
@@ -131,7 +142,7 @@ namespace InfiniPad
         {
             Account acc = new Account();
             using (WebClient wc = new WebClient()){
-                wc.Headers.Add("Authorization", Imgur.getAuth());
+                wc.Headers.Add("Authorization", Imgur.getAuthBearer());
                 try
                 {
                     byte[] response = wc.DownloadData("https://api.imgur.com/3/account/me");
