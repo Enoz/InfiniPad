@@ -54,6 +54,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -73,11 +74,11 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="APIKeys.cs" />
-    <Compile Include="editor.cs">
+    <Compile Include="EditorEx.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="editor.Designer.cs">
-      <DependentUpon>editor.cs</DependentUpon>
+    <Compile Include="EditorEx.Designer.cs">
+      <DependentUpon>EditorEx.cs</DependentUpon>
     </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Hotkeys.cs" />
@@ -106,14 +107,14 @@
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="editor.resx">
-      <DependentUpon>editor.cs</DependentUpon>
+    <EmbeddedResource Include="EditorEx.resx">
+      <DependentUpon>EditorEx.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -155,6 +156,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\paintbrush-27403_960_720.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Brush.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brush_ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brush_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blur_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

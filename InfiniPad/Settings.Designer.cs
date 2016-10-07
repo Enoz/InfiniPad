@@ -71,16 +71,16 @@
             this.btnOutlineColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblAccountID = new System.Windows.Forms.Label();
             this.btnUnlink = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblLinked = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkUploadToAccount = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.textboxPin = new System.Windows.Forms.TextBox();
             this.btnRedirectAuth = new System.Windows.Forms.Button();
-            this.lblAccountID = new System.Windows.Forms.Label();
-            this.chkUploadToAccount = new System.Windows.Forms.CheckBox();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -572,6 +572,15 @@
             this.tabPage1.Text = "Account";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lblAccountID
+            // 
+            this.lblAccountID.AutoSize = true;
+            this.lblAccountID.Location = new System.Drawing.Point(15, 133);
+            this.lblAccountID.Name = "lblAccountID";
+            this.lblAccountID.Size = new System.Drawing.Size(69, 13);
+            this.lblAccountID.TabIndex = 5;
+            this.lblAccountID.Text = "account ID : ";
+            // 
             // btnUnlink
             // 
             this.btnUnlink.Location = new System.Drawing.Point(18, 149);
@@ -614,6 +623,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Imgur Authorization";
             // 
+            // chkUploadToAccount
+            // 
+            this.chkUploadToAccount.AutoSize = true;
+            this.chkUploadToAccount.Location = new System.Drawing.Point(10, 70);
+            this.chkUploadToAccount.Name = "chkUploadToAccount";
+            this.chkUploadToAccount.Size = new System.Drawing.Size(199, 17);
+            this.chkUploadToAccount.TabIndex = 4;
+            this.chkUploadToAccount.Text = "Upload Images Using Imgur Account";
+            this.chkUploadToAccount.UseVisualStyleBackColor = true;
+            this.chkUploadToAccount.CheckedChanged += new System.EventHandler(this.chkUploadToAccount_CheckedChanged);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -649,26 +669,6 @@
             this.btnRedirectAuth.Text = "Authorize";
             this.btnRedirectAuth.UseVisualStyleBackColor = true;
             this.btnRedirectAuth.Click += new System.EventHandler(this.btnRedirectAuth_Click);
-            // 
-            // lblAccountID
-            // 
-            this.lblAccountID.AutoSize = true;
-            this.lblAccountID.Location = new System.Drawing.Point(15, 133);
-            this.lblAccountID.Name = "lblAccountID";
-            this.lblAccountID.Size = new System.Drawing.Size(69, 13);
-            this.lblAccountID.TabIndex = 5;
-            this.lblAccountID.Text = "account ID : ";
-            // 
-            // chkUploadToAccount
-            // 
-            this.chkUploadToAccount.AutoSize = true;
-            this.chkUploadToAccount.Location = new System.Drawing.Point(10, 70);
-            this.chkUploadToAccount.Name = "chkUploadToAccount";
-            this.chkUploadToAccount.Size = new System.Drawing.Size(199, 17);
-            this.chkUploadToAccount.TabIndex = 4;
-            this.chkUploadToAccount.Text = "Upload Images Using Imgur Account";
-            this.chkUploadToAccount.UseVisualStyleBackColor = true;
-            this.chkUploadToAccount.CheckedChanged += new System.EventHandler(this.chkUploadToAccount_CheckedChanged);
             // 
             // Settings
             // 

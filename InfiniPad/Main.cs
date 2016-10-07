@@ -111,7 +111,7 @@ namespace InfiniPad
             Screen scr = PaintHelp.getCursorScreen();
             Bitmap bmp = PaintHelp.GetScreen(new Point(scr.Bounds.X, scr.Bounds.Y),
                                                 new Size(scr.Bounds.Width, scr.Bounds.Height));
-            new editor(bmp);
+            new EditorEx(bmp);
         }
 
         public static void UploadImage()
@@ -124,7 +124,7 @@ namespace InfiniPad
                 if(ofd.ShowDialog() == DialogResult.OK)
                 {
                     Bitmap bmp = new Bitmap(ofd.FileName);
-                    new editor(bmp);
+                    new EditorEx(bmp);
                 }
                 ofd.Dispose();
             }
@@ -148,7 +148,7 @@ namespace InfiniPad
             recReal.Y = recBuff.Top;
             recReal.Width = recBuff.Right - recBuff.Left + 1;
             recReal.Height = recBuff.Bottom - recBuff.Top + 1;
-            new editor(PaintHelp.GetScreen(recReal.Location, recReal.Size));
+            new EditorEx(PaintHelp.GetScreen(recReal.Location, recReal.Size));
 
         }
 

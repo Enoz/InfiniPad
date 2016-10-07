@@ -46,12 +46,12 @@ namespace InfiniPad
             else
             {
                 Rectangle drawArea = PaintHelp.fixNegRect(startP, endP);
-                PaintHelp.DrawOutlinedRect(ref g, drawArea, outlineBrush, 3);
-                PaintHelp.DrawAroundRect(ref g, drawArea, new Rectangle(0, 0, fullSize.Width, fullSize.Height), rectBrush);
-                PaintHelp.DrawRotatedText(ref g, Math.Abs(startP.X-endP.X).ToString(), fntMeasure, measBrush, new PointF(drawArea.X, drawArea.Y+drawArea.Size.Height), 0);
+                g.DrawOutlinedRect(drawArea, outlineBrush, 3);
+                g.DrawAroundRect(drawArea, new Rectangle(0, 0, fullSize.Width, fullSize.Height), rectBrush);
+                g.DrawRotatedText(Math.Abs(startP.X-endP.X).ToString(), fntMeasure, measBrush, new PointF(drawArea.X, drawArea.Y+drawArea.Size.Height), 0);
 
                 string ySize = Math.Abs(startP.Y - endP.Y).ToString();
-                PaintHelp.DrawRotatedText(ref g, ySize, fntMeasure, measBrush,
+                g.DrawRotatedText( ySize, fntMeasure, measBrush,
                     new PointF(drawArea.X-g.MeasureString(ySize, fntMeasure).Height-10, drawArea.Y+drawArea.Size.Height-g.MeasureString(ySize, fntMeasure).Width), -90);
             }
             
@@ -67,7 +67,7 @@ namespace InfiniPad
                 g.DrawImage(bmpDesktop, 0, 0, section, GraphicsUnit.Pixel);
                 g.Dispose();
                 this.Visible = false;
-                new editor(bmpResult);
+                new EditorEx(bmpResult);
                 this.Close();
             }
             catch (ArgumentException)

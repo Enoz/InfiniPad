@@ -14,7 +14,7 @@ namespace InfiniPad
             return new Font(new FontFamily(family), size, style, GraphicsUnit.Pixel);
         }
 
-        public static void DrawOutlinedRect(ref Graphics g, Rectangle rect, Brush b, int thickness)
+        public static void DrawOutlinedRect(this Graphics g, Rectangle rect, Brush b, int thickness)
         {
             g.FillRectangle(b, new Rectangle(rect.X - thickness, rect.Y, thickness, rect.Height)); //left
             g.FillRectangle(b, new Rectangle(rect.X - thickness, rect.Y + rect.Height, //bottom
@@ -30,14 +30,14 @@ namespace InfiniPad
             Point start = new Point(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y));
             return new Rectangle(start, sz);
         }
-        public static void DrawAroundRect(ref Graphics g, Rectangle inRect, Rectangle outRect, Brush b)
+        public static void DrawAroundRect(this Graphics g, Rectangle inRect, Rectangle outRect, Brush b)
         {
             g.FillRectangle(b, new Rectangle(outRect.X, outRect.Y, outRect.Width, outRect.Y+inRect.Y)); //top
             g.FillRectangle(b, new Rectangle(outRect.X, outRect.Y+inRect.Y, inRect.X-outRect.X, outRect.Height-(outRect.Y + inRect.Y))); //left
             g.FillRectangle(b, new Rectangle(inRect.X, inRect.Y + inRect.Height, outRect.Width - (inRect.X - outRect.X), outRect.Height-(inRect.Y + inRect.Height))); //bottom
             g.FillRectangle(b, new Rectangle(inRect.X+inRect.Width, inRect.Y, outRect.Width-inRect.X+inRect.Width, inRect.Height)); //right
         }
-        public static void DrawRotatedText(ref Graphics g, string s, Font font, Brush b, PointF pt, float Angle)
+        public static void DrawRotatedText(this Graphics g, string s, Font font, Brush b, PointF pt, float Angle)
         {
             SizeF len = g.MeasureString(s, font);
             float X = pt.X + ((float)len.Width / 2);
@@ -128,6 +128,8 @@ namespace InfiniPad
 
         public static Bitmap ResizeBitmap(Bitmap bmp, int width, int height)
         {
+            if (width == 0 || height == 0)
+                return bmp;
             Rectangle destRect = new Rectangle(0, 0, width, height);
             Bitmap destBmp = new Bitmap(width, height);
             using (Graphics gfx = Graphics.FromImage(destBmp))
@@ -145,8 +147,71 @@ namespace InfiniPad
                 }
             }
             return destBmp;
+        }
 
-            
+        /*public static void Blur(this Bitmap bmp, Rectangle region, float intensity)
+        {
+            Graphics g = Graphics.FromImage(bmp);
+            Bitmap section = bmp.CopyRegion(region);
+            section = ResizeBitmap(section, (int)(region.Width * (1 - intensity)), (int)(region.Height * (1 - intensity)));
+            section = ResizeBitmap(section, region.Width, region.Height);
+            g.DrawImage(section, region.X, region.Y, region, GraphicsUnit.Pixel);
+            g.Dispose();
+
+        }*/
+        public static void Blur(this Bitmap bmp, Rectangle region, int intensity)
+        {
+            if (region.Width == 0 || region.Height == 0)
+                return;
+            if (intensity == 0)
+                intensity = 1;
+            Bitmap small = new Bitmap(region.Width, region.Height);
+            Graphics smallg = Graphics.FromImage(small);
+            smallg.DrawImage(bmp, 0, 0, region, GraphicsUnit.Pixel);
+
+            //Start edit small
+            //int widthIntensity = intensity;
+            //int heightIntensity = 
+            //int intBase = small.Width > small.Height ? small.Height : small.Width;
+            int pixSize = intensity;
+            int pixelsOnWidth = small.Width / pixSize;
+            int pixelsOnHeight = small.Height / pixSize;
+            for(int w = 1; w <= pixelsOnWidth; w++)
+            {
+                int wide = pixelsOnWidth == w ? pixSize + (small.Width % pixSize) : pixSize;
+                for(int h = 1; h <= pixelsOnHeight; h++)
+                {
+                    int height = pixelsOnHeight == h ? pixSize + (small.Height % pixSize) : pixSize;
+                    int Xbase = pixSize * (w - 1);
+                    int Ybase = pixSize * (h - 1);
+                    int r, b, g;
+                    r = b = g = 0;
+                    int pixelCount = 0;
+                    for (int x = Xbase; x < Xbase + wide; x++)
+                    {
+                        for(int y = Ybase; y < Ybase + height; y++)
+                        {
+                            Color pixCol = small.GetPixel(x, y);
+                            r += pixCol.R;
+                            b += pixCol.B;
+                            g += pixCol.G;
+                            pixelCount++;
+                        }
+                    }
+                    if (pixelCount == 0)
+                    {
+                        continue;
+                    }
+                    Color avgCol = Color.FromArgb(255, r / pixelCount, g / pixelCount, b / pixelCount);
+                    smallg.FillRectangle(new SolidBrush(avgCol), Xbase, Ybase, wide, height);
+                }
+
+            }
+            //end edit small
+            smallg.Dispose();
+            Graphics gfx = Graphics.FromImage(bmp);
+            gfx.DrawImage(small, region.X, region.Y);
+            gfx.Dispose();
         }
 
         public static void applyWatermark(ref Bitmap bmp)
@@ -176,3 +241,4 @@ namespace InfiniPad
 
     }
 }
+ 
