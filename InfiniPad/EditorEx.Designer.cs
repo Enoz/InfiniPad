@@ -60,6 +60,7 @@
             this.editToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.undoCtrlZToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.resetCtrlZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCrop = new System.Windows.Forms.Button();
             this.panelWorkspace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackSize)).BeginInit();
@@ -184,6 +185,7 @@
             // 
             this.grpEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpEdit.Controls.Add(this.btnCrop);
             this.grpEdit.Controls.Add(this.trackSize);
             this.grpEdit.Controls.Add(this.btnPen);
             this.grpEdit.Controls.Add(this.btnDone);
@@ -352,6 +354,16 @@
             this.resetCtrlZToolStripMenuItem.Text = "Reset [Ctrl+Z]";
             this.resetCtrlZToolStripMenuItem.Click += new System.EventHandler(this.resetCtrlRToolStripMenuItem_Click);
             // 
+            // btnCrop
+            // 
+            this.btnCrop.Image = global::InfiniPad.Properties.Resources.crop_icon;
+            this.btnCrop.Location = new System.Drawing.Point(353, 19);
+            this.btnCrop.Name = "btnCrop";
+            this.btnCrop.Size = new System.Drawing.Size(24, 24);
+            this.btnCrop.TabIndex = 7;
+            this.btnCrop.UseVisualStyleBackColor = true;
+            this.btnCrop.Click += new System.EventHandler(this.btnCrop_Click);
+            // 
             // EditorEx
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,5 +421,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem undoCtrlZToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem resetCtrlZToolStripMenuItem;
+        private System.Windows.Forms.Button btnCrop;
     }
 }

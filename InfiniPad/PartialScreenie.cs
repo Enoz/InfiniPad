@@ -62,12 +62,8 @@ namespace InfiniPad
             try
             {
                 Rectangle section = PaintHelp.fixNegRect(startP, endP);
-                Bitmap bmpResult = new Bitmap(section.Width, section.Height);
-                Graphics g = Graphics.FromImage(bmpResult);
-                g.DrawImage(bmpDesktop, 0, 0, section, GraphicsUnit.Pixel);
-                g.Dispose();
                 this.Visible = false;
-                new EditorEx(bmpResult);
+                new EditorEx(PaintHelp.cropBitmap(bmpDesktop, section));
                 this.Close();
             }
             catch (ArgumentException)

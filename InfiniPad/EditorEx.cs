@@ -14,11 +14,27 @@ namespace InfiniPad
     public partial class EditorEx : Form
     {
 
+        private abstract class ToolFunc
+        {
+            public Tool tool;
+            protected EditorEx inst;
+            public ToolFunc(EditorEx inst, Tool t)
+            {
+                this.inst = inst;
+                this.tool = t;
+            }
+            public abstract void MouseDown(object sender, MouseEventArgs e);
+            public abstract void MouseUp(object sender, MouseEventArgs e);
+            public abstract void Paint(object sender, PaintEventArgs e);
+            public abstract void MouseMove(object sender, MouseEventArgs e);
+        }
+
         private enum Tool
         {
             Pen,
             Text,
             Blur,
+            Crop,
         }
 
         Point cursorLastPos;
@@ -27,6 +43,7 @@ namespace InfiniPad
         Bitmap curImg;
         Pen penObj;
         bool bMouseDown;
+        List<ToolFunc> funcList = new List<ToolFunc>();
         public EditorEx(Bitmap Image)
         {
             InitializeComponent();
@@ -58,8 +75,154 @@ namespace InfiniPad
                 this.Show();
             }
 
+            funcList.Add(new tPen(this, Tool.Pen));
+            funcList.Add(new tBlur(this, Tool.Blur));
+            funcList.Add(new tCrop(this, Tool.Crop));
+            funcList.Add(new tText(this, Tool.Text));
 
         }
+
+
+        private void btnText_Click(object sender, EventArgs e)
+        {
+            toolInUse = Tool.Text;
+        }
+
+        private void btnPen_Click(object sender, EventArgs e)
+        {
+            toolInUse = Tool.Pen;
+        }
+
+        private void btnBlur_Click(object sender, EventArgs e)
+        {
+            toolInUse = Tool.Blur;
+
+        }
+        private void btnCrop_Click(object sender, EventArgs e)
+        {
+            toolInUse = Tool.Crop;
+        }
+
+
+        #region Crop
+        private class tCrop : ToolFunc
+        {
+            public tCrop(EditorEx inst, Tool t) : base(inst, t) { }
+            public override void MouseDown(object sender, MouseEventArgs e)
+            {
+                inst.cursorLastPos = inst.getPointOnImage();
+            }
+            public override void MouseMove(object sender, MouseEventArgs e)
+            {
+            }
+            public override void MouseUp(object sender, MouseEventArgs e)
+            {
+                Rectangle region = PaintHelp.fixNegRect(inst.cursorLastPos, inst.getPointOnImage());
+                inst.curImg = PaintHelp.cropBitmap(inst.curImg, region);
+                inst.picEdit.Image = inst.curImg;
+            }
+            public override void Paint(object sender, PaintEventArgs e)
+            {
+                inst.paintCrossCursor(e.Graphics);
+                if (inst.bMouseDown)
+                    e.Graphics.DrawAroundRect(PaintHelp.fixNegRect(inst.cursorLastPos, inst.getPointOnImage()), new Rectangle(0, 0, inst.curImg.Width, inst.curImg.Height), new SolidBrush(Color.FromArgb(128, 0, 0, 0)));
+            }
+        }
+        #endregion
+        #region Blur
+        private class tBlur : ToolFunc
+        {
+            public tBlur(EditorEx inst, Tool t) : base(inst, t) { }
+            public override void MouseDown(object sender, MouseEventArgs e)
+            {
+                inst.cursorLastPos = inst.getPointOnImage();
+            }
+            public override void MouseMove(object sender, MouseEventArgs e)
+            {
+                //NONE
+            }
+            public override void MouseUp(object sender, MouseEventArgs e)
+            {
+                Rectangle region = PaintHelp.fixNegRect(inst.cursorLastPos, inst.getPointOnImage());
+                inst.curImg.Blur(region, inst.trackSize.Value / 2);
+                inst.picEdit.Image = inst.curImg;
+            }
+            public override void Paint(object sender, PaintEventArgs e)
+            {
+                inst.paintCrossCursor(e.Graphics);
+                if (inst.bMouseDown)
+                    e.Graphics.DrawOutlinedRect(PaintHelp.fixNegRect(inst.cursorLastPos, inst.getPointOnImage()), Brushes.Blue, 2);
+            }
+        }
+        #endregion
+        #region Text
+        private void textboxTextToDraw_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(textboxTextToDraw.Text))
+                return;
+            textToDraw = textboxTextToDraw.Text;
+        }
+        private class tText : ToolFunc
+        {
+            public tText(EditorEx inst, Tool t) : base(inst, t) { }
+            public override void MouseDown(object sender, MouseEventArgs e)
+            {
+                Graphics g = Graphics.FromImage(inst.curImg);
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                inst.paintText(g);
+                g.Save();
+                g.Dispose();
+                inst.picEdit.Image = inst.curImg;
+            }
+            public override void MouseMove(object sender, MouseEventArgs e)
+            {
+                //NONE
+            }
+            public override void MouseUp(object sender, MouseEventArgs e)
+            {
+                //NONE
+            }
+            public override void Paint(object sender, PaintEventArgs e)
+            {
+                inst.paintText(e.Graphics);
+            }
+        }
+        #endregion
+        #region Pen
+        private class tPen : ToolFunc
+        {
+            public tPen(EditorEx inst, Tool t) : base(inst, t) { }
+            public override void MouseDown(object sender, MouseEventArgs e)
+            {
+                inst.cursorLastPos = inst.getPointOnImage();
+            }
+            public override void MouseMove(object sender, MouseEventArgs e)
+            {
+                if (!inst.bMouseDown)
+                    return;
+                Point curPos = inst.getPointOnImage();
+                Graphics g = Graphics.FromImage(inst.curImg);
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                inst.paintPen(g);
+                var cursorLastPos = inst.cursorLastPos;
+                g.DrawLine(inst.penObj, new Point(cursorLastPos.X + (int)inst.penObj.Width / 2, cursorLastPos.Y + (int)inst.penObj.Width / 2),
+                    new Point(curPos.X + (int)inst.penObj.Width / 2, curPos.Y + (int)inst.penObj.Width / 2));
+                inst.cursorLastPos = curPos;
+                g.Save();
+                g.Dispose();
+                inst.picEdit.Image = inst.curImg;
+            }
+            public override void MouseUp(object sender, MouseEventArgs e)
+            {
+                //NONE
+            }
+            public override void Paint(object sender, PaintEventArgs e)
+            {
+                inst.paintPen(e.Graphics);
+            }
+        }
+        #endregion
+
 
 
         private void picEdit_MouseEnter(object sender, EventArgs e) { Cursor.Hide();}
@@ -67,50 +230,38 @@ namespace InfiniPad
         private void picEdit_MouseDown(object sender, MouseEventArgs e) {
             bMouseDown = true;
             AddToHistory(curImg);
-            if(toolInUse == Tool.Pen)
+            foreach(ToolFunc func in funcList)
             {
-                cursorLastPos = getPointOnImage();
-            }
-            if (toolInUse == Tool.Text)
-            {
-                Graphics g = Graphics.FromImage(curImg);
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                paintText(g);
-                g.Save();
-                g.Dispose();
-                picEdit.Image = curImg;
-            }
-            if (toolInUse == Tool.Blur)
-            {
-                cursorLastPos = getPointOnImage();
+                if (func.tool == toolInUse)
+                    func.MouseDown(sender, e);
             }
         }
         private void picEdit_MouseUp(object sender, MouseEventArgs e) {
             bMouseDown = false;
-            if(toolInUse == Tool.Blur)
+            foreach (ToolFunc func in funcList)
             {
-                Rectangle region = PaintHelp.fixNegRect(cursorLastPos, getPointOnImage());
-                curImg.Blur(region, trackSize.Value/2);
-                picEdit.Image = curImg;
+                if (func.tool == toolInUse)
+                    func.MouseUp(sender, e);
             }
             GC.Collect();
         }
 
         private void picEdit_Paint(object sender, PaintEventArgs e)
         {
-            if(toolInUse == Tool.Pen)
+            foreach (ToolFunc func in funcList)
             {
-                paintPen(e.Graphics);
+                if (func.tool == toolInUse)
+                    func.Paint(sender, e);
             }
-            else if(toolInUse == Tool.Text)
+        }
+
+        private void picEdit_MouseMove(object sender, MouseEventArgs e)
+        {
+            picEdit.Invalidate();
+            foreach (ToolFunc func in funcList)
             {
-                paintText(e.Graphics);
-            }
-            else if(toolInUse == Tool.Blur)
-            {
-                paintCrossCursor(e.Graphics);
-                if(bMouseDown)
-                    e.Graphics.DrawOutlinedRect(PaintHelp.fixNegRect(cursorLastPos, getPointOnImage()), Brushes.Blue, 2);
+                if (func.tool == toolInUse)
+                    func.MouseMove(sender, e);
             }
         }
 
@@ -138,23 +289,6 @@ namespace InfiniPad
             g.DrawLine(new Pen(Color.Gray, 2), new Point(cur.X , cur.Y+size), new Point(cur.X, cur.Y-size));
         }
 
-        private void picEdit_MouseMove(object sender, MouseEventArgs e)
-        {
-            picEdit.Invalidate();
-            if(toolInUse == Tool.Pen && bMouseDown)
-            {
-                Point curPos = getPointOnImage();
-                Graphics g = Graphics.FromImage(curImg);
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                paintPen(g);
-                g.DrawLine(penObj, new Point(cursorLastPos.X + (int)penObj.Width / 2, cursorLastPos.Y + (int)penObj.Width / 2),
-                    new Point(curPos.X + (int)penObj.Width / 2, curPos.Y + (int)penObj.Width / 2));
-                cursorLastPos = curPos;
-                g.Save();
-                g.Dispose();
-                picEdit.Image = curImg;
-            }
-        }
 
         private void trackSize_Scroll(object sender, EventArgs e)
         {
@@ -173,33 +307,12 @@ namespace InfiniPad
             }
         }
 
-        private void textboxTextToDraw_TextChanged(object sender, EventArgs e)
-        {
-            if (String.IsNullOrWhiteSpace(textboxTextToDraw.Text))
-                return;
-            textToDraw = textboxTextToDraw.Text;
-        }
-
-        private void btnText_Click(object sender, EventArgs e)
-        {
-            toolInUse = Tool.Text;
-        }
-
-        private void btnPen_Click(object sender, EventArgs e)
-        {
-            toolInUse = Tool.Pen;
-        }
-
-        private void btnBlur_Click(object sender, EventArgs e)
-        {
-            toolInUse = Tool.Blur;
-            
-        }
 
         private void btnDone_Click(object sender, EventArgs e)
         {
             UploadImage();
         }
+
 
         #region Undo/Redo
         List<Bitmap> ImageHistory = new List<Bitmap>();
@@ -318,5 +431,7 @@ namespace InfiniPad
             reset();
         }
         #endregion
+
+        
     }
 }

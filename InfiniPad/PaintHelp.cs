@@ -114,6 +114,16 @@ namespace InfiniPad
             }
         }
 
+        public static Bitmap cropBitmap(Bitmap bmp, Rectangle newRegion)
+        {
+            Bitmap bmpResult = new Bitmap(newRegion.Width, newRegion.Height);
+            Graphics g = Graphics.FromImage(bmpResult);
+            g.DrawImage(bmp, 0, 0, newRegion, GraphicsUnit.Pixel);
+            g.Dispose();
+            return bmpResult;
+
+        }
+
         public static Bitmap getWatermark()
         {
             try
@@ -149,31 +159,18 @@ namespace InfiniPad
             return destBmp;
         }
 
-        /*public static void Blur(this Bitmap bmp, Rectangle region, float intensity)
-        {
-            Graphics g = Graphics.FromImage(bmp);
-            Bitmap section = bmp.CopyRegion(region);
-            section = ResizeBitmap(section, (int)(region.Width * (1 - intensity)), (int)(region.Height * (1 - intensity)));
-            section = ResizeBitmap(section, region.Width, region.Height);
-            g.DrawImage(section, region.X, region.Y, region, GraphicsUnit.Pixel);
-            g.Dispose();
-
-        }*/
-        public static void Blur(this Bitmap bmp, Rectangle region, int intensity)
+        public static void Blur(this Bitmap bmp, Rectangle region, int pixSize)
         {
             if (region.Width == 0 || region.Height == 0)
                 return;
-            if (intensity == 0)
-                intensity = 1;
+            if (pixSize == 0)
+                pixSize = 2;
             Bitmap small = new Bitmap(region.Width, region.Height);
             Graphics smallg = Graphics.FromImage(small);
             smallg.DrawImage(bmp, 0, 0, region, GraphicsUnit.Pixel);
 
-            //Start edit small
-            //int widthIntensity = intensity;
-            //int heightIntensity = 
-            //int intBase = small.Width > small.Height ? small.Height : small.Width;
-            int pixSize = intensity;
+            //start edit small
+
             int pixelsOnWidth = small.Width / pixSize;
             int pixelsOnHeight = small.Height / pixSize;
             for(int w = 1; w <= pixelsOnWidth; w++)
