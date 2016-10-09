@@ -214,10 +214,18 @@ namespace InfiniPad
         public static void applyWatermark(ref Bitmap bmp)
         {
             Bitmap watermark = getWatermark();
-            int waterScale = watermark.Width * watermark.Height;
-            int bmpScale = bmp.Width * bmp.Height;
+            float scale;
+            for(scale = 1 ;scale > 0; scale-=0.01f)
+            {
+                float heightRatio = (float)watermark.Height*scale / bmp.Height;
+                float widthRatio = (float)watermark.Width*scale / bmp.Width;
+                float allowedRatio = Properties.Settings.Default.WatermarkScale;
+                if (heightRatio <= allowedRatio && widthRatio <= allowedRatio)
+                    break;
+            }
+            if (scale <= 0)
+                return;
 
-            float scale = (bmpScale * Properties.Settings.Default.WatermarkScale) / waterScale;
 
             
 
