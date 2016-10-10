@@ -35,6 +35,7 @@ namespace InfiniPad
             Text,
             Blur,
             Crop,
+            Highlighter,
         }
 
         Point cursorLastPos;
@@ -79,6 +80,7 @@ namespace InfiniPad
             funcList.Add(new tBlur(this, Tool.Blur));
             funcList.Add(new tCrop(this, Tool.Crop));
             funcList.Add(new tText(this, Tool.Text));
+            funcList.Add(new tHighlighter(this, Tool.Highlighter));
 
         }
 
@@ -102,22 +104,55 @@ namespace InfiniPad
         {
             toolInUse = Tool.Crop;
         }
-
-
-        #region Crop
-        private class tCrop : ToolFunc
+        private void btnHighlighter_Click(object sender, EventArgs e)
         {
-            public tCrop(EditorEx inst, Tool t) : base(inst, t) { }
+            toolInUse = Tool.Highlighter;
+        }
+
+        #region Highlighter
+        private class tHighlighter : ToolFunc
+        {
+            public tHighlighter(EditorEx inst, Tool t) : base(inst, t) { }
             public override void MouseDown(object sender, MouseEventArgs e)
             {
                 inst.cursorLastPos = inst.getPointOnImage();
             }
             public override void MouseMove(object sender, MouseEventArgs e)
             {
+                if (!inst.bMouseDown)
+                    return;
+                Graphics g = Graphics.FromImage(inst.curImg);
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                int opacity = 50;
+                inst.paintHighlighter(g, opacity, true);
+                g.Dispose();
+                inst.cursorLastPos = e.Location;
+                inst.picEdit.Image = inst.curImg;
             }
             public override void MouseUp(object sender, MouseEventArgs e)
             {
-                Rectangle region = PaintHelp.fixNegRect(inst.cursorLastPos, inst.getPointOnImage());
+                //NONE
+            }
+            public override void Paint(object sender, PaintEventArgs e)
+            {
+                inst.paintHighlighter(e.Graphics, 255);
+            }
+        }
+        #endregion
+        #region Crop
+        private class tCrop : ToolFunc
+        {
+            public tCrop(EditorEx inst, Tool t) : base(inst, t) { }
+            public override void MouseDown(object sender, MouseEventArgs e)
+            {
+                inst.cursorLastPos = e.Location;
+            }
+            public override void MouseMove(object sender, MouseEventArgs e)
+            {
+            }
+            public override void MouseUp(object sender, MouseEventArgs e)
+            {
+                Rectangle region = PaintHelp.fixNegRect(inst.cursorLastPos, e.Location);
                 inst.curImg = PaintHelp.cropBitmap(inst.curImg, region);
                 inst.picEdit.Image = inst.curImg;
             }
@@ -135,7 +170,7 @@ namespace InfiniPad
             public tBlur(EditorEx inst, Tool t) : base(inst, t) { }
             public override void MouseDown(object sender, MouseEventArgs e)
             {
-                inst.cursorLastPos = inst.getPointOnImage();
+                inst.cursorLastPos = e.Location;
             }
             public override void MouseMove(object sender, MouseEventArgs e)
             {
@@ -143,7 +178,7 @@ namespace InfiniPad
             }
             public override void MouseUp(object sender, MouseEventArgs e)
             {
-                Rectangle region = PaintHelp.fixNegRect(inst.cursorLastPos, inst.getPointOnImage());
+                Rectangle region = PaintHelp.fixNegRect(inst.cursorLastPos, e.Location);
                 inst.curImg.Blur(region, inst.trackSize.Value / 2);
                 inst.picEdit.Image = inst.curImg;
             }
@@ -200,7 +235,7 @@ namespace InfiniPad
             {
                 if (!inst.bMouseDown)
                     return;
-                Point curPos = inst.getPointOnImage();
+                Point curPos = e.Location;
                 Graphics g = Graphics.FromImage(inst.curImg);
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
                 inst.paintPen(g);
@@ -279,6 +314,17 @@ namespace InfiniPad
         {
             Point cur = getPointOnImage();
             g.DrawString(textToDraw, new Font("Arial", penObj.Width + 8), new SolidBrush(penObj.Color), new PointF(cur.X, cur.Y));
+        }
+
+        private void paintHighlighter(Graphics g, int opacity, bool isRect = false)
+        {
+            Point curPoint = getPointOnImage();
+            Pen tempPen = new Pen(Color.FromArgb(opacity, penObj.Color), 3);
+            
+            if (isRect)
+                g.FillRectangle(new SolidBrush(tempPen.Color), PaintHelp.fixNegRect(new Point(curPoint.X,curPoint.Y-trackSize.Value), new Point(cursorLastPos.X, curPoint.Y+trackSize.Value)));
+            else
+                g.DrawLine(tempPen, new Point(curPoint.X, curPoint.Y + trackSize.Value), new Point(curPoint.X, curPoint.Y - trackSize.Value));
         }
 
         private void paintCrossCursor(Graphics g)
@@ -430,8 +476,9 @@ namespace InfiniPad
         {
             reset();
         }
+
         #endregion
 
-        
+       
     }
 }
