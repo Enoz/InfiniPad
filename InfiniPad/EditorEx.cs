@@ -123,7 +123,7 @@ namespace InfiniPad
                     return;
                 Graphics g = Graphics.FromImage(inst.curImg);
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-                int opacity = 50;
+                int opacity = 65;
                 inst.paintHighlighter(g, opacity, true);
                 g.Dispose();
                 inst.cursorLastPos = e.Location;

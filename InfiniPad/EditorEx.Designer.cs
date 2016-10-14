@@ -41,6 +41,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetCtrlRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grpEdit = new System.Windows.Forms.GroupBox();
+            this.btnHighlighter = new System.Windows.Forms.Button();
             this.btnCrop = new System.Windows.Forms.Button();
             this.btnPen = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@
             this.editToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.undoCtrlZToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.resetCtrlZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnHighlighter = new System.Windows.Forms.Button();
             this.panelWorkspace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackSize)).BeginInit();
@@ -79,7 +79,7 @@
             this.panelWorkspace.Controls.Add(this.picEdit);
             this.panelWorkspace.Location = new System.Drawing.Point(12, 27);
             this.panelWorkspace.Name = "panelWorkspace";
-            this.panelWorkspace.Size = new System.Drawing.Size(845, 463);
+            this.panelWorkspace.Size = new System.Drawing.Size(845, 472);
             this.panelWorkspace.TabIndex = 0;
             // 
             // picEdit
@@ -195,12 +195,22 @@
             this.grpEdit.Controls.Add(this.btnBlur);
             this.grpEdit.Controls.Add(this.btnText);
             this.grpEdit.Controls.Add(this.textboxTextToDraw);
-            this.grpEdit.Location = new System.Drawing.Point(12, 496);
+            this.grpEdit.Location = new System.Drawing.Point(12, 505);
             this.grpEdit.Name = "grpEdit";
             this.grpEdit.Size = new System.Drawing.Size(845, 52);
             this.grpEdit.TabIndex = 7;
             this.grpEdit.TabStop = false;
             this.grpEdit.Text = "Edit";
+            // 
+            // btnHighlighter
+            // 
+            this.btnHighlighter.Image = global::InfiniPad.Properties.Resources.highlighter_icon;
+            this.btnHighlighter.Location = new System.Drawing.Point(383, 19);
+            this.btnHighlighter.Name = "btnHighlighter";
+            this.btnHighlighter.Size = new System.Drawing.Size(24, 24);
+            this.btnHighlighter.TabIndex = 8;
+            this.btnHighlighter.UseVisualStyleBackColor = true;
+            this.btnHighlighter.Click += new System.EventHandler(this.btnHighlighter_Click);
             // 
             // btnCrop
             // 
@@ -365,16 +375,6 @@
             this.resetCtrlZToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.resetCtrlZToolStripMenuItem.Text = "Reset [Ctrl+Z]";
             this.resetCtrlZToolStripMenuItem.Click += new System.EventHandler(this.resetCtrlRToolStripMenuItem_Click);
-            // 
-            // btnHighlighter
-            // 
-            this.btnHighlighter.Image = global::InfiniPad.Properties.Resources.highlighter_icon;
-            this.btnHighlighter.Location = new System.Drawing.Point(383, 19);
-            this.btnHighlighter.Name = "btnHighlighter";
-            this.btnHighlighter.Size = new System.Drawing.Size(24, 24);
-            this.btnHighlighter.TabIndex = 8;
-            this.btnHighlighter.UseVisualStyleBackColor = true;
-            this.btnHighlighter.Click += new System.EventHandler(this.btnHighlighter_Click);
             // 
             // EditorEx
             // 
