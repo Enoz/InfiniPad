@@ -334,5 +334,17 @@ namespace InfiniPad.Properties {
                 this["UploadWithAccount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("35")]
+        public int HighlighterOpacity {
+            get {
+                return ((int)(this["HighlighterOpacity"]));
+            }
+            set {
+                this["HighlighterOpacity"] = value;
+            }
+        }
     }
 }

@@ -81,6 +81,8 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.textboxPin = new System.Windows.Forms.TextBox();
             this.btnRedirectAuth = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.trackHighlighterOpacity = new System.Windows.Forms.TrackBar();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -95,6 +97,7 @@
             this.tabScreenshot.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackHighlighterOpacity)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxPartial
@@ -243,6 +246,8 @@
             // 
             // groupEditor
             // 
+            this.groupEditor.Controls.Add(this.trackHighlighterOpacity);
+            this.groupEditor.Controls.Add(this.label10);
             this.groupEditor.Controls.Add(this.textEdit);
             this.groupEditor.Controls.Add(this.btnPenColor);
             this.groupEditor.Controls.Add(this.label4);
@@ -670,6 +675,27 @@
             this.btnRedirectAuth.UseVisualStyleBackColor = true;
             this.btnRedirectAuth.Click += new System.EventHandler(this.btnRedirectAuth_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 86);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(96, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Highlighter Opacity";
+            // 
+            // trackHighlighterOpacity
+            // 
+            this.trackHighlighterOpacity.AutoSize = false;
+            this.trackHighlighterOpacity.Location = new System.Drawing.Point(110, 79);
+            this.trackHighlighterOpacity.Maximum = 255;
+            this.trackHighlighterOpacity.Minimum = 1;
+            this.trackHighlighterOpacity.Name = "trackHighlighterOpacity";
+            this.trackHighlighterOpacity.Size = new System.Drawing.Size(104, 28);
+            this.trackHighlighterOpacity.TabIndex = 4;
+            this.trackHighlighterOpacity.Value = 1;
+            this.trackHighlighterOpacity.Scroll += new System.EventHandler(this.trackHighlighterOpacity_Scroll);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -706,6 +732,7 @@
             this.tabPage1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackHighlighterOpacity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -765,5 +792,7 @@
         private System.Windows.Forms.Button btnUnlink;
         private System.Windows.Forms.Label lblAccountID;
         private System.Windows.Forms.CheckBox chkUploadToAccount;
+        private System.Windows.Forms.TrackBar trackHighlighterOpacity;
+        private System.Windows.Forms.Label label10;
     }
 }

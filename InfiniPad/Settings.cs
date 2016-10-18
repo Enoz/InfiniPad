@@ -42,6 +42,8 @@ namespace InfiniPad
             chkStartup.Checked                  = Properties.Settings.Default.RunOnStartup;
             chkHideStartup.Checked              = Properties.Settings.Default.HideOnStartup;
 
+            trackHighlighterOpacity.Value       = Properties.Settings.Default.HighlighterOpacity;
+
             trackOpacity.Value                  = (int)(Properties.Settings.Default.WatermarkOpacity * 100);
             trackScale.Value                    = (int)(Properties.Settings.Default.WatermarkScale * 100);
 
@@ -199,6 +201,12 @@ namespace InfiniPad
         private void textEdit_TextChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.TextDefault = (!String.IsNullOrWhiteSpace(textEdit.Text) ? textEdit.Text : "Text");
+            Properties.Settings.Default.Save();
+        }
+
+        private void trackHighlighterOpacity_Scroll(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.HighlighterOpacity = trackHighlighterOpacity.Value;
             Properties.Settings.Default.Save();
         }
         #endregion
