@@ -9,7 +9,7 @@ namespace InfiniPad
 {
     public partial class Main : Form
     {
-
+        public static Main fmMainWindow;
         #region Imports
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern IntPtr GetForegroundWindow();
@@ -25,31 +25,21 @@ namespace InfiniPad
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
         #endregion
-        public static NotifyIcon nfi;
         private Hotkeys hk;
         public Main()
         {
             InitializeComponent();
+            Notification.Initialize();
             string headerText = string.Format("InfiniPad v{0}", Globals.getVersion());
             this.Icon = Properties.Resources.icon;
             this.Text = headerText;
 
             hk = new Hotkeys();
-            
-            nfi = new NotifyIcon();
-            nfi.Icon = Properties.Resources.icon;
-            nfi.Visible = true;
-            nfi.Text = headerText;
-            nfi.MouseClick += nfiClicked;
-
-            ContextMenu ctm = new ContextMenu();
-            ctm.MenuItems.Add("Exit", new EventHandler(nfiExit));
-
-            nfi.ContextMenu = ctm;
 
             hk.ReapplyHotkeys();
             Globals.CreateMoveDir();
 
+            fmMainWindow = this;
             #region movefile
 #if !DEBUG
                     Globals.moveFile(Globals.MoveToDir + "InfiniPad.exe");
@@ -60,7 +50,11 @@ namespace InfiniPad
 
         }
 
-        private bool shouldDisplay = !Properties.Settings.Default.HideOnStartup;
+        private static bool shouldDisplay = !Properties.Settings.Default.HideOnStartup;
+        public static void setShouldDisplay(bool b)
+        {
+            shouldDisplay = b;
+        }
         protected override void SetVisibleCore(bool value)
         {
             base.SetVisibleCore(shouldDisplay ? value : false);
@@ -70,29 +64,11 @@ namespace InfiniPad
         {
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
-            
         }
 
-        private void nfiExit(object sender, EventArgs e)
+        public void DisposeHotkey()
         {
             hk.Dispose();
-            Environment.Exit(1);
-        }
-
-        private void nfiClicked(object sender, MouseEventArgs e)
-        {
-            switch (e.Button)
-            {
-                case MouseButtons.Left:
-                    shouldDisplay = true;
-                    this.Show();
-                    break;
-            }
-        }
-
-        public static void DisplayBubbleMessage(int timeout, string tipTitle, string tipText)
-        {
-           nfi.ShowBalloonTip(timeout, tipTitle, tipText, ToolTipIcon.Info);
         }
 
         public static void TakePartialScreen()
@@ -219,7 +195,7 @@ namespace InfiniPad
             toDelete.deletehash = listViewLinks.SelectedItems[0].SubItems[1].Text;
             Imgur.deleteImage(toDelete);
             listViewLinks.SelectedItems[0].Remove();
-            Main.DisplayBubbleMessage(3, "Image Deletion", "You have deleted the image located at " + toDelete.link);
+            Notification.DisplayBubbleMessage(3, "Image Deletion", "You have deleted the image located at " + toDelete.link);
             GC.Collect();
         }
     }

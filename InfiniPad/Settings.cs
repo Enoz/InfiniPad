@@ -367,7 +367,7 @@ namespace InfiniPad
                 Properties.Settings.Default.account_authed = false;
                 Properties.Settings.Default.Save();
                 refreshAccountStatus();
-                Main.DisplayBubbleMessage(10, "Unlinked", "Your account has been unlinked. Complete this process in your  Settings on http://www.imgur.com");
+                Notification.DisplayBubbleMessage(10, "Unlinked", "Your account has been unlinked. Complete this process in your  Settings on http://www.imgur.com");
             }
         }
 
