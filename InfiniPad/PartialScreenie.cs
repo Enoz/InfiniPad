@@ -28,7 +28,8 @@ namespace InfiniPad
 
         private void ScreenshotHelper_Load(object sender, EventArgs e)
         {
-            Point offsetPoint = new Point(0, PaintHelp.getYOffset());
+            Point topLeft = PaintHelp.GetTopLeftMonitorPoint();
+            Point offsetPoint = new Point(topLeft.X, topLeft.Y);
             this.Location = offsetPoint;
             this.bmpDesktop = PaintHelp.GetScreen(offsetPoint, fullSize);
             this.fntMeasure = PaintHelp.GetFont("Cambria", 48, FontStyle.Regular);

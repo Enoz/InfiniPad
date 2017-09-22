@@ -67,16 +67,6 @@ namespace InfiniPad
             return b;
         }
 
-        public static int getYOffset()
-        {
-            int lowest = Screen.PrimaryScreen.Bounds.Size.Height;
-            foreach (Screen scr in Screen.AllScreens)
-            {
-                lowest = Math.Min(scr.Bounds.Size.Height, lowest);
-            }
-            return lowest - getFullSize().Height;
-        }
-
         public static Screen getCursorScreen()
         {
             Point cursorPos = Cursor.Position;
@@ -90,6 +80,18 @@ namespace InfiniPad
             }
             return Screen.PrimaryScreen;
         }
+
+        public static Point GetTopLeftMonitorPoint()
+        {
+            Point pt = Screen.PrimaryScreen.Bounds.Location;
+            foreach (Screen scr in Screen.AllScreens)
+            {
+                pt.X = Math.Min(scr.Bounds.Location.X, pt.X);
+                pt.Y = Math.Min(scr.Bounds.Location.Y, pt.Y);
+            }
+            return pt;
+        }
+
 
         public static Bitmap setOpacity(Bitmap bmp, float opacity)
         {

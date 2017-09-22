@@ -21,7 +21,7 @@ namespace InfiniPad
 
         private void btnImgur_Click(object sender, System.EventArgs e)
         {
-            Process.Start("https://api.imgur.com/");
+            Process.Start("https://apidocs.imgur.com/");
         }
 
         private void About_Load(object sender, System.EventArgs e)
