@@ -355,6 +355,13 @@ namespace InfiniPad
                 {
                     Globals.ErrorLog("Imgur.accountInfo() Failed from refreshAccountStatus() : " + acc.ex.Message, false);
                     acc.url = "Failed To Retrieve Username";
+                    if (acc.ex.Message.Contains("403")) //Forbidden
+                    {
+                        UnlinkAccount();
+                        Notification.DisplayBubbleMessage(5, "InfiniPad", "InfiniPad lost access to your Imgur account. Please relink it to continue usage.");
+                        acc.url = "none";
+                    }
+                    
                 }
             }
                 
@@ -380,11 +387,16 @@ namespace InfiniPad
             if (MessageBox.Show("Are you sure you wish to unlink your Imgur Account?", "Confirmation",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Properties.Settings.Default.account_authed = false;
-                Properties.Settings.Default.Save();
-                refreshAccountStatus();
+                UnlinkAccount();
                 Notification.DisplayBubbleMessage(10, "Unlinked", "Your account has been unlinked. Complete this process in your  Settings on http://www.imgur.com");
             }
+        }
+
+        private void UnlinkAccount()
+        {
+            Properties.Settings.Default.account_authed = false;
+            Properties.Settings.Default.Save();
+            refreshAccountStatus();
         }
 
         private void chkUploadToAccount_CheckedChanged(object sender, EventArgs e)
