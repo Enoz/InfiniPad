@@ -83,5 +83,11 @@
     <Setting Name="HighlighterOpacity" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">35</Value>
     </Setting>
+    <Setting Name="ShouldRetryUpload" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="NumRetries" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

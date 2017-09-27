@@ -41,6 +41,9 @@ namespace InfiniPad
             chkClipboard.Checked                = Properties.Settings.Default.ClipboardOnUpload;
             chkStartup.Checked                  = Properties.Settings.Default.RunOnStartup;
             chkHideStartup.Checked              = Properties.Settings.Default.HideOnStartup;
+            chkRetry.Checked                    = Properties.Settings.Default.ShouldRetryUpload;
+            numRetries.Enabled                  = Properties.Settings.Default.ShouldRetryUpload;
+            numRetries.Value                    = Properties.Settings.Default.NumRetries;
 
             trackHighlighterOpacity.Value       = Properties.Settings.Default.HighlighterOpacity;
 
@@ -110,6 +113,19 @@ namespace InfiniPad
         private void chkHideStartup_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.HideOnStartup = chkHideStartup.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void chkShouldRetry_CheckChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ShouldRetryUpload = chkRetry.Checked;
+            numRetries.Enabled = Properties.Settings.Default.ShouldRetryUpload;
+            Properties.Settings.Default.Save();
+        }
+
+        private void numRetries_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.NumRetries = (int)numRetries.Value;
             Properties.Settings.Default.Save();
         }
         #endregion

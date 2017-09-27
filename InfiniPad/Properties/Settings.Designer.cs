@@ -346,5 +346,29 @@ namespace InfiniPad.Properties {
                 this["HighlighterOpacity"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShouldRetryUpload {
+            get {
+                return ((bool)(this["ShouldRetryUpload"]));
+            }
+            set {
+                this["ShouldRetryUpload"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int NumRetries {
+            get {
+                return ((int)(this["NumRetries"]));
+            }
+            set {
+                this["NumRetries"] = value;
+            }
+        }
     }
 }

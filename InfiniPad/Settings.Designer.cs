@@ -43,6 +43,8 @@
             this.checkWindowCtrl = new System.Windows.Forms.CheckBox();
             this.checkWindowShift = new System.Windows.Forms.CheckBox();
             this.groupEditor = new System.Windows.Forms.GroupBox();
+            this.trackHighlighterOpacity = new System.Windows.Forms.TrackBar();
+            this.label10 = new System.Windows.Forms.Label();
             this.textEdit = new System.Windows.Forms.TextBox();
             this.btnPenColor = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -81,10 +83,11 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.textboxPin = new System.Windows.Forms.TextBox();
             this.btnRedirectAuth = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.trackHighlighterOpacity = new System.Windows.Forms.TrackBar();
+            this.chkRetry = new System.Windows.Forms.CheckBox();
+            this.numRetries = new System.Windows.Forms.NumericUpDown();
             this.groupHotkeys.SuspendLayout();
             this.groupEditor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackHighlighterOpacity)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.tabShortcuts.SuspendLayout();
@@ -97,7 +100,7 @@
             this.tabScreenshot.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackHighlighterOpacity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRetries)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxPartial
@@ -260,6 +263,27 @@
             this.groupEditor.TabStop = false;
             this.groupEditor.Text = "Editor";
             // 
+            // trackHighlighterOpacity
+            // 
+            this.trackHighlighterOpacity.AutoSize = false;
+            this.trackHighlighterOpacity.Location = new System.Drawing.Point(110, 79);
+            this.trackHighlighterOpacity.Maximum = 255;
+            this.trackHighlighterOpacity.Minimum = 1;
+            this.trackHighlighterOpacity.Name = "trackHighlighterOpacity";
+            this.trackHighlighterOpacity.Size = new System.Drawing.Size(104, 28);
+            this.trackHighlighterOpacity.TabIndex = 4;
+            this.trackHighlighterOpacity.Value = 1;
+            this.trackHighlighterOpacity.Scroll += new System.EventHandler(this.trackHighlighterOpacity_Scroll);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 86);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(96, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Highlighter Opacity";
+            // 
             // textEdit
             // 
             this.textEdit.Location = new System.Drawing.Point(100, 53);
@@ -326,6 +350,8 @@
             // 
             // tabGeneral
             // 
+            this.tabGeneral.Controls.Add(this.numRetries);
+            this.tabGeneral.Controls.Add(this.chkRetry);
             this.tabGeneral.Controls.Add(this.chkHideStartup);
             this.tabGeneral.Controls.Add(this.btnUninstall);
             this.tabGeneral.Controls.Add(this.chkStartup);
@@ -342,7 +368,7 @@
             // chkHideStartup
             // 
             this.chkHideStartup.AutoSize = true;
-            this.chkHideStartup.Location = new System.Drawing.Point(8, 112);
+            this.chkHideStartup.Location = new System.Drawing.Point(8, 135);
             this.chkHideStartup.Name = "chkHideStartup";
             this.chkHideStartup.Size = new System.Drawing.Size(102, 17);
             this.chkHideStartup.TabIndex = 7;
@@ -363,7 +389,7 @@
             // chkStartup
             // 
             this.chkStartup.AutoSize = true;
-            this.chkStartup.Location = new System.Drawing.Point(8, 89);
+            this.chkStartup.Location = new System.Drawing.Point(8, 112);
             this.chkStartup.Name = "chkStartup";
             this.chkStartup.Size = new System.Drawing.Size(100, 17);
             this.chkStartup.TabIndex = 5;
@@ -675,26 +701,29 @@
             this.btnRedirectAuth.UseVisualStyleBackColor = true;
             this.btnRedirectAuth.Click += new System.EventHandler(this.btnRedirectAuth_Click);
             // 
-            // label10
+            // chkRetry
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 86);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(96, 13);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Highlighter Opacity";
+            this.chkRetry.AutoSize = true;
+            this.chkRetry.Location = new System.Drawing.Point(8, 89);
+            this.chkRetry.Name = "chkRetry";
+            this.chkRetry.Size = new System.Drawing.Size(128, 17);
+            this.chkRetry.TabIndex = 8;
+            this.chkRetry.Text = "Retry If Upload Failed";
+            this.chkRetry.UseVisualStyleBackColor = true;
+            this.chkRetry.CheckedChanged += new System.EventHandler(this.chkShouldRetry_CheckChanged);
             // 
-            // trackHighlighterOpacity
+            // numRetries
             // 
-            this.trackHighlighterOpacity.AutoSize = false;
-            this.trackHighlighterOpacity.Location = new System.Drawing.Point(110, 79);
-            this.trackHighlighterOpacity.Maximum = 255;
-            this.trackHighlighterOpacity.Minimum = 1;
-            this.trackHighlighterOpacity.Name = "trackHighlighterOpacity";
-            this.trackHighlighterOpacity.Size = new System.Drawing.Size(104, 28);
-            this.trackHighlighterOpacity.TabIndex = 4;
-            this.trackHighlighterOpacity.Value = 1;
-            this.trackHighlighterOpacity.Scroll += new System.EventHandler(this.trackHighlighterOpacity_Scroll);
+            this.numRetries.Location = new System.Drawing.Point(133, 88);
+            this.numRetries.Maximum = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.numRetries.Name = "numRetries";
+            this.numRetries.Size = new System.Drawing.Size(29, 20);
+            this.numRetries.TabIndex = 9;
+            this.numRetries.ValueChanged += new System.EventHandler(this.numRetries_ValueChanged);
             // 
             // Settings
             // 
@@ -712,6 +741,7 @@
             this.groupHotkeys.PerformLayout();
             this.groupEditor.ResumeLayout(false);
             this.groupEditor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackHighlighterOpacity)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
@@ -732,7 +762,7 @@
             this.tabPage1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackHighlighterOpacity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRetries)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -794,5 +824,7 @@
         private System.Windows.Forms.CheckBox chkUploadToAccount;
         private System.Windows.Forms.TrackBar trackHighlighterOpacity;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckBox chkRetry;
+        private System.Windows.Forms.NumericUpDown numRetries;
     }
 }

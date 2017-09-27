@@ -418,7 +418,16 @@ namespace InfiniPad
                         Application.DoEvents();
                     this.Hide();
                 });
-                var PictureLink = Imgur.toImgur(curImg);
+
+                Imgur.ImageInfo PictureLink = new Imgur.ImageInfo();
+                PictureLink.success = false;
+
+                bool bShouldRetry = Properties.Settings.Default.ShouldRetryUpload;
+                int numTries = Properties.Settings.Default.ShouldRetryUpload ? Properties.Settings.Default.NumRetries+1 : 1;
+
+                for (int i = 1; i <= numTries && !PictureLink.success; i++)
+                    PictureLink = Imgur.toImgur(curImg);
+
                 if (PictureLink.success)
                 {
                     bool shouldClipboard = Properties.Settings.Default.ClipboardOnUpload;
