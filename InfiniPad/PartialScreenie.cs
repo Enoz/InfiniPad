@@ -6,7 +6,7 @@ namespace InfiniPad
 {
     public partial class PartialScreenie : Form
     {
-        private Size fullSize;
+        private Rectangle fullRect;
         private Point startP, endP;
         private Brush rectBrush     = new SolidBrush(Color.FromArgb(128, 0, 0, 0));
         private Brush measBrush     = new SolidBrush(Properties.Settings.Default.MeasurementColor);
@@ -18,10 +18,10 @@ namespace InfiniPad
 
         public PartialScreenie()
         {
-            fullSize = PaintHelp.getFullSize();
+            fullRect = PaintHelp.getFullSize();
             InitializeComponent();
             this.Visible = false;
-            this.Size = fullSize;
+            this.Size = fullRect.Size;
             this.DoubleBuffered = true;
             this.Show();
         }
@@ -29,9 +29,9 @@ namespace InfiniPad
         private void ScreenshotHelper_Load(object sender, EventArgs e)
         {
             //Point topLeft = PaintHelp.GetTopLeftMonitorPoint();
-            Point offsetPoint = PaintHelp.GetTopLeftMonitorPoint();
+            Point offsetPoint = new Point(fullRect.X, fullRect.Y);
             this.Location = offsetPoint;
-            this.bmpDesktop = PaintHelp.GetScreen(offsetPoint, fullSize);
+            this.bmpDesktop = PaintHelp.GetScreen(offsetPoint, fullRect.Size);
             this.fntMeasure = PaintHelp.GetFont("Cambria", 48, FontStyle.Regular);
         }
 
@@ -42,13 +42,13 @@ namespace InfiniPad
             
             if (startP.IsEmpty)
             {
-                g.FillRectangle(rectBrush, new Rectangle(0, 0, fullSize.Width, fullSize.Height));
+                g.FillRectangle(rectBrush, new Rectangle(0, 0, fullRect.Width, fullRect.Height));
             }
             else
             {
                 Rectangle drawArea = PaintHelp.fixNegRect(startP, endP);
                 g.DrawOutlinedRect(drawArea, outlineBrush, 3);
-                g.DrawAroundRect(drawArea, new Rectangle(0, 0, fullSize.Width, fullSize.Height), rectBrush);
+                g.DrawAroundRect(drawArea, new Rectangle(0, 0, fullRect.Width, fullRect.Height), rectBrush);
                 g.DrawRotatedText(Math.Abs(startP.X-endP.X).ToString(), fntMeasure, measBrush, new PointF(drawArea.X, drawArea.Y+drawArea.Size.Height), 0);
 
                 string ySize = Math.Abs(startP.Y - endP.Y).ToString();

@@ -47,15 +47,15 @@ namespace InfiniPad
             g.TranslateTransform(-X, -Y);
             g.DrawString(s, font, b, pt);
         }
-        public static Size getFullSize()
+
+        /* https://stackoverflow.com/a/1317252 */
+        public static Rectangle getFullSize()
         {
-            Size res = new Size();
-            foreach (Screen scr in Screen.AllScreens)
-            {
-                res.Width += scr.Bounds.Width;
-                res.Height = Math.Max(scr.Bounds.Height, res.Height);
-            }
-            return res;
+            Rectangle rect = new Rectangle(int.MaxValue, int.MaxValue, int.MinValue, int.MinValue);
+
+            foreach (Screen screen in Screen.AllScreens)
+                rect = Rectangle.Union(rect, screen.Bounds);
+            return rect;
         }
 
         public static Bitmap GetScreen(Point p, Size s)
@@ -79,17 +79,6 @@ namespace InfiniPad
                 }
             }
             return Screen.PrimaryScreen;
-        }
-
-        public static Point GetTopLeftMonitorPoint()
-        {
-            Point pt = Screen.PrimaryScreen.Bounds.Location;
-            foreach (Screen scr in Screen.AllScreens)
-            {
-                pt.X = Math.Min(scr.Bounds.Location.X, pt.X);
-                pt.Y = Math.Min(scr.Bounds.Location.Y, pt.Y);
-            }
-            return pt;
         }
 
 
@@ -248,4 +237,5 @@ namespace InfiniPad
 
     }
 }
+ 
  
