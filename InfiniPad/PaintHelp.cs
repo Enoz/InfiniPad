@@ -3,11 +3,39 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace InfiniPad
 {
     static class PaintHelp
     {
+
+        //https://stackoverflow.com/a/28923832
+        #region DPI_FIX
+        private enum ProcessDPIAwareness
+        {
+          ProcessDPIUnaware = 0,
+          ProcessSystemDPIAware = 1,
+          ProcessPerMonitorDPIAware = 2
+        }
+
+        [DllImport("shcore.dll")]
+        private static extern int SetProcessDpiAwareness(ProcessDPIAwareness value);
+
+        public static void FixDPIAwareness()
+        {
+            try
+            {
+                    if (Environment.OSVersion.Version.Major >= 6)
+                    {
+                        SetProcessDpiAwareness(ProcessDPIAwareness.ProcessPerMonitorDPIAware);
+                    }
+            }
+            catch (EntryPointNotFoundException)//this exception occures if OS does not implement this API, just ignore it.
+            {
+            }
+        }
+        #endregion
         
         public static Font GetFont(string family, int size, FontStyle style)
         {
@@ -51,8 +79,8 @@ namespace InfiniPad
         /* https://stackoverflow.com/a/1317252 */
         public static Rectangle getFullSize()
         {
-            Rectangle rect = new Rectangle(int.MaxValue, int.MaxValue, int.MinValue, int.MinValue);
-
+            //Rectangle rect = new Rectangle(int.MaxValue, int.MaxValue, int.MinValue, int.MinValue);
+            Rectangle rect = new Rectangle(0, 0, 0, 0);
             foreach (Screen screen in Screen.AllScreens)
                 rect = Rectangle.Union(rect, screen.Bounds);
             return rect;

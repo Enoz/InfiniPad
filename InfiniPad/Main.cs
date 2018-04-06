@@ -28,6 +28,7 @@ namespace InfiniPad
         private Hotkeys hk;
         public Main()
         {
+            PaintHelp.FixDPIAwareness();
             InitializeComponent();
             Notification.Initialize();
             string headerText = string.Format("InfiniPad v{0}", Globals.getVersion());
